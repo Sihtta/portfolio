@@ -47,12 +47,12 @@ class __TwigTemplate_e1bbba9f8cafd807c7866299c311d379 extends Template
         // line 1
         yield "<style>
 .carousel-image-container {
-    height: 500px; /* Hauteur fixe pour le conteneur */
-    overflow: hidden; /* Cache l'excédent si l'image est plus grande que le conteneur */
+    height: 500px; 
+    overflow: hidden; 
 }
 
 .carousel-image-container img {
-    object-fit: cover; /* S'assure que l'image couvre le conteneur sans se déformer */
+    object-fit: cover; 
     width: 100%;
     height: 100%;
 }
@@ -84,11 +84,10 @@ class __TwigTemplate_e1bbba9f8cafd807c7866299c311d379 extends Template
                 yield "active";
             }
             yield "\">
-                <!-- Conteneur d'image avec hauteur fixée -->
                 <div class=\"carousel-image-container\">
                     <img src=\"";
-            // line 20
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "image", [], "any", false, false, false, 20), "html", null, true);
+            // line 19
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "image", [], "any", false, false, false, 19), "html", null, true);
             yield "\" class=\"d-block w-100\" alt=\"Image de création\">
                 </div>
             </div>
@@ -105,14 +104,12 @@ class __TwigTemplate_e1bbba9f8cafd807c7866299c311d379 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['creation'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 24
+        // line 23
         yield "    </div>
-    <!-- Flèche précédente -->
     <button class=\"carousel-control-prev\" type=\"button\" data-bs-target=\"#carouselExampleAutoplaying\" data-bs-slide=\"prev\">
         <span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>
         <span class=\"visually-hidden\">Previous</span>
     </button>
-    <!-- Flèche suivante -->
     <button class=\"carousel-control-next\" type=\"button\" data-bs-target=\"#carouselExampleAutoplaying\" data-bs-slide=\"next\">
         <span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>
         <span class=\"visually-hidden\">Next</span>
@@ -149,19 +146,19 @@ class __TwigTemplate_e1bbba9f8cafd807c7866299c311d379 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  109 => 24,  91 => 20,  82 => 17,  65 => 16,  48 => 1,);
+        return array (  108 => 23,  90 => 19,  82 => 17,  65 => 16,  48 => 1,);
     }
 
     public function getSourceContext(): Source
     {
         return new Source("<style>
 .carousel-image-container {
-    height: 500px; /* Hauteur fixe pour le conteneur */
-    overflow: hidden; /* Cache l'excédent si l'image est plus grande que le conteneur */
+    height: 500px; 
+    overflow: hidden; 
 }
 
 .carousel-image-container img {
-    object-fit: cover; /* S'assure que l'image couvre le conteneur sans se déformer */
+    object-fit: cover; 
     width: 100%;
     height: 100%;
 }
@@ -171,24 +168,21 @@ class __TwigTemplate_e1bbba9f8cafd807c7866299c311d379 extends Template
     <div class=\"carousel-inner\">
         {% for creation in creations %}
             <div class=\"carousel-item {% if loop.first %}active{% endif %}\">
-                <!-- Conteneur d'image avec hauteur fixée -->
                 <div class=\"carousel-image-container\">
                     <img src=\"{{ creation.image }}\" class=\"d-block w-100\" alt=\"Image de création\">
                 </div>
             </div>
         {% endfor %}
     </div>
-    <!-- Flèche précédente -->
     <button class=\"carousel-control-prev\" type=\"button\" data-bs-target=\"#carouselExampleAutoplaying\" data-bs-slide=\"prev\">
         <span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>
         <span class=\"visually-hidden\">Previous</span>
     </button>
-    <!-- Flèche suivante -->
     <button class=\"carousel-control-next\" type=\"button\" data-bs-target=\"#carouselExampleAutoplaying\" data-bs-slide=\"next\">
         <span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>
         <span class=\"visually-hidden\">Next</span>
     </button>
 </div>
-", "partials/_carroussel.html.twig", "E:\\CODE\\Portefolio\\templates\\partials\\_carroussel.html.twig");
+", "partials/_carroussel.html.twig", "C:\\Users\\theos\\Documents\\GitHub\\portfolio\\templates\\partials\\_carroussel.html.twig");
     }
 }
