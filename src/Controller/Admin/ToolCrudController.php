@@ -36,7 +36,14 @@ class ToolCrudController extends AbstractCrudController
             ->setSortable(false),
             TextEditorField::new('Description')
                 ->setFormType(CKEditorType::class)
-                ->setSortable(false),
+                ->setSortable(false)
+                ->setFormTypeOptions([
+                    'attr' => ['style' => 'width: 400px;'],
+                    'config' => [
+                        'toolbar' => 'standard',
+                        'width' => '400',
+                    ],
+                ]),
             TextField::new('reference', 'Référence')
             ->setSortable(false),
             DateTimeField::new('created_at', 'Date de création')

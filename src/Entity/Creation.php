@@ -8,6 +8,7 @@ use App\Entity\Category;
 use Doctrine\ORM\Mapping as ORM;
 
 use App\Repository\CreationRepository;
+use DateTime;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -64,6 +65,7 @@ class Creation
         $this->category = new ArrayCollection();
         $this->likes = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->createdAt = new DateTime();
     }
 
     public function getId(): ?int

@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class CreationCrudController extends AbstractCrudController
@@ -38,12 +39,18 @@ class CreationCrudController extends AbstractCrudController
             // Si ça ne marche pas, modifiez extension=zip (enlevez le ";") dans C:\xampp\php\php.ini
             // Documentation : https://symfony.com/bundles/FOSCKEditorBundle/current/installation.html
             TextEditorField::new('Description')
-                ->setFormType(CKEditorType::class)
-                ->setSortable(false),
-            TextField::new('Image', "Lien de l'image")
+            ->setFormType(CKEditorType::class)
+            ->setFormTypeOptions([
+                'attr' => ['style' => 'width: 400px;'],
+                'config' => [
+                    'toolbar' => 'standard',
+                    'width' => '400',
+                ],
+            ])
             ->setSortable(false),
-            DateTimeField::new('created_at', 'Date de création')
-            ->setSortable(true),
+                    TextField::new('Image', "Lien de l'image")
+            ->setSortable(false),
+            AssociationField::new('Tool'),
         ];
     }
 }
