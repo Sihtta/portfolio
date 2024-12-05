@@ -21,7 +21,7 @@ class ToolCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud {
         return $crud
         ->setEntityLabelInPlural('Liste des outils')
-            ->setEntityLabelInSingular('outils')
+            ->setEntityLabelInSingular('un outil')
             ->setPageTitle('index','Portfolio - Administration des outils')
             ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');
     }
@@ -30,13 +30,18 @@ class ToolCrudController extends AbstractCrudController
     {
         return [
             IdField::new('ID')
-            ->setFormTypeOption('disabled','disabled'),
-            TextField::new('name', 'Nom'),
+            ->setFormTypeOption('disabled','disabled')
+            ->setSortable(true),
+            TextField::new('name', 'Nom')
+            ->setSortable(false),
             TextEditorField::new('Description')
-                ->setFormType(CKEditorType::class),
-            TextField::new('reference', 'Référence'),
+                ->setFormType(CKEditorType::class)
+                ->setSortable(false),
+            TextField::new('reference', 'Référence')
+            ->setSortable(false),
             DateTimeField::new('created_at', 'Date de création')
-            ->setFormTypeOption('disabled','disabled'),
+            ->setFormTypeOption('disabled','disabled')
+            ->setSortable(true),
         ];
     }
 }

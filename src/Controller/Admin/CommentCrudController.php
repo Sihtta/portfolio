@@ -22,7 +22,7 @@ class CommentCrudController extends AbstractCrudController
     {
         return $crud
             ->setEntityLabelInPlural('Liste des commentaires')
-            ->setEntityLabelInSingular('Commentaire')
+            ->setEntityLabelInSingular('un commentaire')
             ->setPageTitle('index', 'Portfolio - Administration des commentaires');
     }
 
@@ -30,11 +30,17 @@ class CommentCrudController extends AbstractCrudController
     {
         return [
             IdField::new('user.id', "Id de l'utilisateur")
-                ->setFormTypeOption('disabled', 'disabled'),
+                ->setFormTypeOption('disabled', 'disabled')
+                ->setSortable(true),
+            IdField::new('user.pseudo', "Pseudonyme de l'utilisateur")
+                ->setFormTypeOption('disabled', 'disabled')
+                ->setSortable(false),
             TextField::new('content_comment', 'Commentaire')
-                ->setFormTypeOption('disabled', 'disabled'),
+                ->setFormTypeOption('disabled', 'disabled')
+                ->setSortable(false),
             DateTimeField::new('createdAt', 'Date de création')
-                ->setFormTypeOption('disabled', 'disabled'),
+                ->setFormTypeOption('disabled', 'disabled')
+                ->setSortable(true),
         ];
     }
 

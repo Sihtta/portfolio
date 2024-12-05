@@ -23,7 +23,7 @@ class UserCrudController extends AbstractCrudController
     {
         return $crud
             ->setEntityLabelInPlural('Liste des utilisateurs')
-            ->setEntityLabelInSingular('Utilisateur')
+            ->setEntityLabelInSingular('un utilisateur')
             ->setPageTitle('index', 'Portfolio - Administration des utilisateurs');
     }
 
@@ -31,11 +31,15 @@ class UserCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')
-                ->hideOnForm(),
+                ->hideOnForm()
+                ->setSortable(true),
             TextField::new('email')
-                ->setFormTypeOption('disabled', 'disabled'),
-            TextField::new('fullName', 'Nom complet'),
-            TextField::new('pseudo', 'Pseudonyme'),
+                ->setFormTypeOption('disabled', 'disabled')
+                ->setSortable(false),
+            TextField::new('fullName', 'Nom complet')
+            ->setSortable(false),
+            TextField::new('pseudo', 'Pseudonyme')
+            ->setSortable(false),
             ChoiceField::new('roles', 'Rôles')
             ->setChoices([
                 'Utilisateur' => 'ROLE_USER',
@@ -46,7 +50,8 @@ class UserCrudController extends AbstractCrudController
             ->renderExpanded()
             ->hideOnIndex(),
             DateTimeField::new('createdAt', 'Date de création')
-                ->setFormTypeOption('disabled', 'disabled'),
+                ->setFormTypeOption('disabled', 'disabled')
+                ->setSortable(true),
         ];
     }
 
