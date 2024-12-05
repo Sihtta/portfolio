@@ -124,3 +124,4 @@ e17991,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudController
 008efe,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController,1733410350,,200
 f056f6,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733410378,,200
 e3678b,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733410392,,200
+d1d9bf,127.0.0.1,GET,http://127.0.0.1:8000/admin,1733410813,,200
