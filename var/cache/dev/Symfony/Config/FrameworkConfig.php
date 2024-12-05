@@ -868,19 +868,11 @@ class FrameworkConfig implements \Symfony\Component\Config\Builder\ConfigBuilder
     
     /**
      * Uid configuration
-     * @default {"enabled":false,"default_uuid_version":6,"name_based_uuid_version":5,"time_based_uuid_version":6}
-     * @return \Symfony\Config\Framework\UidConfig|$this
-     */
-    public function uid(mixed $value = []): \Symfony\Config\Framework\UidConfig|static
+     * @default {"enabled":true,"default_uuid_version":6,"name_based_uuid_version":5,"time_based_uuid_version":6}
+    */
+    public function uid(array $value = []): \Symfony\Config\Framework\UidConfig
     {
-        if (!\is_array($value)) {
-            $this->_usedProperties['uid'] = true;
-            $this->uid = $value;
-    
-            return $this;
-        }
-    
-        if (!$this->uid instanceof \Symfony\Config\Framework\UidConfig) {
+        if (null === $this->uid) {
             $this->_usedProperties['uid'] = true;
             $this->uid = new \Symfony\Config\Framework\UidConfig($value);
         } elseif (0 < \func_num_args()) {
@@ -1187,7 +1179,7 @@ class FrameworkConfig implements \Symfony\Component\Config\Builder\ConfigBuilder
     
         if (array_key_exists('uid', $value)) {
             $this->_usedProperties['uid'] = true;
-            $this->uid = \is_array($value['uid']) ? new \Symfony\Config\Framework\UidConfig($value['uid']) : $value['uid'];
+            $this->uid = new \Symfony\Config\Framework\UidConfig($value['uid']);
             unset($value['uid']);
         }
     
@@ -1338,7 +1330,7 @@ class FrameworkConfig implements \Symfony\Component\Config\Builder\ConfigBuilder
             $output['rate_limiter'] = $this->rateLimiter instanceof \Symfony\Config\Framework\RateLimiterConfig ? $this->rateLimiter->toArray() : $this->rateLimiter;
         }
         if (isset($this->_usedProperties['uid'])) {
-            $output['uid'] = $this->uid instanceof \Symfony\Config\Framework\UidConfig ? $this->uid->toArray() : $this->uid;
+            $output['uid'] = $this->uid->toArray();
         }
         if (isset($this->_usedProperties['htmlSanitizer'])) {
             $output['html_sanitizer'] = $this->htmlSanitizer instanceof \Symfony\Config\Framework\HtmlSanitizerConfig ? $this->htmlSanitizer->toArray() : $this->htmlSanitizer;

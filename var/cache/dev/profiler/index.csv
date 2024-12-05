@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 33f5d4,127.0.0.1,GET,http://127.0.0.1:8000/,1732969622,,404
 48cc56,127.0.0.1,GET,http://127.0.0.1:8000/connexion,1732969631,,200
 16339d,127.0.0.1,POST,http://127.0.0.1:8000/connexion,1732969643,,302
@@ -186,3 +187,32 @@ ec42a7,127.0.0.1,GET,http://127.0.0.1:8000/utilisateur/edition/54,1732973472,029
 75afa7,127.0.0.1,GET,http://127.0.0.1:8000/utilisateur/edition/55,1732973506,,200
 8a4ed1,127.0.0.1,POST,http://127.0.0.1:8000/utilisateur/edition/55,1732973517,,302
 bed659,127.0.0.1,GET,http://127.0.0.1:8000/base,1732973517,,200
+=======
+d14b70,127.0.0.1,GET,http://127.0.0.1:8000/admin,1733340576,,200
+a95f63,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController,1733340583,,200
+c59930,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733340587,,200
+8fe120,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CCommentCrudController,1733340592,,200
+583845,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CCategoryCrudController,1733340597,,200
+4f2473,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CToolCrudController,1733340603,,200
+d0d378,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController,1733340606,,200
+ec9401,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CCategoryCrudController,1733340619,,200
+ab2bc9,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController,1733340622,,200
+fb329d,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733340626,,200
+fa3b89,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=edit&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController&entityId=41,1733340631,,200
+c25126,127.0.0.1,POST,http://127.0.0.1:8000/admin?crudAction=edit&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController&entityId=41,1733340639,,302
+61db60,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733340640,,200
+f48521,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=new&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733340649,,200
+718c98,127.0.0.1,POST,http://127.0.0.1:8000/admin?crudAction=new&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733340658,,302
+07ea74,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=new&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733340659,,200
+5845f9,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733340662,,200
+764c21,127.0.0.1,POST,http://127.0.0.1:8000/admin?crudAction=delete&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController&entityId=52,1733340670,,302
+189966,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733340673,,200
+>>>>>>> Entity
+5e0908,127.0.0.1,GET,http://127.0.0.1:8000/,1733397287,,404
+37419e,127.0.0.1,GET,http://127.0.0.1:8000/admin,1733397293,,200
+acaaa9,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController,1733397313,,200
+2daa2c,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733397327,,200
+7c78f9,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CCommentCrudController,1733397330,,200
+6eda1c,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733397338,,200
+16d890,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController,1733397341,,200
+42f743,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController,1733397369,,200

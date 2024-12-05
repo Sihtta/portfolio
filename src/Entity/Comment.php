@@ -16,13 +16,13 @@ class Comment
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 250)]
+    #[ORM\Column(length: 500)]
     #[Assert\NotBlank]
     #[Assert\Length(
         min: 2,
-        max: 50,
-        minMessage: 'Votre nom de creation doit faire au minimum {{ limit }} caractères.',
-        maxMessage: 'Votre nom de creation doit faire au maximum {{ limit }} caractères.',
+        max: 500,
+        minMessage: 'Votre commentaire doit faire au minimum {{ limit }} caractères.',
+        maxMessage: 'Votre commentaire doit faire au maximum {{ limit }} caractères.',
     )]
     private ?string $contentComment = null;
 
