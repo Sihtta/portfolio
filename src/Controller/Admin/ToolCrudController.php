@@ -7,11 +7,11 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 
 class ToolCrudController extends AbstractCrudController
 {
@@ -31,7 +31,7 @@ class ToolCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        return [
+        $fields = [
             TextField::new('name', 'Nom')
             ->setSortable(false),
             TextEditorField::new('Description')
@@ -53,6 +53,16 @@ class ToolCrudController extends AbstractCrudController
                 return $value instanceof \DateTimeInterface ? $value->format('d/m/Y') : '';
             }),
         ];
+        if ($pageName === Crud::PAGE_DETAIL) {
+            $fields[] = ArrayField::new('creations', 'Liste des œuvres')
+                ->formatValue(function ($creations) {
+                    if ($creations === null || count($creations) === 0) {
+                        return 'Aucune œuvre';
+                    }
+                    return implode("\n", array_map(fn($creation) => $creation->getName(), $creations->toArray()));
+                });
+        }
+        return $fields;
     }
 
     public function configureActions(Actions $actions): Actions

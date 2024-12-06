@@ -7,7 +7,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 
@@ -29,22 +28,24 @@ class CommentCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        return [
-            IdField::new('user.pseudo', "Pseudonyme de l'utilisateur")
+        $fields = [
+            TextField::new('user.pseudo', "Pseudonyme de l'utilisateur")
                 ->setFormTypeOption('disabled', 'disabled')
                 ->setSortable(false),
             TextField::new('content_comment', 'Commentaire')
                 ->setFormTypeOption('disabled', 'disabled')
                 ->setSortable(false),
-            DateTimeField::new('createdAt', 'Date de création')
-                ->setFormTypeOption('disabled', 'disabled')
-                ->setSortable(true)
+        ];
+
+        if ($pageName === Crud::PAGE_DETAIL) {
+            $fields[] = TextField::new('creation.name', "Nom de la création");
+            $fields [] = DateTimeField::new('createdAt', 'Date du commentaire')
                 ->formatValue(function ($value, $entity) {
                     return $value instanceof \DateTimeInterface ? $value->format('d/m/Y') : '';
-                }),
-        ];
+            });
+        }
+        return $fields;
     }
-
     public function configureActions(Actions $actions): Actions
     {
         $viewAction = Action::new('detail', 'Détail')

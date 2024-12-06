@@ -7,13 +7,11 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 
 class CategoryCrudController extends AbstractCrudController
 {
-
     public static function getEntityFqcn(): string
     {
         return Category::class;
@@ -23,7 +21,7 @@ class CategoryCrudController extends AbstractCrudController
     {
         return $crud
             ->setEntityLabelInPlural('Liste des catégories')
-            ->setEntityLabelInSingular('une catégorie')
+            ->setEntityLabelInSingular('Une catégorie')
             ->setPageTitle('index', 'Portfolio - Administration des catégories')
             ->setPageTitle('detail', 'Détail de la catégorie');
     }
@@ -35,6 +33,16 @@ class CategoryCrudController extends AbstractCrudController
                 ->setSortable(true),
         ];
 
+        if ($pageName === Crud::PAGE_DETAIL) {
+            $fields[] = ArrayField::new('creations', 'Liste des œuvres')
+                ->formatValue(function ($creations) {
+                    if ($creations === null || count($creations) === 0) {
+                        return 'Aucune œuvre';
+                    }
+                    return implode("\n", array_map(fn($creation) => $creation->getName(), $creations->toArray()));
+                });
+        }
+
         return $fields;
     }
 
@@ -44,7 +52,7 @@ class CategoryCrudController extends AbstractCrudController
             ->linkToCrudAction(Crud::PAGE_DETAIL)
             ->setCssClass('btn btn-link');
 
-            return $actions
+        return $actions
             ->add(Crud::PAGE_INDEX, $viewAction);
     }
 }
