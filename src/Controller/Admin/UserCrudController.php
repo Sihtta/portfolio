@@ -30,16 +30,13 @@ class UserCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id')
-                ->hideOnForm()
+            TextField::new('pseudo', 'Pseudonyme')
                 ->setSortable(true),
+            TextField::new('fullName', 'Nom complet')
+                ->setSortable(false),
             TextField::new('email')
                 ->setFormTypeOption('disabled', 'disabled')
                 ->setSortable(false),
-            TextField::new('fullName', 'Nom complet')
-            ->setSortable(false),
-            TextField::new('pseudo', 'Pseudonyme')
-            ->setSortable(false),
             ChoiceField::new('roles', 'Rôles')
             ->setChoices([
                 'Utilisateur' => 'ROLE_USER',
@@ -51,7 +48,10 @@ class UserCrudController extends AbstractCrudController
             ->hideOnIndex(),
             DateTimeField::new('createdAt', 'Date de création')
                 ->setFormTypeOption('disabled', 'disabled')
-                ->setSortable(true),
+                ->setSortable(true)
+                ->formatValue(function ($value, $entity) {
+                    return $value instanceof \DateTimeInterface ? $value->format('d/m/Y') : '';
+                }),
         ];
     }
 

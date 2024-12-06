@@ -29,9 +29,6 @@ class CommentCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('user.id', "Id de l'utilisateur")
-                ->setFormTypeOption('disabled', 'disabled')
-                ->setSortable(true),
             IdField::new('user.pseudo', "Pseudonyme de l'utilisateur")
                 ->setFormTypeOption('disabled', 'disabled')
                 ->setSortable(false),
@@ -40,7 +37,10 @@ class CommentCrudController extends AbstractCrudController
                 ->setSortable(false),
             DateTimeField::new('createdAt', 'Date de création')
                 ->setFormTypeOption('disabled', 'disabled')
-                ->setSortable(true),
+                ->setSortable(true)
+                ->formatValue(function ($value, $entity) {
+                    return $value instanceof \DateTimeInterface ? $value->format('d/m/Y') : '';
+                }),
         ];
     }
 

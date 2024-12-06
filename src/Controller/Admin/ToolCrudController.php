@@ -29,9 +29,6 @@ class ToolCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('ID')
-            ->setFormTypeOption('disabled','disabled')
-            ->setSortable(true),
             TextField::new('name', 'Nom')
             ->setSortable(false),
             TextEditorField::new('Description')
@@ -48,7 +45,10 @@ class ToolCrudController extends AbstractCrudController
             ->setSortable(false),
             DateTimeField::new('created_at', 'Date de création')
             ->setFormTypeOption('disabled','disabled')
-            ->setSortable(true),
+            ->setSortable(true)
+            ->formatValue(function ($value, $entity) {
+                return $value instanceof \DateTimeInterface ? $value->format('d/m/Y') : '';
+            }),
         ];
     }
 }

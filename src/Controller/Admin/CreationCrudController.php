@@ -31,26 +31,30 @@ class CreationCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('ID')
-                ->hideOnForm()
-                ->setSortable(true),
             TextField::new('Name', 'Nom')
             ->setSortable(true),
             // Si ça ne marche pas, modifiez extension=zip (enlevez le ";") dans C:\xampp\php\php.ini
             // Documentation : https://symfony.com/bundles/FOSCKEditorBundle/current/installation.html
             TextEditorField::new('Description')
-            ->setFormType(CKEditorType::class)
-            ->setFormTypeOptions([
-                'attr' => ['style' => 'width: 400px;'],
-                'config' => [
-                    'toolbar' => 'standard',
-                    'width' => '400',
-                ],
-            ])
-            ->setSortable(false),
-                    TextField::new('Image', "Lien de l'image")
-            ->setSortable(false),
-            AssociationField::new('Tool'),
+                ->setFormType(CKEditorType::class)
+                ->setFormTypeOptions([
+                    'attr' => ['style' => 'width: 400px;'],
+                    'config' => [
+                        'toolbar' => 'standard',
+                        'width' => '400',
+                    ],
+                ])
+                ->setSortable(false),
+            TextField::new('Image', "Lien de l'image")
+                ->setSortable(false),
+            AssociationField::new('Tool', 'Outils')
+                ->setSortable(false),
+            DateTimeField::new('createdAt', 'Date de création')
+                ->setFormTypeOption('disabled', 'disabled')
+                ->setSortable(true)
+                ->formatValue(function ($value, $entity) {
+                    return $value instanceof \DateTimeInterface ? $value->format('d/m/Y') : '';
+                }),
         ];
     }
 }
