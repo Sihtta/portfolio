@@ -8,16 +8,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 
 class CategoryCrudController extends AbstractCrudController
 {
-    public function configureActions(Actions $actions): Actions
-    {
-        return $actions
-            ->add(Crud::PAGE_INDEX, 'show');
-    }
 
     public static function getEntityFqcn(): string
     {
@@ -38,11 +31,6 @@ class CategoryCrudController extends AbstractCrudController
             TextField::new('name', 'Nom')
                 ->setSortable(true),
         ];
-
-        if ($pageName === Crud::PAGE_SHOW) {
-            $fields[] = IdField::new('id', 'Identifiant');
-            $fields[] = TextEditorField::new('description', 'Description');
-        }
 
         return $fields;
     }
