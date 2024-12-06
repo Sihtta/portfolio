@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Creation;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -25,7 +27,8 @@ class CreationCrudController extends AbstractCrudController
             ->setEntityLabelInPlural('Liste des créations')
             ->setEntityLabelInSingular('une oeuvre')
             ->setPageTitle('index', 'Portfolio - Administration des créations')
-            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');
+            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig')
+            ->setPageTitle('detail', 'Détail de la création');
     }
 
     public function configureFields(string $pageName): iterable
@@ -56,5 +59,15 @@ class CreationCrudController extends AbstractCrudController
                     return $value instanceof \DateTimeInterface ? $value->format('d/m/Y') : '';
                 }),
         ];
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        $viewAction = Action::new('detail', 'Détail')
+            ->linkToCrudAction(Crud::PAGE_DETAIL)
+            ->setCssClass('btn btn-link');
+
+            return $actions
+            ->add(Crud::PAGE_INDEX, $viewAction);
     }
 }

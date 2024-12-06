@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Tool;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -23,7 +25,8 @@ class ToolCrudController extends AbstractCrudController
         ->setEntityLabelInPlural('Liste des outils')
             ->setEntityLabelInSingular('un outil')
             ->setPageTitle('index','Portfolio - Administration des outils')
-            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');
+            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig')
+            ->setPageTitle('detail', 'Détail de l\'outil');
     }
 
     public function configureFields(string $pageName): iterable
@@ -50,5 +53,15 @@ class ToolCrudController extends AbstractCrudController
                 return $value instanceof \DateTimeInterface ? $value->format('d/m/Y') : '';
             }),
         ];
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        $viewAction = Action::new('detail', 'Détail')
+            ->linkToCrudAction(Crud::PAGE_DETAIL)
+            ->setCssClass('btn btn-link');
+
+            return $actions
+            ->add(Crud::PAGE_INDEX, $viewAction);
     }
 }

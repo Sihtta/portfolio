@@ -7044,16 +7044,16 @@
         <argument key="crud" type="service_closure" id=".errored..service_locator.XpfeRo6.EasyCorp\Bundle\EasyAdminBundle\Config\Crud"/>
       </argument>
     </service>
-    <service id=".service_locator.XdMPwIJ" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="assets" type="service_closure" id=".errored..service_locator.XdMPwIJ.EasyCorp\Bundle\EasyAdminBundle\Config\Assets"/>
-      </argument>
-    </service>
     <service id=".service_locator.R8Qy2_." class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="actions" type="service_closure" id=".errored..service_locator.R8Qy2_..EasyCorp\Bundle\EasyAdminBundle\Config\Actions"/>
+      </argument>
+    </service>
+    <service id=".service_locator.XdMPwIJ" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="assets" type="service_closure" id=".errored..service_locator.XdMPwIJ.EasyCorp\Bundle\EasyAdminBundle\Config\Assets"/>
       </argument>
     </service>
     <service id=".service_locator.OGjUKCt" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -7110,7 +7110,7 @@
         <argument key="user" type="service_closure" id=".errored..service_locator.st3ASTR.Symfony\Component\Security\Core\User\UserInterface"/>
       </argument>
     </service>
-    <service id=".service_locator.xEmGiDA" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.6_g5I7m" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\CategoryCrudController::autocomplete" type="service_closure" id=".service_locator.kEvhmk9"/>
@@ -8283,12 +8283,12 @@
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.xEmGiDA"/>
+      <argument type="service" id=".service_locator.6_g5I7m"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.xEmGiDA"/>
+      <argument type="service" id=".service_locator.6_g5I7m"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -8309,8 +8309,8 @@
     </service>
     <service id=".errored..service_locator.xUrKPVU.Symfony\Component\Config\Loader\LoaderInterface" class="Symfony\Component\Config\Loader\LoaderInterface"/>
     <service id=".errored..service_locator.XpfeRo6.EasyCorp\Bundle\EasyAdminBundle\Config\Crud" class="EasyCorp\Bundle\EasyAdminBundle\Config\Crud"/>
-    <service id=".errored..service_locator.XdMPwIJ.EasyCorp\Bundle\EasyAdminBundle\Config\Assets" class="EasyCorp\Bundle\EasyAdminBundle\Config\Assets"/>
     <service id=".errored..service_locator.R8Qy2_..EasyCorp\Bundle\EasyAdminBundle\Config\Actions" class="EasyCorp\Bundle\EasyAdminBundle\Config\Actions"/>
+    <service id=".errored..service_locator.XdMPwIJ.EasyCorp\Bundle\EasyAdminBundle\Config\Assets" class="EasyCorp\Bundle\EasyAdminBundle\Config\Assets"/>
     <service id=".errored..service_locator.OGjUKCt.EasyCorp\Bundle\EasyAdminBundle\Config\Filters" class="EasyCorp\Bundle\EasyAdminBundle\Config\Filters"/>
     <service id=".errored..service_locator.kEvhmk9.EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext" class="EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext"/>
     <service id=".errored..service_locator.esmk6IF.EasyCorp\Bundle\EasyAdminBundle\Dto\BatchActionDto" class="EasyCorp\Bundle\EasyAdminBundle\Dto\BatchActionDto"/>
@@ -9384,7 +9384,7 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Contracts\Orm\EntityPaginatorInterface" alias="EasyCorp\Bundle\EasyAdminBundle\Orm\EntityPaginator"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.xEmGiDA"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.6_g5I7m"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -9409,7 +9409,7 @@
     <service id=".service_locator.nTL_G5r" alias=".service_locator.esmk6IF"/>
     <service id=".service_locator.hNls88j" alias=".service_locator.ENGuM7_"/>
     <service id=".service_locator.6rNHno." alias=".service_locator.riFbGaB"/>
-    <service id=".service_locator.K6OcoEt" alias=".service_locator.xEmGiDA"/>
+    <service id=".service_locator.K6OcoEt" alias=".service_locator.6_g5I7m"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator._7BGb9t" alias=".service_locator.tdaCUUy"/>
     <service id=".service_locator.XW18Svm" alias=".service_locator.TcKhdzh"/>
@@ -9465,8 +9465,8 @@
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id=".service_locator.uo5c0SP" alias=".service_locator.xUrKPVU"/>
     <service id=".service_locator.Wy8wQ7q" alias=".service_locator.XpfeRo6"/>
-    <service id=".service_locator.mZvIess" alias=".service_locator.XdMPwIJ"/>
     <service id=".service_locator.Uj8JhjH" alias=".service_locator.R8Qy2_."/>
+    <service id=".service_locator.mZvIess" alias=".service_locator.XdMPwIJ"/>
     <service id=".service_locator.O2PHm7f" alias=".service_locator.OGjUKCt"/>
     <service id=".service_locator.nmHbo7B" alias=".service_locator.kEvhmk9"/>
     <service id=".service_locator.6l7iQLM" alias=".service_locator.esmk6IF"/>
