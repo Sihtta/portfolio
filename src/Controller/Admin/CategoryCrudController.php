@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 
@@ -41,6 +42,11 @@ class CategoryCrudController extends AbstractCrudController
                     }
                     return implode("\n", array_map(fn($creation) => $creation->getName(), $creations->toArray()));
                 });
+        }
+
+        if ($pageName != Crud::PAGE_DETAIL) {
+            $fields[] = AssociationField::new('creations', 'Liste des créations')
+                ->setSortable(false);
         }
 
         return $fields;

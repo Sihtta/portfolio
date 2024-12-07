@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class ToolCrudController extends AbstractCrudController
 {
@@ -53,6 +54,10 @@ class ToolCrudController extends AbstractCrudController
                 return $value instanceof \DateTimeInterface ? $value->format('d/m/Y') : '';
             }),
         ];
+        if ($pageName != Crud::PAGE_DETAIL) {
+            $fields[] = AssociationField::new('creations', 'Liste des créations')
+                ->setSortable(false);
+        }
         if ($pageName === Crud::PAGE_DETAIL) {
             $fields[] = ArrayField::new('creations', 'Liste des œuvres')
                 ->formatValue(function ($creations) {

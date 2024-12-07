@@ -23,7 +23,8 @@ class CommentCrudController extends AbstractCrudController
             ->setEntityLabelInPlural('Liste des commentaires')
             ->setEntityLabelInSingular('un commentaire')
             ->setPageTitle('index', 'Portfolio - Administration des commentaires')
-            ->setPageTitle('detail', 'Détail du commentaire');
+            ->setPageTitle('detail', 'Détail du commentaire')
+            ->setSearchFields(['user.pseudo', 'contentComment']);
     }
 
     public function configureFields(string $pageName): iterable
@@ -32,7 +33,7 @@ class CommentCrudController extends AbstractCrudController
             TextField::new('user.pseudo', "Pseudonyme de l'utilisateur")
                 ->setFormTypeOption('disabled', 'disabled')
                 ->setSortable(false),
-            TextField::new('content_comment', 'Commentaire')
+            TextField::new('contentComment', 'Commentaire')
                 ->setFormTypeOption('disabled', 'disabled')
                 ->setSortable(false),
         ];
