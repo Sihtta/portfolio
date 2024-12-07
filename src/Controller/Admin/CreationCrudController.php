@@ -29,7 +29,8 @@ class CreationCrudController extends AbstractCrudController
             ->setEntityLabelInSingular('une oeuvre')
             ->setPageTitle('index', 'Portfolio - Administration des créations')
             ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig')
-            ->setPageTitle('detail', 'Détail de la création');
+            ->setPageTitle('detail', 'Détail de la création')
+            ->setSearchFields(['name']);
     }
 
     public function configureFields(string $pageName): iterable

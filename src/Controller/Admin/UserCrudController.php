@@ -26,7 +26,8 @@ class UserCrudController extends AbstractCrudController
             ->setEntityLabelInPlural('Liste des utilisateurs')
             ->setEntityLabelInSingular('un utilisateur')
             ->setPageTitle('index', 'Portfolio - Administration des utilisateurs')
-            ->setPageTitle('detail', 'Détail de l\'utilisateur');
+            ->setPageTitle('detail', 'Détail de l\'utilisateur')
+            ->setSearchFields(['pseudo']);
     }
 
     public function configureFields(string $pageName): iterable

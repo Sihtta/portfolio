@@ -24,7 +24,8 @@ class CategoryCrudController extends AbstractCrudController
             ->setEntityLabelInPlural('Liste des catégories')
             ->setEntityLabelInSingular('Une catégorie')
             ->setPageTitle('index', 'Portfolio - Administration des catégories')
-            ->setPageTitle('detail', 'Détail de la catégorie');
+            ->setPageTitle('detail', 'Détail de la catégorie')
+            ->setSearchFields(['name']);
     }
 
     public function configureFields(string $pageName): iterable
@@ -45,7 +46,7 @@ class CategoryCrudController extends AbstractCrudController
         }
 
         if ($pageName != Crud::PAGE_DETAIL) {
-            $fields[] = AssociationField::new('creations', 'Liste des créations')
+            $fields[] = AssociationField::new('creations', 'Créations')
                 ->setSortable(false);
         }
 

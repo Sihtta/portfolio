@@ -27,7 +27,8 @@ class ToolCrudController extends AbstractCrudController
             ->setEntityLabelInSingular('un outil')
             ->setPageTitle('index','Portfolio - Administration des outils')
             ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig')
-            ->setPageTitle('detail', 'Détail de l\'outil');
+            ->setPageTitle('detail', 'Détail de l\'outil')
+            ->setSearchFields(['name']);
     }
 
     public function configureFields(string $pageName): iterable
@@ -55,7 +56,7 @@ class ToolCrudController extends AbstractCrudController
             }),
         ];
         if ($pageName != Crud::PAGE_DETAIL) {
-            $fields[] = AssociationField::new('creations', 'Liste des créations')
+            $fields[] = AssociationField::new('creations', 'Créations')
                 ->setSortable(false);
         }
         if ($pageName === Crud::PAGE_DETAIL) {
