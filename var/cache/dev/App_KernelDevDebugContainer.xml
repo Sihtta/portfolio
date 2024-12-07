@@ -5,8 +5,8 @@
     <parameter key="kernel.environment">dev</parameter>
     <parameter key="kernel.runtime_environment">%env(default:kernel.environment:APP_RUNTIME_ENV)%</parameter>
     <parameter key="kernel.debug">true</parameter>
-    <parameter key="kernel.build_dir">C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev</parameter>
-    <parameter key="kernel.cache_dir">C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev</parameter>
+    <parameter key="kernel.build_dir">C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev</parameter>
+    <parameter key="kernel.cache_dir">C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev</parameter>
     <parameter key="kernel.logs_dir">C:\Users\theos\Documents\GitHub\portfolio\var\log</parameter>
     <parameter key="kernel.bundles" type="collection">
       <parameter key="FrameworkBundle">Symfony\Bundle\FrameworkBundle\FrameworkBundle</parameter>
@@ -117,7 +117,7 @@
     <parameter key="kernel.http_method_override">false</parameter>
     <parameter key="kernel.trust_x_sendfile_type_header">false</parameter>
     <parameter key="kernel.trusted_hosts" type="collection"/>
-    <parameter key="kernel.default_locale">en</parameter>
+    <parameter key="kernel.default_locale">fr</parameter>
     <parameter key="kernel.enabled_locales" type="collection"/>
     <parameter key="kernel.error_controller">error_controller</parameter>
     <parameter key="debug.file_link_format">%env(default::SYMFONY_IDE)%</parameter>
@@ -126,14 +126,14 @@
     <parameter key="translator.logging">false</parameter>
     <parameter key="translator.default_path">C:\Users\theos\Documents\GitHub\portfolio/translations</parameter>
     <parameter key="debug.error_handler.throw_at">-1</parameter>
-    <parameter key="debug.container.dump">C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/App_KernelDevDebugContainer.xml</parameter>
+    <parameter key="debug.container.dump">C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/App_KernelDevDebugContainer.xml</parameter>
     <parameter key="router.request_context.host">localhost</parameter>
     <parameter key="router.request_context.scheme">http</parameter>
     <parameter key="router.request_context.base_url"></parameter>
     <parameter key="router.resource">kernel::loadRoutes</parameter>
     <parameter key="request_listener.http_port">80</parameter>
     <parameter key="request_listener.https_port">443</parameter>
-    <parameter key="serializer.mapping.cache.file">C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/serialization.php</parameter>
+    <parameter key="serializer.mapping.cache.file">C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/serialization.php</parameter>
     <parameter key="cache.prefix.seed">_C:\Users\theos\Documents\GitHub\portfolio.App_KernelDevDebugContainer</parameter>
     <parameter key="session.metadata.storage_key">_sf2_meta</parameter>
     <parameter key="session.storage.options" type="collection">
@@ -143,15 +143,15 @@
       <parameter key="cookie_samesite">lax</parameter>
       <parameter key="gc_probability">1</parameter>
     </parameter>
-    <parameter key="session.save_path">C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/sessions</parameter>
+    <parameter key="session.save_path">C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/sessions</parameter>
     <parameter key="session.metadata.update_threshold">0</parameter>
     <parameter key="form.type_extension.csrf.enabled">true</parameter>
     <parameter key="form.type_extension.csrf.field_name">_token</parameter>
-    <parameter key="validator.mapping.cache.file">C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/validation.php</parameter>
+    <parameter key="validator.mapping.cache.file">C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/validation.php</parameter>
     <parameter key="validator.translation_domain">validators</parameter>
     <parameter key="profiler_listener.only_exceptions">false</parameter>
     <parameter key="profiler_listener.only_main_requests">false</parameter>
-    <parameter key="profiler.storage.dsn">file:C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/profiler</parameter>
+    <parameter key="profiler.storage.dsn">file:C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/profiler</parameter>
     <parameter key="doctrine.dbal.configuration.class">Doctrine\DBAL\Configuration</parameter>
     <parameter key="doctrine.data_collector.class">Doctrine\Bundle\DoctrineBundle\DataCollector\DoctrineDataCollector</parameter>
     <parameter key="doctrine.dbal.connection.event_manager.class">Symfony\Bridge\Doctrine\ContainerAwareEventManager</parameter>
@@ -224,7 +224,7 @@
     <parameter key="doctrine.orm.second_level_cache.regions_configuration.class">Doctrine\ORM\Cache\RegionsConfiguration</parameter>
     <parameter key="doctrine.orm.auto_generate_proxy_classes">true</parameter>
     <parameter key="doctrine.orm.enable_lazy_ghost_objects">true</parameter>
-    <parameter key="doctrine.orm.proxy_dir">C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/doctrine/orm/Proxies</parameter>
+    <parameter key="doctrine.orm.proxy_dir">C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/doctrine/orm/Proxies</parameter>
     <parameter key="doctrine.orm.proxy_namespace">Proxies</parameter>
     <parameter key="doctrine.migrations.preferred_em">null</parameter>
     <parameter key="doctrine.migrations.preferred_connection">null</parameter>
@@ -483,7 +483,7 @@
       <tag name="container.hot_path"/>
       <tag name="container.hot_path"/>
       <argument type="service" id="request_stack"/>
-      <argument>en</argument>
+      <argument>fr</argument>
       <argument type="service" id="router.default" on-invalid="ignore"/>
       <argument>false</argument>
       <argument type="collection"/>
@@ -535,7 +535,7 @@
       </argument>
     </service>
     <service id="http_cache.store" class="Symfony\Component\HttpKernel\HttpCache\Store">
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/http_cache</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/http_cache</argument>
     </service>
     <service id="url_helper" class="Symfony\Component\HttpFoundation\UrlHelper">
       <argument type="service" id="request_stack"/>
@@ -545,7 +545,7 @@
       <tag name="container.no_preload"/>
       <argument type="tagged_iterator" tag="kernel.cache_warmer"/>
       <argument>true</argument>
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/App_KernelDevDebugContainerDeprecations.log</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/App_KernelDevDebugContainerDeprecations.log</argument>
     </service>
     <service id="cache_clearer" class="Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer">
       <argument type="tagged_iterator" tag="kernel.cache_clearer"/>
@@ -720,7 +720,7 @@
     </service>
     <service id="slugger" class="Symfony\Component\String\Slugger\AsciiSlugger">
       <tag name="kernel.locale_aware"/>
-      <argument>en</argument>
+      <argument>fr</argument>
     </service>
     <service id="container.getenv" class="Closure">
       <tag name="routing.expression_language_function" function="env"/>
@@ -1194,7 +1194,7 @@
       <argument type="service" id="translation.writer"/>
       <argument type="service" id="translation.reader"/>
       <argument type="service" id="translation.extractor"/>
-      <argument>en</argument>
+      <argument>fr</argument>
       <argument>C:\Users\theos\Documents\GitHub\portfolio/translations</argument>
       <argument>C:\Users\theos\Documents\GitHub\portfolio/templates</argument>
       <argument type="collection">
@@ -1231,7 +1231,7 @@
       <argument type="service" id="translation.provider_collection"/>
       <argument type="service" id="translation.writer"/>
       <argument type="service" id="translation.reader"/>
-      <argument>en</argument>
+      <argument>fr</argument>
       <argument type="collection"/>
       <argument type="collection"/>
       <call method="setName">
@@ -1441,7 +1441,7 @@
       <argument></argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/pools/system</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/pools/system</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -1460,7 +1460,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/pools/app</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/pools/app</argument>
       <argument type="service" id="cache.default_marshaller" on-invalid="ignore"/>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
@@ -1699,7 +1699,7 @@
       <tag name="kernel.locale_aware"/>
       <argument type="service" id=".service_locator.yY.p4P7"/>
       <argument type="service" id="translator.formatter.default"/>
-      <argument>en</argument>
+      <argument>fr</argument>
       <argument type="collection">
         <argument key="translation.loader.php" type="collection">
           <argument>php</argument>
@@ -1738,7 +1738,7 @@
         </argument>
       </argument>
       <argument type="collection">
-        <argument key="cache_dir">C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/translations</argument>
+        <argument key="cache_dir">C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/translations</argument>
         <argument key="debug">true</argument>
         <argument key="resource_files" type="collection">
           <argument key="af" type="collection">
@@ -2321,7 +2321,7 @@
     <service id="translation.locale_switcher" class="Symfony\Component\Translation\LocaleSwitcher">
       <tag name="kernel.reset" method="reset"/>
       <tag name="kernel.locale_aware"/>
-      <argument>en</argument>
+      <argument>fr</argument>
       <argument type="tagged_iterator" tag="kernel.locale_aware"/>
       <argument type="service" id="router.request_context" on-invalid="ignore"/>
     </service>
@@ -3039,7 +3039,7 @@
       <argument type="service" id=".service_locator.OSH1YoD.router.default"/>
       <argument>kernel::loadRoutes</argument>
       <argument type="collection">
-        <argument key="cache_dir">C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev</argument>
+        <argument key="cache_dir">C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev</argument>
         <argument key="debug">true</argument>
         <argument key="generator_class">Symfony\Component\Routing\Generator\CompiledUrlGenerator</argument>
         <argument key="generator_dumper_class">Symfony\Component\Routing\Generator\Dumper\CompiledUrlGeneratorDumper</argument>
@@ -3051,7 +3051,7 @@
       <argument type="service" id="router.request_context" on-invalid="ignore"/>
       <argument type="service" id="parameter_bag" on-invalid="ignore"/>
       <argument type="service" id="monolog.logger.router" on-invalid="ignore"/>
-      <argument>en</argument>
+      <argument>fr</argument>
       <call method="setConfigCacheFactory">
         <argument type="service" id="config_cache_factory"/>
       </call>
@@ -3147,13 +3147,13 @@
     <service id="annotations.cache_warmer" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\AnnotationsCacheWarmer">
       <tag name="kernel.cache_warmer"/>
       <argument type="service" id="annotations.reader"/>
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/annotations.php</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/annotations.php</argument>
       <argument>#^Symfony\\(?:Component\\HttpKernel\\|Bundle\\FrameworkBundle\\Controller\\(?!.*Controller$))#</argument>
       <argument>true</argument>
     </service>
     <service id="annotations.cache_adapter" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter">
       <tag name="container.hot_path"/>
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/annotations.php</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/annotations.php</argument>
       <argument type="service" id="cache.annotations"/>
       <factory class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" method="create"/>
     </service>
@@ -3208,10 +3208,10 @@
           </service>
         </argument>
       </argument>
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/serialization.php</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/serialization.php</argument>
     </service>
     <service id="serializer.mapping.cache.symfony" class="Psr\Cache\CacheItemPoolInterface">
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/serialization.php</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/serialization.php</argument>
       <argument type="service" id="cache.serializer"/>
       <factory class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" method="create"/>
     </service>
@@ -3347,7 +3347,7 @@
       <argument>true</argument>
     </service>
     <service id="session.storage.factory.mock_file" class="Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorageFactory">
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/sessions</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/sessions</argument>
       <argument>MOCKSESSID</argument>
       <argument type="service">
         <service class="Symfony\Component\HttpFoundation\Session\Storage\MetadataBag">
@@ -3359,7 +3359,7 @@
     <service id="session.handler.native_file" class="Symfony\Component\HttpFoundation\Session\Storage\Handler\StrictSessionHandler">
       <argument type="service">
         <service class="Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler">
-          <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/sessions</argument>
+          <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/sessions</argument>
         </service>
       </argument>
     </service>
@@ -3547,10 +3547,10 @@
     <service id="validator.mapping.cache_warmer" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\ValidatorCacheWarmer">
       <tag name="kernel.cache_warmer"/>
       <argument type="service" id="validator.builder"/>
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/validation.php</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/validation.php</argument>
     </service>
     <service id="validator.mapping.cache.adapter" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter">
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/validation.php</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/validation.php</argument>
       <argument type="service" id="cache.validator"/>
       <factory class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" method="create"/>
     </service>
@@ -3944,7 +3944,7 @@
       </call>
     </service>
     <service id="profiler.storage" class="Symfony\Component\HttpKernel\Profiler\FileProfilerStorage">
-      <argument>file:C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/profiler</argument>
+      <argument>file:C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/profiler</argument>
     </service>
     <service id="profiler_listener" class="Symfony\Component\HttpKernel\EventListener\ProfilerListener">
       <tag name="kernel.event_subscriber"/>
@@ -3991,7 +3991,7 @@
       <tag name="monolog.logger" channel="profiler"/>
       <tag name="data_collector" template="@WebProfiler/Collector/logger.html.twig" id="logger" priority="300"/>
       <argument type="service" id="monolog.logger.profiler" on-invalid="ignore"/>
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/App_KernelDevDebugContainer</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/App_KernelDevDebugContainer</argument>
       <argument type="service" id="request_stack" on-invalid="ignore"/>
     </service>
     <service id="data_collector.time" class="Symfony\Component\HttpKernel\DataCollector\TimeDataCollector">
@@ -4493,7 +4493,7 @@
         <argument type="service" id=".doctrine.orm.default_metadata_driver"/>
       </call>
       <call method="setProxyDir">
-        <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/doctrine/orm/Proxies</argument>
+        <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/doctrine/orm/Proxies</argument>
       </call>
       <call method="setProxyNamespace">
         <argument>Proxies</argument>
@@ -4909,7 +4909,7 @@
       <argument type="service" id="twig.loader.native_filesystem"/>
       <argument type="collection">
         <argument key="autoescape">name</argument>
-        <argument key="cache">C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/twig</argument>
+        <argument key="cache">C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/twig</argument>
         <argument key="charset">UTF-8</argument>
         <argument key="debug">true</argument>
         <argument key="strict_variables">true</argument>
@@ -6523,7 +6523,7 @@
       <argument type="service" id="twig"/>
     </service>
     <service id="EasyCorp\Bundle\EasyAdminBundle\Factory\AdminContextFactory" class="EasyCorp\Bundle\EasyAdminBundle\Factory\AdminContextFactory">
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev</argument>
       <argument type="service" id="security.token_storage" on-invalid="null"/>
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Factory\MenuFactory"/>
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Registry\CrudControllerRegistry"/>
@@ -7359,16 +7359,16 @@
         <argument key="crud" type="service_closure" id=".errored..service_locator.XpfeRo6.EasyCorp\Bundle\EasyAdminBundle\Config\Crud"/>
       </argument>
     </service>
-    <service id=".service_locator.XdMPwIJ" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="assets" type="service_closure" id=".errored..service_locator.XdMPwIJ.EasyCorp\Bundle\EasyAdminBundle\Config\Assets"/>
-      </argument>
-    </service>
     <service id=".service_locator.R8Qy2_." class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="actions" type="service_closure" id=".errored..service_locator.R8Qy2_..EasyCorp\Bundle\EasyAdminBundle\Config\Actions"/>
+      </argument>
+    </service>
+    <service id=".service_locator.XdMPwIJ" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="assets" type="service_closure" id=".errored..service_locator.XdMPwIJ.EasyCorp\Bundle\EasyAdminBundle\Config\Assets"/>
       </argument>
     </service>
     <service id=".service_locator.OGjUKCt" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -7445,7 +7445,7 @@
         <argument key="manager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
-    <service id=".service_locator.1Ghs.A4" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.gF.x0.y" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\CategoryCrudController::autocomplete" type="service_closure" id=".service_locator.kEvhmk9"/>
@@ -8209,7 +8209,7 @@
       </argument>
     </service>
     <service id="EasyCorp\Bundle\EasyAdminBundle\Registry\DashboardControllerRegistry" class="EasyCorp\Bundle\EasyAdminBundle\Registry\DashboardControllerRegistry">
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev</argument>
       <argument type="collection">
         <argument key="App\Controller\Admin\DashboardController">92bd788</argument>
       </argument>
@@ -8668,12 +8668,12 @@
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.1Ghs.A4"/>
+      <argument type="service" id=".service_locator.gF.x0.y"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.1Ghs.A4"/>
+      <argument type="service" id=".service_locator.gF.x0.y"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -8694,8 +8694,8 @@
     </service>
     <service id=".errored..service_locator.xUrKPVU.Symfony\Component\Config\Loader\LoaderInterface" class="Symfony\Component\Config\Loader\LoaderInterface"/>
     <service id=".errored..service_locator.XpfeRo6.EasyCorp\Bundle\EasyAdminBundle\Config\Crud" class="EasyCorp\Bundle\EasyAdminBundle\Config\Crud"/>
-    <service id=".errored..service_locator.XdMPwIJ.EasyCorp\Bundle\EasyAdminBundle\Config\Assets" class="EasyCorp\Bundle\EasyAdminBundle\Config\Assets"/>
     <service id=".errored..service_locator.R8Qy2_..EasyCorp\Bundle\EasyAdminBundle\Config\Actions" class="EasyCorp\Bundle\EasyAdminBundle\Config\Actions"/>
+    <service id=".errored..service_locator.XdMPwIJ.EasyCorp\Bundle\EasyAdminBundle\Config\Assets" class="EasyCorp\Bundle\EasyAdminBundle\Config\Assets"/>
     <service id=".errored..service_locator.OGjUKCt.EasyCorp\Bundle\EasyAdminBundle\Config\Filters" class="EasyCorp\Bundle\EasyAdminBundle\Config\Filters"/>
     <service id=".errored..service_locator.kEvhmk9.EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext" class="EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext"/>
     <service id=".errored..service_locator.esmk6IF.EasyCorp\Bundle\EasyAdminBundle\Dto\BatchActionDto" class="EasyCorp\Bundle\EasyAdminBundle\Dto\BatchActionDto"/>
@@ -9530,7 +9530,7 @@
     <service id="cache.app.recorder_inner" class="Symfony\Component\Cache\Adapter\FilesystemAdapter">
       <argument>574IqpvVLV</argument>
       <argument>0</argument>
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/pools/app</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/pools/app</argument>
       <argument type="service" id="cache.default_marshaller" on-invalid="ignore"/>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
@@ -9540,7 +9540,7 @@
       <argument>Z2q-Kh1TdB</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/pools/system</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/pools/system</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -9548,7 +9548,7 @@
       <argument>CRTVKACAIH</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/pools/system</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/pools/system</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -9556,7 +9556,7 @@
       <argument>mGdWcltVP0</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/pools/system</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/pools/system</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -9564,7 +9564,7 @@
       <argument>tixed86QFv</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/pools/system</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/pools/system</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -9572,14 +9572,14 @@
       <argument>h48tXq5ZlG</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/pools/system</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/pools/system</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.messenger.restart_workers_signal.recorder_inner" class="Symfony\Component\Cache\Adapter\FilesystemAdapter">
       <argument>+9GJkE0Szf</argument>
       <argument>0</argument>
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/pools/app</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/pools/app</argument>
       <argument type="service" id="cache.default_marshaller" on-invalid="ignore"/>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
@@ -9589,7 +9589,7 @@
       <argument>LxagjF19In</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/pools/system</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/pools/system</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -9599,7 +9599,7 @@
       <argument>2+yIqAp0-2</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/pools/system</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/pools/system</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -9607,7 +9607,7 @@
       <argument>4nnI+ye7oH</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/pools/system</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/pools/system</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -9615,7 +9615,7 @@
       <argument>GLoF4Q8kKF</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:\Users\theos\Documents\GitHub\portfolio\var\cache\dev/pools/system</argument>
+      <argument>C:/Users/theos/Documents/GitHub/portfolio/var/cache/dev/pools/system</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -9775,7 +9775,7 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Contracts\Orm\EntityPaginatorInterface" alias="EasyCorp\Bundle\EasyAdminBundle\Orm\EntityPaginator"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.1Ghs.A4"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.gF.x0.y"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -9801,7 +9801,7 @@
     <service id=".service_locator.hNls88j" alias=".service_locator.ENGuM7_"/>
     <service id=".service_locator.6rNHno." alias=".service_locator.riFbGaB"/>
     <service id=".service_locator.RVxBhG1" alias=".service_locator.b71ceip"/>
-    <service id=".service_locator.QPvC53E" alias=".service_locator.1Ghs.A4"/>
+    <service id=".service_locator.QPvC53E" alias=".service_locator.gF.x0.y"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.mPFaKm5" alias=".service_locator.xEWDka5"/>
     <service id=".service_locator.XW18Svm" alias=".service_locator.TcKhdzh"/>
@@ -9858,8 +9858,8 @@
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id=".service_locator.uo5c0SP" alias=".service_locator.xUrKPVU"/>
     <service id=".service_locator.Wy8wQ7q" alias=".service_locator.XpfeRo6"/>
-    <service id=".service_locator.mZvIess" alias=".service_locator.XdMPwIJ"/>
     <service id=".service_locator.Uj8JhjH" alias=".service_locator.R8Qy2_."/>
+    <service id=".service_locator.mZvIess" alias=".service_locator.XdMPwIJ"/>
     <service id=".service_locator.O2PHm7f" alias=".service_locator.OGjUKCt"/>
     <service id=".service_locator.nmHbo7B" alias=".service_locator.kEvhmk9"/>
     <service id=".service_locator.6l7iQLM" alias=".service_locator.esmk6IF"/>

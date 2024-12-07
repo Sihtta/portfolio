@@ -4,10 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\Comment;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 
@@ -22,25 +21,41 @@ class CommentCrudController extends AbstractCrudController
     {
         return $crud
             ->setEntityLabelInPlural('Liste des commentaires')
-            ->setEntityLabelInSingular('Commentaire')
-            ->setPageTitle('index', 'Portfolio - Administration des commentaires');
+            ->setEntityLabelInSingular('un commentaire')
+            ->setPageTitle('index', 'Portfolio - Administration des commentaires')
+            ->setPageTitle('detail', 'Détail du commentaire')
+            ->setSearchFields(['user.pseudo', 'contentComment']);
     }
 
     public function configureFields(string $pageName): iterable
     {
-        return [
-            IdField::new('user.id', "Id de l'utilisateur")
-                ->setFormTypeOption('disabled', 'disabled'),
-            TextField::new('content_comment', 'Commentaire')
-                ->setFormTypeOption('disabled', 'disabled'),
-            DateTimeField::new('createdAt', 'Date de création')
-                ->setFormTypeOption('disabled', 'disabled'),
+        $fields = [
+            TextField::new('user.pseudo', "Pseudonyme de l'utilisateur")
+                ->setFormTypeOption('disabled', 'disabled')
+                ->setSortable(false),
+            TextField::new('contentComment', 'Commentaire')
+                ->setFormTypeOption('disabled', 'disabled')
+                ->setSortable(false),
+            DateTimeField::new('createdAt', 'Date du commentaire')
+                ->setSortable(true)
+                ->formatValue(function ($value, $entity) {
+                    return $value instanceof \DateTimeInterface ? $value->format('d/m/Y') : '';
+            }),
         ];
-    }
 
+        if ($pageName === Crud::PAGE_DETAIL) {
+            $fields[] = TextField::new('creation.name', "Nom de la création");
+        }
+        return $fields;
+    }
     public function configureActions(Actions $actions): Actions
     {
-        return $actions
+        $viewAction = Action::new('detail', 'Détail')
+            ->linkToCrudAction(Crud::PAGE_DETAIL)
+            ->setCssClass('btn btn-link');
+
+            return $actions
+            ->add(Crud::PAGE_INDEX, $viewAction)
             ->disable(Action::EDIT)
             ->update(Crud::PAGE_INDEX, Action::DELETE, function (Action $action) {
                 return $action;

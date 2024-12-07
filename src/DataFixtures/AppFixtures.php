@@ -33,6 +33,17 @@ class AppFixtures extends Fixture
 
         // Users
         $users = [];
+
+        $admin = new User();
+        $admin ->setFullName('Administrateur du Portfolio')
+            ->setPseudo(null)
+            ->setEmail('admin@portfolio.fr')
+            ->setRoles(['ROLE_USER','ROLE_ADMIN'])
+            ->setPassword('password');
+
+        $users[] = $admin;
+        $manager->persist($admin);
+        
         for ($i = 0; $i < 10; $i++) {
             $user =  new User();
             $user->setFullName($this->faker->name());

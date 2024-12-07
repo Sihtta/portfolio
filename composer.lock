@@ -5,9 +5,13 @@
         "This file is @generated automatically"
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "content-hash": "987fbc6448bcf5b7a494a953ca01b949",
 =======
     "content-hash": "2b6d986547132b52b3dbc9a3e4db820d",
+>>>>>>> Entity
+=======
+    "content-hash": "1524e74df6edbf92246604c97caa581a",
 >>>>>>> Entity
     "packages": [
         {

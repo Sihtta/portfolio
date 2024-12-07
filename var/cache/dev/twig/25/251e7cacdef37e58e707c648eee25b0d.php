@@ -73,15 +73,15 @@ class __TwigTemplate_fa4705ddb449951911ac0c29b0ddbc93 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "content"));
 
         // line 4
-        yield "    <div class=\"dashboard-container\" style=\"text-align: center; margin-top: 50px;\">
-        <h1 style=\"font-size: 2.5rem; margin-bottom: 20px;\">Dashboard du Portfolio</h1>
-        <p style=\"font-size: 1.2rem; color: #555;\">
-            Bienvenue dans l'espace d'administration de votre portfolio.
-        </p>
-        <a href=\"../accueil\" class=\"btn btn-primary\" style=\"margin-top: 20px; padding: 10px 20px; font-size: 1rem;\">
-            Retour à l'accueil
-        </a>
-    </div>
+        yield "\t<div class=\"dashboard-container\" style=\"text-align: center; margin-top: 50px;\">
+\t\t<h1 style=\"font-size: 2.5rem; margin-bottom: 20px;\">Dashboard du Portfolio</h1>
+\t\t<p style=\"font-size: 1.2rem; color: #555;\">
+\t\t\tBienvenue dans l'espace d'administration de votre portfolio.
+\t\t</p>
+\t\t<a href=\"../accueil\" class=\"btn btn-primary\" style=\"margin-top: 20px; padding: 10px 20px; font-size: 1rem;\">
+\t\t\tRetour à l'accueil
+\t\t</a>
+\t</div>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -121,15 +121,16 @@ class __TwigTemplate_fa4705ddb449951911ac0c29b0ddbc93 extends Template
         return new Source("{% extends \"@EasyAdmin/page/content.html.twig\" %}
 
 {% block content %}
-    <div class=\"dashboard-container\" style=\"text-align: center; margin-top: 50px;\">
-        <h1 style=\"font-size: 2.5rem; margin-bottom: 20px;\">Dashboard du Portfolio</h1>
-        <p style=\"font-size: 1.2rem; color: #555;\">
-            Bienvenue dans l'espace d'administration de votre portfolio.
-        </p>
-        <a href=\"../accueil\" class=\"btn btn-primary\" style=\"margin-top: 20px; padding: 10px 20px; font-size: 1rem;\">
-            Retour à l'accueil
-        </a>
-    </div>
-{% endblock %}", "admin/dashboard.html.twig", "C:\\Users\\theos\\Documents\\GitHub\\portfolio\\templates\\admin\\dashboard.html.twig");
+\t<div class=\"dashboard-container\" style=\"text-align: center; margin-top: 50px;\">
+\t\t<h1 style=\"font-size: 2.5rem; margin-bottom: 20px;\">Dashboard du Portfolio</h1>
+\t\t<p style=\"font-size: 1.2rem; color: #555;\">
+\t\t\tBienvenue dans l'espace d'administration de votre portfolio.
+\t\t</p>
+\t\t<a href=\"../accueil\" class=\"btn btn-primary\" style=\"margin-top: 20px; padding: 10px 20px; font-size: 1rem;\">
+\t\t\tRetour à l'accueil
+\t\t</a>
+\t</div>
+{% endblock %}
+", "admin/dashboard.html.twig", "C:\\Users\\theos\\Documents\\GitHub\\portfolio\\templates\\admin\\dashboard.html.twig");
     }
 }
