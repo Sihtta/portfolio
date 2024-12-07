@@ -608,3 +608,6 @@ dd8812,127.0.0.1,GET,http://127.0.0.1:8000/admin,1733576286,,200
 fb927c,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController,1733576290,,200
 d61bcc,127.0.0.1,GET,http://127.0.0.1:8000/admin,1733577568,6d3930,401
 6d3930,127.0.0.1,GET,http://127.0.0.1:8000/admin,1733577568,,401
+881d2f,127.0.0.1,GET,http://127.0.0.1:8000/admin,1733577770,dbb61b,500
+dbb61b,127.0.0.1,GET,http://127.0.0.1:8000/admin,1733577770,,500
+65b5a5,127.0.0.1,GET,http://127.0.0.1:8000/admin,1733577863,,200
