@@ -47,7 +47,7 @@ class CategoryCrudController extends AbstractCrudController
 
         if ($pageName != Crud::PAGE_DETAIL) {
             $fields[] = AssociationField::new('creations', 'Créations')
-                ->setSortable(false);
+                ->setSortable(true);
         }
 
         return $fields;

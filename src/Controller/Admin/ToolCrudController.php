@@ -35,7 +35,7 @@ class ToolCrudController extends AbstractCrudController
     {
         $fields = [
             TextField::new('name', 'Nom')
-            ->setSortable(false),
+            ->setSortable(true),
             TextEditorField::new('Description')
                 ->setFormType(CKEditorType::class)
                 ->setSortable(false)
@@ -57,7 +57,7 @@ class ToolCrudController extends AbstractCrudController
         ];
         if ($pageName != Crud::PAGE_DETAIL) {
             $fields[] = AssociationField::new('creations', 'Créations')
-                ->setSortable(false);
+                ->setSortable(true);
         }
         if ($pageName === Crud::PAGE_DETAIL) {
             $fields[] = ArrayField::new('creations', 'Liste des œuvres')

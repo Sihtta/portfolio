@@ -36,14 +36,15 @@ class CommentCrudController extends AbstractCrudController
             TextField::new('contentComment', 'Commentaire')
                 ->setFormTypeOption('disabled', 'disabled')
                 ->setSortable(false),
+            DateTimeField::new('createdAt', 'Date du commentaire')
+                ->setSortable(true)
+                ->formatValue(function ($value, $entity) {
+                    return $value instanceof \DateTimeInterface ? $value->format('d/m/Y') : '';
+            }),
         ];
 
         if ($pageName === Crud::PAGE_DETAIL) {
             $fields[] = TextField::new('creation.name', "Nom de la création");
-            $fields [] = DateTimeField::new('createdAt', 'Date du commentaire')
-                ->formatValue(function ($value, $entity) {
-                    return $value instanceof \DateTimeInterface ? $value->format('d/m/Y') : '';
-            });
         }
         return $fields;
     }

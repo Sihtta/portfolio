@@ -63,10 +63,10 @@ class CreationCrudController extends AbstractCrudController
 
         if ($pageName !== Crud::PAGE_DETAIL) {
             $fields[] = AssociationField::new('Tool', 'Outils')
-                ->setSortable(false);
+                ->setSortable(true);
             
             $fields[] = AssociationField::new('category', 'Catégories')
-                ->setSortable(false);
+                ->setSortable(true);
         }
 
         if ($pageName === Crud::PAGE_DETAIL) {
