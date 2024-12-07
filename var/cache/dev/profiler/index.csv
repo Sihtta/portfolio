@@ -600,3 +600,11 @@ c0f539,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=edit&crudControllerF
 2f5d95,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CToolCrudController,1733574561,,200
 ed85d0,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=edit&crudControllerFqcn=App%5CController%5CAdmin%5CToolCrudController&entityId=81,1733574564,,200
 38e25f,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=detail&crudControllerFqcn=App%5CController%5CAdmin%5CToolCrudController&entityId=81,1733574572,,200
+005485,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController,1733574628,,200
+cf57a1,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733574651,,200
+4c4c14,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController,1733574661,,200
+242fe3,127.0.0.1,GET,http://127.0.0.1:8000/admin,1733575721,,200
+dd8812,127.0.0.1,GET,http://127.0.0.1:8000/admin,1733576286,,200
+fb927c,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController,1733576290,,200
+d61bcc,127.0.0.1,GET,http://127.0.0.1:8000/admin,1733577568,6d3930,401
+6d3930,127.0.0.1,GET,http://127.0.0.1:8000/admin,1733577568,,401
