@@ -12,9 +12,12 @@ use DateTime;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
 #[ORM\Entity(repositoryClass: CreationRepository::class)]
+/*#[Vich\Uploadable]*/
 class Creation
 {
     #[ORM\Id]
@@ -31,6 +34,12 @@ class Creation
         maxMessage: 'Votre nom de creation doit faire au maximum {{ limit }} caractères.',
     )]
     private ?string $name = null;
+
+    /*#[Vich\UploadableField(mapping: 'product_image',fileNameProperty:'imageName')]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(type:'string')]
+    private ?string $imageName = null;*/
 
     #[ORM\Column(length: 250, nullable: true)]
     #[Assert\Length(
@@ -84,6 +93,24 @@ class Creation
 
         return $this;
     }
+
+    /* @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
+    public function setImageFile(?File $imageFile = null): void {
+        $this->imageFile = $imageFile;
+        if (null !== $imageFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+    public function getImageFile(): ?File {
+        return $this->imageFile;
+    }
+    public function setImageName(?string $imageName): void {
+        $this->imageName = $imageName;
+    }
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }*/
 
     public function getDescription(): ?string
     {
