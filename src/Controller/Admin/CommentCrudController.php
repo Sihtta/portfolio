@@ -33,6 +33,7 @@ class CommentCrudController extends AbstractCrudController
             TextField::new('user.pseudo', "Pseudonyme de l'utilisateur")
                 ->setFormTypeOption('disabled', 'disabled')
                 ->setSortable(false),
+                $fields[] = TextField::new('creation.name', "Nom de la création")->setSortable(false),
             TextField::new('contentComment', 'Commentaire')
                 ->setFormTypeOption('disabled', 'disabled')
                 ->setSortable(false),
@@ -40,12 +41,8 @@ class CommentCrudController extends AbstractCrudController
                 ->setSortable(true)
                 ->formatValue(function ($value, $entity) {
                     return $value instanceof \DateTimeInterface ? $value->format('d/m/Y') : '';
-            }),
+            })
         ];
-
-        if ($pageName === Crud::PAGE_DETAIL) {
-            $fields[] = TextField::new('creation.name', "Nom de la création");
-        }
         return $fields;
     }
     public function configureActions(Actions $actions): Actions
