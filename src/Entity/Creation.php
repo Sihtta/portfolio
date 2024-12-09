@@ -15,9 +15,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-
 #[ORM\Entity(repositoryClass: CreationRepository::class)]
-/*#[Vich\Uploadable]*/
+#[Vich\Uploadable]
 class Creation
 {
     #[ORM\Id]
@@ -35,11 +34,15 @@ class Creation
     )]
     private ?string $name = null;
 
-    /*#[Vich\UploadableField(mapping: 'product_image',fileNameProperty:'imageName')]
+    #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\NotNull]
+    private \DateTimeImmutable $updatedAt;
+
+    #[Vich\UploadableField(mapping: 'product_image',fileNameProperty:'imageName')]
     private ?File $imageFile = null;
 
     #[ORM\Column(type:'string')]
-    private ?string $imageName = null;*/
+    private ?string $imageName = null;
 
     #[ORM\Column(length: 250, nullable: true)]
     #[Assert\Length(
@@ -75,6 +78,7 @@ class Creation
         $this->likes = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->createdAt = new DateTime();
+        $this->updatedAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -94,23 +98,43 @@ class Creation
         return $this;
     }
 
-    /* @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
+    #[ORM\PreUpdate] // Méthode appelée avant chaque mise à jour
+    public function updateTimestamp(): void
+    {
+        $this->updatedAt = new \DateTimeImmutable();
+    }
+
+    public function getUpdatedAt(): \DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
+    /*@param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile*/
     public function setImageFile(?File $imageFile = null): void {
         $this->imageFile = $imageFile;
         if (null !== $imageFile) {
             $this->updatedAt = new \DateTimeImmutable();
         }
     }
+    
     public function getImageFile(): ?File {
         return $this->imageFile;
     }
+
     public function setImageName(?string $imageName): void {
         $this->imageName = $imageName;
     }
+
     public function getImageName(): ?string
     {
         return $this->imageName;
-    }*/
+    }
 
     public function getDescription(): ?string
     {

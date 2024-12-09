@@ -14,6 +14,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class CreationCrudController extends AbstractCrudController
 {
@@ -49,8 +51,15 @@ class CreationCrudController extends AbstractCrudController
                     ],
                 ])
                 ->setSortable(false),
-            
-            TextField::new('Image', "Lien de l'image")
+
+            ImageField::new('imageFile', 'Image')
+                ->setFormType(VichImageType::class)
+                ->onlyOnForms()
+                ->setSortable(false),
+
+            ImageField::new('imageName', 'Image')
+                ->setBasePath('/images')
+                ->onlyOnIndex()
                 ->setSortable(false),
             
             DateTimeField::new('createdAt', 'Date de création')
