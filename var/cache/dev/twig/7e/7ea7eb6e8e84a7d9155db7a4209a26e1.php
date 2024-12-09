@@ -144,7 +144,7 @@ class __TwigTemplate_32f9f725243e9946b48b4d35ec549d0f extends Template
 \t\t<div>
 \t\t\t<label for=\"username\" class=\"form-label mt-4\">Adresse email</label>
 \t\t\t<input type=\"email\" class=\"form-control\" id=\"username\" name=\"_username\" placeholder=\"exemple @portfolio.fr\" \">
-\t\t\t<small id=\"emailHelp\" class=\"form-text text-muted\">We'll never share your email with anyone else.</small>
+\t\t\t<small id=\"emailHelp\" class=\"form-text text-muted\">Nous ne partagerons jamais votre e-mail.</small>
 \t\t</div>
 \t\t<div>
 \t\t\t<label for=\"password\" class=\"form-label mt-4\">Mot de passe</label>
@@ -218,7 +218,7 @@ class __TwigTemplate_32f9f725243e9946b48b4d35ec549d0f extends Template
 \t\t<div>
 \t\t\t<label for=\"username\" class=\"form-label mt-4\">Adresse email</label>
 \t\t\t<input type=\"email\" class=\"form-control\" id=\"username\" name=\"_username\" placeholder=\"exemple @portfolio.fr\" \">
-\t\t\t<small id=\"emailHelp\" class=\"form-text text-muted\">We'll never share your email with anyone else.</small>
+\t\t\t<small id=\"emailHelp\" class=\"form-text text-muted\">Nous ne partagerons jamais votre e-mail.</small>
 \t\t</div>
 \t\t<div>
 \t\t\t<label for=\"password\" class=\"form-label mt-4\">Mot de passe</label>
@@ -229,6 +229,6 @@ class __TwigTemplate_32f9f725243e9946b48b4d35ec549d0f extends Template
 \t</form>
 
 </div>{% endblock %}
-", "pages/security/login.html.twig", "C:\\xampp\\htdocs\\portfolio\\master\\templates\\pages\\security\\login.html.twig");
+", "pages/security/login.html.twig", "C:\\Users\\matth\\Projet\\Principal\\templates\\pages\\security\\login.html.twig");
     }
 }

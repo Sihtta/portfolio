@@ -131,6 +131,6 @@ class __TwigTemplate_42bc855e1195f735d53f6f469b8ed919 extends Template
 \t\t</a>
 \t</div>
 {% endblock %}
-", "admin/dashboard.html.twig", "C:\\xampp\\htdocs\\portfolio\\master\\templates\\admin\\dashboard.html.twig");
+", "admin/dashboard.html.twig", "C:\\Users\\matth\\Projet\\Principal\\templates\\admin\\dashboard.html.twig");
     }
 }

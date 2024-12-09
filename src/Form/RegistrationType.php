@@ -87,10 +87,11 @@ class RegistrationType extends AbstractType
                 ],
                 'invalid_message' => 'Les mots de passe ne correspondent pas.'
             ])
-            ->add('submit', SubmitType::class, [
+            ->add('Submit', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-primary mt-4'
-                ]
+                ],
+                'label' => 'S\'inscrire'
             ]);
     }
 
