@@ -92,3 +92,5 @@ b49a1c,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudController
 2029e7,127.0.0.1,GET,http://127.0.0.1:8000/admin,1733748829,,200
 9d2fc2,127.0.0.1,GET,http://127.0.0.1:8000/utilisateur/edition/63,1733749105,,200
 3bd40e,127.0.0.1,GET,http://127.0.0.1:8000/utilisateur/edition/63,1733749212,,200
+4a9f75,127.0.0.1,GET,http://127.0.0.1:8000/admin,1733749620,,200
+6f71d3,127.0.0.1,GET,http://127.0.0.1:8000/connexion,1733749624,,200
