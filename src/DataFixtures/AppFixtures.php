@@ -39,7 +39,7 @@ class AppFixtures extends Fixture
             ->setPseudo(null)
             ->setEmail('admin@portfolio.fr')
             ->setRoles(['ROLE_USER','ROLE_ADMIN'])
-            ->setPassword('password');
+            ->setPassword('$2y$13$FWrdGeqhVmVEvLkCVSEiB.BB8KnHCOp6OXMk8.Np2vOGjYLMYP/vq');
 
         $users[] = $admin;
         $manager->persist($admin);

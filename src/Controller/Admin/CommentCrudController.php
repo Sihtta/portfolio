@@ -24,13 +24,13 @@ class CommentCrudController extends AbstractCrudController
             ->setEntityLabelInSingular('un commentaire')
             ->setPageTitle('index', 'Portfolio - Administration des commentaires')
             ->setPageTitle('detail', 'Détail du commentaire')
-            ->setSearchFields(['user.pseudo', 'contentComment']);
+            ->setSearchFields(['user.fullName', 'contentComment']);
     }
 
     public function configureFields(string $pageName): iterable
     {
         $fields = [
-            TextField::new('user.pseudo', "Pseudonyme de l'utilisateur")
+            TextField::new('user.fullName', "Nom de l'utilisateur")
                 ->setFormTypeOption('disabled', 'disabled')
                 ->setSortable(false),
                 $fields[] = TextField::new('creation.name', "Nom de la création")->setSortable(false),
