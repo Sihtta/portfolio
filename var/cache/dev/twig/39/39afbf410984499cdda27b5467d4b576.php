@@ -47,7 +47,7 @@ class __TwigTemplate_20d898baa66b5568972b659924383013 extends Template
         // line 1
         yield "<script src=\"https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js\" integrity=\"sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D\" crossorigin=\"anonymous\" async></script>
 
-<div class=\"row row-cols-1 row-cols-md-3 g-4\">
+<div class=\"row row-cols-1 row-cols-md-3 g-4 mx-4\" data-masonry='{\"percentPosition\": true }'>
 \t";
         // line 4
         $context['_parent'] = $context;
@@ -61,11 +61,20 @@ class __TwigTemplate_20d898baa66b5568972b659924383013 extends Template
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "image", [], "any", false, false, false, 7), "html", null, true);
             yield "\" class=\"card-img-top\" alt=\"...\">
 \t\t\t\t<div class=\"card-body\">
-\t\t\t\t\t<h5 class=\"card-title\">Card title</h5>
-\t\t\t\t\t<p class=\"card-text\">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+\t\t\t\t\t<h5 class=\"card-title\">";
+            // line 9
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "name", [], "any", false, false, false, 9), "html", null, true);
+            yield "</h5>
+\t\t\t\t\t<p class=\"card-text\">";
+            // line 10
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "description", [], "any", false, false, false, 10), "html", null, true);
+            yield "</p>
 \t\t\t\t</div>
 \t\t\t\t<div class=\"card-footer\">
-\t\t\t\t\t<small class=\"text-body-secondary\">Last updated 3 mins ago</small>
+\t\t\t\t\t<small class=\"text-body-secondary\">";
+            // line 13
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "createdAt", [], "any", false, false, false, 13), "d/m/Y"), "html", null, true);
+            yield "</small>
 \t\t\t\t</div>
 \t\t\t</div>
 \t\t</div>
@@ -107,24 +116,24 @@ class __TwigTemplate_20d898baa66b5568972b659924383013 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  78 => 18,  61 => 7,  57 => 5,  53 => 4,  48 => 1,);
+        return array (  87 => 18,  76 => 13,  70 => 10,  66 => 9,  61 => 7,  57 => 5,  53 => 4,  48 => 1,);
     }
 
     public function getSourceContext(): Source
     {
         return new Source("<script src=\"https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js\" integrity=\"sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D\" crossorigin=\"anonymous\" async></script>
 
-<div class=\"row row-cols-1 row-cols-md-3 g-4\">
+<div class=\"row row-cols-1 row-cols-md-3 g-4 mx-4\" data-masonry='{\"percentPosition\": true }'>
 \t{% for creation in creations %}
 \t\t<div class=\"col\">
 \t\t\t<div class=\"card h-100\">
 \t\t\t\t<img src=\"{{ creation.image }}\" class=\"card-img-top\" alt=\"...\">
 \t\t\t\t<div class=\"card-body\">
-\t\t\t\t\t<h5 class=\"card-title\">Card title</h5>
-\t\t\t\t\t<p class=\"card-text\">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+\t\t\t\t\t<h5 class=\"card-title\">{{ creation.name }}</h5>
+\t\t\t\t\t<p class=\"card-text\">{{ creation.description }}</p>
 \t\t\t\t</div>
 \t\t\t\t<div class=\"card-footer\">
-\t\t\t\t\t<small class=\"text-body-secondary\">Last updated 3 mins ago</small>
+\t\t\t\t\t<small class=\"text-body-secondary\">{{ creation.createdAt|date('d/m/Y') }}</small>
 \t\t\t\t</div>
 \t\t\t</div>
 \t\t</div>
