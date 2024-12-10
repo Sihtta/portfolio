@@ -19,6 +19,7 @@
 		{% block header %}
 			{% include "partials/_header.html.twig" %}
 		{% endblock %}
+
 		{% block body %}
 			{% for message in app.flashes('success') %}
 				<div class="alert alert-success mt-4">
@@ -27,4 +28,4 @@
 			{% endfor %}
 		{% endblock %}
 	</body>
-</html></body></html>
+</html>

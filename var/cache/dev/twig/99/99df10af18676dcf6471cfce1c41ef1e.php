@@ -54,14 +54,53 @@ class __TwigTemplate_428236f0d0457b9a56aafdd24a25ea5f extends Template
 \t\t<div class=\"collapse navbar-collapse\" id=\"navbarColor01\">
 \t\t\t<ul class=\"navbar-nav me-auto\">
 \t\t\t\t<li class=\"nav-item\">
-\t\t\t\t\t<a class=\"nav-link active\" href=\"#\">Accueil
-\t\t\t\t\t\t<span class=\"visually-hidden\">(current)</span>
-\t\t\t\t\t</a>
+\t\t\t\t\t<a class=\"nav-link active\" href=\"";
+        // line 10
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("base");
+        yield "\">Accueil</a>
 \t\t\t\t</li>
-\t\t\t\t<li class=\"nav-item\">
-\t\t\t\t\t<a class=\"nav-link active\">Connexion</a>
-\t\t\t\t</li>
-\t\t\t</ul>
+
+\t\t\t\t";
+        // line 13
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 13, $this->source); })()), "user", [], "any", false, false, false, 13)) {
+            // line 14
+            yield "\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t<a class=\"nav-link\" href=\"";
+            // line 15
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("user.edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 15, $this->source); })()), "user", [], "any", false, false, false, 15), "id", [], "any", false, false, false, 15)]), "html", null, true);
+            yield "\">Mon Profil</a>
+\t\t\t\t\t</li>
+\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t<a class=\"nav-link\" href=\"";
+            // line 18
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("user.edit.password", ["id" => CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 18, $this->source); })()), "user", [], "any", false, false, false, 18), "id", [], "any", false, false, false, 18)]), "html", null, true);
+            yield "\">Mon Mot de Passe</a>
+\t\t\t\t\t</li>
+\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t<a class=\"nav-link\" href=\"";
+            // line 21
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("security.logout");
+            yield "\">Déconnexion</a>
+\t\t\t\t\t</li>
+\t\t\t\t";
+        } else {
+            // line 24
+            yield "\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t<a class=\"nav-link\" href=\"";
+            // line 25
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("security.registration");
+            yield "\">Inscription</a>
+\t\t\t\t\t</li>
+\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t<a class=\"nav-link\" href=\"";
+            // line 28
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("security.login");
+            yield "\">Connexion</a>
+\t\t\t\t\t</li>
+\t\t\t\t";
+        }
+        // line 31
+        yield "\t\t\t</ul>
 \t\t</div>
 \t</div>
 </nav>
@@ -86,9 +125,17 @@ class __TwigTemplate_428236f0d0457b9a56aafdd24a25ea5f extends Template
     /**
      * @codeCoverageIgnore
      */
+    public function isTraitable(): bool
+    {
+        return false;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
     public function getDebugInfo(): array
     {
-        return array (  48 => 1,);
+        return array (  103 => 31,  97 => 28,  91 => 25,  88 => 24,  82 => 21,  76 => 18,  70 => 15,  67 => 14,  65 => 13,  59 => 10,  48 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -102,13 +149,27 @@ class __TwigTemplate_428236f0d0457b9a56aafdd24a25ea5f extends Template
 \t\t<div class=\"collapse navbar-collapse\" id=\"navbarColor01\">
 \t\t\t<ul class=\"navbar-nav me-auto\">
 \t\t\t\t<li class=\"nav-item\">
-\t\t\t\t\t<a class=\"nav-link active\" href=\"#\">Accueil
-\t\t\t\t\t\t<span class=\"visually-hidden\">(current)</span>
-\t\t\t\t\t</a>
+\t\t\t\t\t<a class=\"nav-link active\" href=\"{{ path('base') }}\">Accueil</a>
 \t\t\t\t</li>
-\t\t\t\t<li class=\"nav-item\">
-\t\t\t\t\t<a class=\"nav-link active\">Connexion</a>
-\t\t\t\t</li>
+
+\t\t\t\t{% if app.user %}
+\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t<a class=\"nav-link\" href=\"{{ path('user.edit', {'id': app.user.id}) }}\">Mon Profil</a>
+\t\t\t\t\t</li>
+\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t<a class=\"nav-link\" href=\"{{ path('user.edit.password', {'id': app.user.id}) }}\">Mon Mot de Passe</a>
+\t\t\t\t\t</li>
+\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t<a class=\"nav-link\" href=\"{{ path('security.logout') }}\">Déconnexion</a>
+\t\t\t\t\t</li>
+\t\t\t\t{% else %}
+\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t<a class=\"nav-link\" href=\"{{ path('security.registration') }}\">Inscription</a>
+\t\t\t\t\t</li>
+\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t<a class=\"nav-link\" href=\"{{ path('security.login') }}\">Connexion</a>
+\t\t\t\t\t</li>
+\t\t\t\t{% endif %}
 \t\t\t</ul>
 \t\t</div>
 \t</div>

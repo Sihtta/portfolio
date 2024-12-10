@@ -31,6 +31,7 @@ class __TwigTemplate_32f9f725243e9946b48b4d35ec549d0f extends Template
 
         $this->blocks = [
             'title' => [$this, 'block_title'],
+            'nav_links' => [$this, 'block_nav_links'],
             'body' => [$this, 'block_body'],
         ];
     }
@@ -88,6 +89,36 @@ class __TwigTemplate_32f9f725243e9946b48b4d35ec549d0f extends Template
     /**
      * @return iterable<null|scalar|\Stringable>
      */
+    public function block_nav_links(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "nav_links"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "nav_links"));
+
+        // line 7
+        yield "\t<li class=\"nav-item\">
+\t\t<a class=\"nav-link\" href=\"";
+        // line 8
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("inscription");
+        yield "\">Inscription</a>
+\t</li>
+";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        yield from [];
+    }
+
+    // line 12
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
     public function block_body(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
@@ -97,19 +128,19 @@ class __TwigTemplate_32f9f725243e9946b48b4d35ec549d0f extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 7
+        // line 13
         yield "\t<div class=\"container\">
 \t\t<h1 class=\"mt-4\">Formulaire de connexion</h1>
 
 \t\t";
-        // line 10
+        // line 16
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 10, $this->source); })()), "flashes", ["success"], "method", false, false, false, 10));
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 16, $this->source); })()), "flashes", ["success"], "method", false, false, false, 16));
         foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 11
+            // line 17
             yield "\t\t\t<div class=\"alert alert-success mt-4\">
 \t\t\t\t";
-            // line 12
+            // line 18
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["message"], "html", null, true);
             yield "
 \t\t\t</div>
@@ -118,24 +149,24 @@ class __TwigTemplate_32f9f725243e9946b48b4d35ec549d0f extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['message'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 15
+        // line 21
         yield "
 \t\t";
-        // line 16
-        if ((isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 16, $this->source); })())) {
-            // line 17
+        // line 22
+        if ((isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 22, $this->source); })())) {
+            // line 23
             yield "\t\t\t<div class=\"alert alert-danger mt-4\">
 \t\t\t\t";
-            // line 18
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(CoreExtension::getAttribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 18, $this->source); })()), "messageKey", [], "any", false, false, false, 18), CoreExtension::getAttribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 18, $this->source); })()), "messageData", [], "any", false, false, false, 18), "security"), "html", null, true);
+            // line 24
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(CoreExtension::getAttribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 24, $this->source); })()), "messageKey", [], "any", false, false, false, 24), CoreExtension::getAttribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 24, $this->source); })()), "messageData", [], "any", false, false, false, 24), "security"), "html", null, true);
             yield "
 \t\t\t</div>
 \t\t";
         }
-        // line 21
+        // line 27
         yield "
 \t\t<form action=\"";
-        // line 22
+        // line 28
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("security.login");
         yield "\" method=\"post\" class=\"mt-4\">
 \t\t\t<div class=\"mb-3\">
@@ -184,7 +215,7 @@ class __TwigTemplate_32f9f725243e9946b48b4d35ec549d0f extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  139 => 22,  136 => 21,  130 => 18,  127 => 17,  125 => 16,  122 => 15,  113 => 12,  110 => 11,  106 => 10,  101 => 7,  88 => 6,  64 => 3,  41 => 1,);
+        return array (  170 => 28,  167 => 27,  161 => 24,  158 => 23,  156 => 22,  153 => 21,  144 => 18,  141 => 17,  137 => 16,  132 => 13,  119 => 12,  105 => 8,  102 => 7,  89 => 6,  65 => 3,  42 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -192,6 +223,12 @@ class __TwigTemplate_32f9f725243e9946b48b4d35ec549d0f extends Template
         return new Source("{% extends 'base.html.twig' %}
 
 {% block title %}Portfolio - Connexion
+{% endblock %}
+
+{% block nav_links %}
+\t<li class=\"nav-item\">
+\t\t<a class=\"nav-link\" href=\"{{ path('inscription') }}\">Inscription</a>
+\t</li>
 {% endblock %}
 
 {% block body %}
