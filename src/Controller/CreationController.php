@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CreationController extends AbstractController
 {
-    #[Route("/", "creation.index", methods: ["GET"])]
+    #[Route("/creations", "creation.index", methods: ["GET"])]
     public function index(CreationRepository $creationRepository): Response
     {
         $creations = $creationRepository->findAll();
