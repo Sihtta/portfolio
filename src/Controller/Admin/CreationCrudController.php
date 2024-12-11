@@ -53,9 +53,9 @@ class CreationCrudController extends AbstractCrudController
                 ->setSortable(false),
 
             ImageField::new('imageFile', 'Image')
-                ->setFormType(VichImageType::class)
                 ->onlyOnForms()
                 ->setUploadDir('public/images')
+                ->setUploadedFileNamePattern('[year]/[month]/[day]/[slug].[extension]')
                 ->setSortable(false),
 
             ImageField::new('imageName', 'Image')

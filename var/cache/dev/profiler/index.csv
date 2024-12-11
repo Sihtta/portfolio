@@ -148,3 +148,13 @@ bb03a1,127.0.0.1,GET,http://127.0.0.1:8000/images/,1733838654,3e84c2,404
 03e522,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=detail&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController&entityId=65,1733838730,,200
 dec1bc,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=edit&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController&entityId=65,1733838734,1ac827,500
 1ac827,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=edit&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController&entityId=65,1733838734,,500
+70cb7a,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733924418,,200
+59f998,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=new&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733924421,cae204,500
+cae204,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=new&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733924421,,500
+179214,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=new&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733924448,,200
+600f68,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=new&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733924589,,200
+84da77,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=new&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733924904,d622d4,500
+d622d4,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=new&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733924904,,500
+78786d,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=new&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733924936,c69d74,500
+c69d74,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=new&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733924936,,500
+072b1a,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=new&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1733924973,,200
