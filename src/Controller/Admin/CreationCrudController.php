@@ -52,11 +52,12 @@ class CreationCrudController extends AbstractCrudController
                 ])
                 ->setSortable(false),
 
-            ImageField::new('imageFile', 'Image')
+            ImageField::new('image_file', "Image")
                 ->onlyOnForms()
                 ->setUploadDir('public/images')
-                ->setUploadedFileNamePattern('[year]/[month]/[day]/[slug].[extension]')
-                ->setSortable(false),
+                ->setBasePath('public/images')
+                ->setUploadedFileNamePattern('[year]-[month]-[day]-[contenthash].[extension]')
+                ->setFormTypeOption('multiple', true),
 
             ImageField::new('imageName', 'Image')
                 ->setBasePath('/images')
