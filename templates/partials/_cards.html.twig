@@ -1,16 +1,24 @@
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 
-<div class="row row-cols-1 row-cols-md-3 g-4 mx-4" data-masonry='{"	": true }'>
+<style>
+	.hover-card {
+		transition: background-color 0.3s ease, transform 0.2s ease;
+	}
+
+	.hover-card:hover {
+		background-color: #f8f9fa;
+		transform: scale(1.02);
+		cursor: pointer;
+	}
+</style>
+
+<div class="row row-cols-1 row-cols-md-3 g-4 mx-4" data-masonry='{"percentPosition": true }'>
 	{% for creation in creations %}
 		<div class="col">
-			<div class="card h-100">
-				<img src="{{ creation.image }}" class="card-img-top" alt="...">
+			<div onclick="window.location=''" class=" card h-100 hover-card" style=" border-radius: 30px; text-decoration: none; color: black;">
+				<img src="{{ creation.image }}" class="card-img-top" style="border-radius: 30px 30px 0 0;" alt=" ...">
 				<div class="card-body">
 					<h5 class="card-title">{{ creation.name }}</h5>
-					<p class="card-text">{{ creation.description }}</p>
-				</div>
-				<div class="card-footer">
-					<small class="text-body-secondary">{{ creation.createdAt|date('d/m/Y') }}</small>
 				</div>
 			</div>
 		</div>
