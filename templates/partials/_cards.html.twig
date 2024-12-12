@@ -13,14 +13,15 @@
 </style>
 
 <div class="row row-cols-1 row-cols-md-3 g-4 mx-4" data-masonry='{"percentPosition": true }'>
-	{% for creation in creations %}
-		<div class="col">
-			<div onclick="window.location=''" class=" card h-100 hover-card" style=" border-radius: 30px; text-decoration: none; color: black;">
-				<img src="/images/{{ creation.image[0] }}" class="card-img-top" style="border-radius: 30px 30px 0 0;" alt="{{ creation.name }}">
-				<div class="card-body">
-					<h5 class="card-title">{{ creation.name }}</h5>
-				</div>
-			</div>
-		</div>
-	{% endfor %}
+    {% for creation in creations %}
+        <div class="col">
+            <a href="{{ path('creation_show', {'id': creation.id}) }}" class="card h-100 hover-card" style="border-radius: 30px; text-decoration: none; color: black;">
+                <img src="/images/{{ creation.image[0] }}" class="card-img-top" style="border-radius: 30px 30px 0 0;" alt="{{ creation.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ creation.name }}</h5>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
 </div>
+
