@@ -16,7 +16,7 @@
 		{% for creation in creations %}
 			<div class="carousel-item {% if loop.first %}active{% endif %}">
 				<div class="carousel-image-container">
-					<img src="{{ creation.image[0] }}" class="d-block w-100" alt="Image de création">
+					<img src="/images/{{ creation.image[0] }}" class="d-block w-100" alt="Image de création">
 				</div>
 			</div>
 		{% endfor %}
