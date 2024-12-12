@@ -1,0 +1,17 @@
+b42257,127.0.0.1,GET,http://127.0.0.1:8000/,1734020853,,404
+0848fc,127.0.0.1,GET,http://127.0.0.1:8000/connexion,1734020857,,200
+380c34,127.0.0.1,POST,http://127.0.0.1:8000/connexion,1734020866,,302
+79eb62,127.0.0.1,GET,http://127.0.0.1:8000/,1734020867,,404
+406de5,127.0.0.1,GET,http://127.0.0.1:8000/admin,1734020871,,200
+5e06b5,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController,1734020875,,200
+9b2709,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1734020877,a18019,500
+a18019,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1734020877,,500
+bb970b,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1734021005,,200
+cd02eb,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CCommentCrudController,1734021014,,200
+552e0b,127.0.0.1,GET,http://127.0.0.1:8000/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CCreationCrudController,1734021027,,200
+30539d,127.0.0.1,GET,http://127.0.0.1:8000/admin,1734021082,,302
+724ee6,127.0.0.1,GET,http://127.0.0.1:8000/connexion,1734021082,,200
+d0b5d8,127.0.0.1,GET,http://127.0.0.1:8000/connexion,1734021803,,200
+8ccfb0,127.0.0.1,GET,http://127.0.0.1:8000/inscription,1734021805,,200
+d42050,127.0.0.1,GET,http://127.0.0.1:8000/base,1734021811,,200
+fe1c95,127.0.0.1,GET,http://127.0.0.1:8000/connexion,1734021815,,200
