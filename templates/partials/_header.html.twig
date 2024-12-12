@@ -7,26 +7,39 @@
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav me-auto">
 				<li class="nav-item">
-					<a class="nav-link active" href="{{ path('base') }}">Accueil</a>
+					<a class="nav-link active" href="{{ path('home.index') }}">Accueil</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" href="{{ path('creation.index') }}">Créations</a>
 				</li>
 
-				{% if app.user %}
-					<li class="nav-item">
-						<a class="nav-link" href="{{ path('user.edit', {'id': app.user.id}) }}">Mon Profil</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{ path('user.edit.password', {'id': app.user.id}) }}">Mon Mot de Passe</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{ path('security.logout') }}">Déconnexion</a>
-					</li>
-				{% else %}
+				{% if app.request.attributes.get('_route') == 'security.login' %}
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path('security.registration') }}">Inscription</a>
 					</li>
+				{% elseif app.request.attributes.get('_route') == 'security.registration' %}
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path('security.login') }}">Connexion</a>
 					</li>
+				{% else %}
+					{% if app.user %}
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('user.edit', {'id': app.user.id}) }}">Mon Profil</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('user.edit.password', {'id': app.user.id}) }}">Mon Mot de Passe</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('security.logout') }}">Déconnexion</a>
+						</li>
+					{% else %}
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('security.registration') }}">Inscription</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('security.login') }}">Connexion</a>
+						</li>
+					{% endif %}
 				{% endif %}
 			</ul>
 		</div>
