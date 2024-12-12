@@ -23,12 +23,6 @@ class UserController extends AbstractController
      * @param EntityManagerInterface $manager
      * @return Response
      */
-    #[Route('/base', name: 'base')]
-    public function base(): Response
-    {
-        return $this->render('base.html.twig');
-    }
-
 
     #[Security("is_granted('ROLE_USER') and user === choosenUser")]
     #[Route('/utilisateur/edition/{id}', name: 'user.edit', methods: ['GET', 'POST'])]
@@ -52,7 +46,7 @@ class UserController extends AbstractController
                     'Les informations de votre compte ont bien été modifiées.'
                 );
 
-                return $this->redirectToRoute('base');
+                return $this->redirectToRoute('user.edit', ['id' => $choosenUser->getId()]);
             } else {
                 $this->addFlash(
                     'warning',
@@ -65,6 +59,7 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
 
     /**
      * This controller allow us to edit user's password
@@ -103,7 +98,7 @@ class UserController extends AbstractController
                 $manager->persist($choosenUser);
                 $manager->flush();
 
-                return $this->redirectToRoute('base');
+                return $this->redirectToRoute('user.edit.password', ['id' => $choosenUser->getId()]);
             } else {
                 $this->addFlash(
                     'warning',
