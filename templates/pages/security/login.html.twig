@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Portfolio - Connexion
+{% endblock %}
+
+{% block nav_links %}
+	<li class="nav-item">
+		<a class="nav-link" href="{{ path('inscription') }}">Inscription</a>
+	</li>
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="mt-4">Formulaire de connexion</h1>
+
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success mt-4">
+				{{ message }}
+			</div>
+		{% endfor %}
+
+		{% if error %}
+			<div class="alert alert-danger mt-4">
+				{{ error.messageKey|trans(error.messageData, 'security') }}
+			</div>
+		{% endif %}
+
+		<form action="{{ path('security.login') }}" method="post" class="mt-4">
+			<div class="mb-3">
+				<label for="username" class="form-label">Adresse email</label>
+				<input type="email" class="form-control" id="username" name="_username" placeholder="exemple@portfolio.fr" required>
+				<small id="emailHelp" class="form-text text-muted">
+					Nous ne partagerons jamais votre e-mail.
+				</small>
+			</div>
+			<div class="mb-3">
+				<label for="password" class="form-label">Mot de passe</label>
+				<input type="password" class="form-control" id="password" name="_password" placeholder="********" autocomplete="off" required>
+			</div>
+
+			<button type="submit" class="btn btn-primary mt-4">Se connecter</button>
+		</form>
+	</div>
+{% endblock %}
