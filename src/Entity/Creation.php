@@ -13,10 +13,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: CreationRepository::class)]
-#[Vich\Uploadable]
 class Creation
 {
     #[ORM\Id]
@@ -38,12 +36,6 @@ class Creation
     #[Assert\NotNull]
     private \DateTimeImmutable $updatedAt;
 
-    #[Vich\UploadableField(mapping: 'product_image',fileNameProperty:'imageName')]
-    private ?File $imageFile = null;
-
-    #[ORM\Column(type:'string')]
-    private ?string $imageName = null;
-
     #[ORM\Column(length: 250, nullable: true)]
     #[Assert\Length(
         min: 2,
@@ -54,7 +46,7 @@ class Creation
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $image = null;
+    private ?array $image = [];
 
     #[ORM\ManyToMany(targetEntity: Tool::class, inversedBy: 'creations')]
     private Collection $Tool;
@@ -115,27 +107,6 @@ class Creation
         return $this;
     }
 
-    /*@param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile*/
-    public function setImageFile(?File $imageFile = null): void {
-        $this->imageFile = $imageFile;
-        if (null !== $imageFile) {
-            $this->updatedAt = new \DateTimeImmutable();
-        }
-    }
-    
-    public function getImageFile(): ?File {
-        return $this->imageFile;
-    }
-
-    public function setImageName(?string $imageName): void {
-        $this->imageName = $imageName;
-    }
-
-    public function getImageName(): ?string
-    {
-        return $this->imageName;
-    }
-
     public function getDescription(): ?string
     {
         return $this->description;
@@ -148,18 +119,17 @@ class Creation
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImage(): ?array
     {
         return $this->image;
     }
-
-    public function setImage(?string $image): static
+    
+    public function setImage(?array $image): static
     {
         $this->image = $image;
-
         return $this;
     }
-
+    
     /**
      * @return Collection<int, Tool>
      */

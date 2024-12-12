@@ -84,7 +84,7 @@ class AppFixtures extends Fixture
             $creation = new Creation();
             $creation->setName($this->faker->word());
             $creation->setDescription(mt_rand(0, 1) === 1 ? $this->faker->sentence() : null);
-            $creation->setImage(mt_rand(0, 1) === 1 ? $this->faker->url() : null);
+            $creation->setImage(['https://img.freepik.com/premium-photo/cute-baby-penguin-being-held-by-someone-very-fluffy-adorable-photorealistic-animal-portrait-pet-wildlife-photography-generative-ai_1286331-36218.jpg?w=360']);
             $creation->setCreatedAt($this->faker->DateTime());
 
 

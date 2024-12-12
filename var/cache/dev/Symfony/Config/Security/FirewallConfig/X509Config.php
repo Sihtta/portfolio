@@ -14,7 +14,7 @@ class X509Config
     private $user;
     private $credentials;
     private $_usedProperties = [];
-
+    
     /**
      * @default null
      * @param ParamConfigurator|mixed $value
@@ -24,10 +24,10 @@ class X509Config
     {
         $this->_usedProperties['provider'] = true;
         $this->provider = $value;
-
+    
         return $this;
     }
-
+    
     /**
      * @default 'SSL_CLIENT_S_DN_Email'
      * @param ParamConfigurator|mixed $value
@@ -37,10 +37,10 @@ class X509Config
     {
         $this->_usedProperties['user'] = true;
         $this->user = $value;
-
+    
         return $this;
     }
-
+    
     /**
      * @default 'SSL_CLIENT_S_DN'
      * @param ParamConfigurator|mixed $value
@@ -50,10 +50,10 @@ class X509Config
     {
         $this->_usedProperties['credentials'] = true;
         $this->credentials = $value;
-
+    
         return $this;
     }
-
+    
     public function __construct(array $value = [])
     {
         if (array_key_exists('provider', $value)) {
@@ -61,24 +61,24 @@ class X509Config
             $this->provider = $value['provider'];
             unset($value['provider']);
         }
-
+    
         if (array_key_exists('user', $value)) {
             $this->_usedProperties['user'] = true;
             $this->user = $value['user'];
             unset($value['user']);
         }
-
+    
         if (array_key_exists('credentials', $value)) {
             $this->_usedProperties['credentials'] = true;
             $this->credentials = $value['credentials'];
             unset($value['credentials']);
         }
-
+    
         if ([] !== $value) {
             throw new InvalidConfigurationException(sprintf('The following keys are not supported by "%s": ', __CLASS__).implode(', ', array_keys($value)));
         }
     }
-
+    
     public function toArray(): array
     {
         $output = [];
@@ -91,7 +91,7 @@ class X509Config
         if (isset($this->_usedProperties['credentials'])) {
             $output['credentials'] = $this->credentials;
         }
-
+    
         return $output;
     }
 

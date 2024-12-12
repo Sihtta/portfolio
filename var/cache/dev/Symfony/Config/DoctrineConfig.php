@@ -15,7 +15,7 @@ class DoctrineConfig implements \Symfony\Component\Config\Builder\ConfigBuilderI
     private $dbal;
     private $orm;
     private $_usedProperties = [];
-
+    
     /**
      * @return \Symfony\Config\Doctrine\DbalConfig|$this
      */
@@ -24,20 +24,20 @@ class DoctrineConfig implements \Symfony\Component\Config\Builder\ConfigBuilderI
         if (!\is_array($value)) {
             $this->_usedProperties['dbal'] = true;
             $this->dbal = $value;
-
+    
             return $this;
         }
-
+    
         if (!$this->dbal instanceof \Symfony\Config\Doctrine\DbalConfig) {
             $this->_usedProperties['dbal'] = true;
             $this->dbal = new \Symfony\Config\Doctrine\DbalConfig($value);
         } elseif (0 < \func_num_args()) {
             throw new InvalidConfigurationException('The node created by "dbal()" has already been initialized. You cannot pass values the second time you call dbal().');
         }
-
+    
         return $this->dbal;
     }
-
+    
     /**
      * @return \Symfony\Config\Doctrine\OrmConfig|$this
      */
@@ -46,25 +46,25 @@ class DoctrineConfig implements \Symfony\Component\Config\Builder\ConfigBuilderI
         if (!\is_array($value)) {
             $this->_usedProperties['orm'] = true;
             $this->orm = $value;
-
+    
             return $this;
         }
-
+    
         if (!$this->orm instanceof \Symfony\Config\Doctrine\OrmConfig) {
             $this->_usedProperties['orm'] = true;
             $this->orm = new \Symfony\Config\Doctrine\OrmConfig($value);
         } elseif (0 < \func_num_args()) {
             throw new InvalidConfigurationException('The node created by "orm()" has already been initialized. You cannot pass values the second time you call orm().');
         }
-
+    
         return $this->orm;
     }
-
+    
     public function getExtensionAlias(): string
     {
         return 'doctrine';
     }
-
+    
     public function __construct(array $value = [])
     {
         if (array_key_exists('dbal', $value)) {
@@ -72,18 +72,18 @@ class DoctrineConfig implements \Symfony\Component\Config\Builder\ConfigBuilderI
             $this->dbal = \is_array($value['dbal']) ? new \Symfony\Config\Doctrine\DbalConfig($value['dbal']) : $value['dbal'];
             unset($value['dbal']);
         }
-
+    
         if (array_key_exists('orm', $value)) {
             $this->_usedProperties['orm'] = true;
             $this->orm = \is_array($value['orm']) ? new \Symfony\Config\Doctrine\OrmConfig($value['orm']) : $value['orm'];
             unset($value['orm']);
         }
-
+    
         if ([] !== $value) {
             throw new InvalidConfigurationException(sprintf('The following keys are not supported by "%s": ', __CLASS__).implode(', ', array_keys($value)));
         }
     }
-
+    
     public function toArray(): array
     {
         $output = [];
@@ -93,7 +93,7 @@ class DoctrineConfig implements \Symfony\Component\Config\Builder\ConfigBuilderI
         if (isset($this->_usedProperties['orm'])) {
             $output['orm'] = $this->orm instanceof \Symfony\Config\Doctrine\OrmConfig ? $this->orm->toArray() : $this->orm;
         }
-
+    
         return $output;
     }
 
