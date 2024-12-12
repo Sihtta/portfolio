@@ -1,8 +1,0 @@
-<?php //ux.twig_component.component_properties
-
-return [PHP_INT_MAX, [
-    'EasyCorp\\Bundle\\EasyAdminBundle\\Twig\\Component\\Icon' => [
-        'properties' => [],
-        'methods' => [],
-    ],
-]];
