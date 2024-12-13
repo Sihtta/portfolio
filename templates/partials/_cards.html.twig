@@ -1,27 +1,30 @@
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 
-<style>
-	.hover-card {
-		transition: background-color 0.3s ease, transform 0.2s ease;
-	}
+{% block style_cards %}
+	<style>
+		.hover-card {
+			transition: background-color 0.3s ease, transform 0.2s ease;
+		}
 
-	.hover-card:hover {
-		background-color: #f8f9fa;
-		transform: scale(1.02);
-		cursor: pointer;
-	}
-</style>
+		.hover-card:hover {
+			background-color: #f8f9fa;
+			transform: scale(1.02);
+			cursor: pointer;
+		}
+	</style>
+{% endblock %}
 
-<div class="row row-cols-1 row-cols-md-3 g-4 mx-4" data-masonry='{"percentPosition": true }'>
-    {% for creation in creations %}
-        <div class="col">
-            <a href="{{ path('creation_show', {'id': creation.id}) }}" class="card h-100 hover-card" style="border-radius: 30px; text-decoration: none; color: black;">
-                <img src="/images/{{ creation.image[0] }}" class="card-img-top" style="border-radius: 30px 30px 0 0;" alt="{{ creation.name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ creation.name }}</h5>
-                </div>
-            </a>
-        </div>
-    {% endfor %}
-</div>
-
+{% block content_cards %}
+	<div class="row row-cols-1 row-cols-md-3 g-4 mx-4" data-masonry='{"percentPosition": true }'>
+		{% for creation in creations %}
+			<div class="col">
+				<a href="{{ path('creation_show', {'id': creation.id}) }}" class="card h-100 hover-card" style="border-radius: 30px; text-decoration: none; color: black;">
+					<img src="/images/{{ creation.image[0] }}" class="card-img-top" style="border-radius: 30px 30px 0 0;" alt="{{ creation.name }}">
+					<div class="card-body">
+						<h5 class="card-title">{{ creation.name }}</h5>
+					</div>
+				</a>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}
