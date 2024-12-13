@@ -68,7 +68,7 @@ class CreationCrudController extends AbstractCrudController
             BooleanField::new('isPublic', 'Est publique')
                 ->hideOnIndex(),
 
-            BooleanField::new('isPublic', 'Est publique')
+            BooleanField::new('isPublic', 'Publique')
                 ->hideOnForm()
                 ->renderAsSwitch(false),
             
