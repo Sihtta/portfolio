@@ -72,13 +72,6 @@ class CreationCrudController extends AbstractCrudController
             BooleanField::new('isPublic', 'Publique')
                 ->hideOnForm()
                 ->renderAsSwitch(false),
-            
-            DateTimeField::new('createdAt', 'Date de création')
-                ->setFormTypeOption('disabled', 'disabled')
-                ->setSortable(true)
-                ->formatValue(function ($value, $entity) {
-                    return $value instanceof \DateTimeInterface ? $value->format('d/m/Y') : '';
-                }),
         ];
 
         if ($pageName !== Crud::PAGE_DETAIL) {
@@ -121,6 +114,12 @@ class CreationCrudController extends AbstractCrudController
                 }, $comments->toArray()));
             });
         }
+
+        $fields[]= DateTimeField::new('updatedAt', 'Date de création')
+        ->setSortable(true)
+        ->formatValue(function ($value, $entity) {
+            return $value instanceof \DateTimeInterface ? $value->format('d/m/Y') : '';
+        });
 
         return $fields;
     }
