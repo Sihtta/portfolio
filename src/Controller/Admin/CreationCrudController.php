@@ -56,7 +56,7 @@ class CreationCrudController extends AbstractCrudController
                 ->onlyOnForms()
                 ->setUploadDir('public/images')
                 ->setBasePath('public/images')
-                ->setUploadedFileNamePattern('[year]-[month]-[day]-[contenthash].[extension]')
+                ->setUploadedFileNamePattern('[year]-[month]-[day]-[uuid].[extension]')
                 ->setFormTypeOption('multiple', true),
 
             ImageField::new('image', 'Image')
