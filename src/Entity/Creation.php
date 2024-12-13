@@ -63,6 +63,9 @@ class Creation
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'creation')]
     private Collection $comments;
 
+    #[ORM\Column]
+    private ?bool $isPublic = null;
+
     public function __construct()
     {
         $this->Tool = new ArrayCollection();
@@ -123,13 +126,13 @@ class Creation
     {
         return $this->image;
     }
-    
+
     public function setImage(?array $image): static
     {
         $this->image = $image;
         return $this;
     }
-    
+
     /**
      * @return Collection<int, Tool>
      */
@@ -250,7 +253,20 @@ class Creation
         return $this;
     }
 
-    public function __toString():string {
+    public function __toString(): string
+    {
         return $this->name;
+    }
+
+    public function getIsPublic(): ?bool
+    {
+        return $this->isPublic;
+    }
+
+    public function setIsPublic(bool $isPublic): static
+    {
+        $this->isPublic = $isPublic;
+
+        return $this;
     }
 }

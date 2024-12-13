@@ -35,15 +35,15 @@ class AppFixtures extends Fixture
         $users = [];
 
         $admin = new User();
-        $admin ->setFullName('Administrateur du Portfolio')
+        $admin->setFullName('Administrateur du Portfolio')
             ->setPseudo(null)
             ->setEmail('admin@portfolio.fr')
-            ->setRoles(['ROLE_USER','ROLE_ADMIN'])
+            ->setRoles(['ROLE_USER', 'ROLE_ADMIN'])
             ->setPassword('$2y$13$FWrdGeqhVmVEvLkCVSEiB.BB8KnHCOp6OXMk8.Np2vOGjYLMYP/vq');
 
         $users[] = $admin;
         $manager->persist($admin);
-        
+
         for ($i = 0; $i < 10; $i++) {
             $user =  new User();
             $user->setFullName($this->faker->name());
@@ -86,6 +86,7 @@ class AppFixtures extends Fixture
             $creation->setDescription(mt_rand(0, 1) === 1 ? $this->faker->sentence() : null);
             $creation->setImage(['https://img.freepik.com/premium-photo/cute-baby-penguin-being-held-by-someone-very-fluffy-adorable-photorealistic-animal-portrait-pet-wildlife-photography-generative-ai_1286331-36218.jpg?w=360']);
             $creation->setCreatedAt($this->faker->DateTime());
+            $creation->setIsPublic(mt_rand(0, 1) == 1 ? true : false);
 
 
             for ($k = 0; $k <= mt_rand(5, 15); $k++) {
