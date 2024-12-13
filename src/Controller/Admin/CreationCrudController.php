@@ -65,10 +65,10 @@ class CreationCrudController extends AbstractCrudController
                 ->hideOnForm()
                 ->setSortable(false),
 
-            BooleanField::new('isPublic', 'Est public')
+            BooleanField::new('isPublic', 'Est publique')
                 ->hideOnIndex(),
 
-            BooleanField::new('isPublic', 'Est public')
+            BooleanField::new('isPublic', 'Est publique')
                 ->hideOnForm()
                 ->renderAsSwitch(false),
             
