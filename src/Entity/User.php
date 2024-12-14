@@ -57,11 +57,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'user')]
     private Collection $comments;
 
+    #[ORM\OneToMany(targetEntity: UsernameHistory::class, mappedBy: 'user')]
+    private Collection $usernameHistories;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->likes = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->usernameHistories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -245,6 +249,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($comment->getUser() === $this) {
                 $comment->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UsernameHistory>
+     */
+    public function getUsernameHistories(): Collection
+    {
+        return $this->usernameHistories;
+    }
+
+    public function addUsernameHistory(UsernameHistory $usernameHistory): static
+    {
+        if (!$this->usernameHistories->contains($usernameHistory)) {
+            $this->usernameHistories->add($usernameHistory);
+            $usernameHistory->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUsernameHistory(UsernameHistory $usernameHistory): static
+    {
+        if ($this->usernameHistories->removeElement($usernameHistory)) {
+            // set the owning side to null (unless already changed)
+            if ($usernameHistory->getUser() === $this) {
+                $usernameHistory->setUser(null);
             }
         }
 

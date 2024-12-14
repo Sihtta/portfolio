@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\UsernameHistory;
 use App\Form\UserPasswordType;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,15 +16,6 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AbstractController
 {
-    /**
-     * This controller allow us to edit user's profile
-     *
-     * @param User $choosenUser
-     * @param Request $request
-     * @param EntityManagerInterface $manager
-     * @return Response
-     */
-
     #[Security("is_granted('ROLE_USER') and user === choosenUser")]
     #[Route('/utilisateur/edition/{id}', name: 'user.edit', methods: ['GET', 'POST'])]
     public function edit(
@@ -32,27 +24,44 @@ class UserController extends AbstractController
         EntityManagerInterface $manager,
         UserPasswordHasherInterface $hasher
     ): Response {
+        // Récupérer l'ancien pseudo avant que le formulaire ne soit soumis
+        $oldPseudo = $choosenUser->getPseudo();
+
+        // Créer et gérer le formulaire
         $form = $this->createForm(UserType::class, $choosenUser);
-
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($hasher->isPasswordValid($choosenUser, $form->getData()->getPlainPassword())) {
-                $user = $form->getData();
-                $manager->persist($user);
-                $manager->flush();
+            // Récupérer le nouveau pseudo venant du formulaire
+            $newPseudo = $form->getData()->getPseudo();
 
-                $this->addFlash(
-                    'success',
-                    'Les informations de votre compte ont bien été modifiées.'
-                );
+            // Vérification si les pseudos sont différents
+            if ($oldPseudo !== $newPseudo) {
+                // Créer l'historique du changement de pseudo
+                $usernameHistory = new UsernameHistory();
+                $usernameHistory->setUser($choosenUser)
+                    ->setOldPseudo($oldPseudo)
+                    ->setNewPseudo($newPseudo)
+                    ->setChangedAt(new \DateTimeImmutable());
 
-                return $this->redirectToRoute('user.edit', ['id' => $choosenUser->getId()]);
-            } else {
-                $this->addFlash(
-                    'warning',
-                    'Le mot de passe renseigné est incorrect.'
-                );
+                // Sauvegarder l'historique du changement de pseudo
+                $manager->persist($usernameHistory);
+                $manager->flush(); // Assurez-vous que l'historique est bien persistant
             }
+
+            // Maintenant, on met à jour l'entité 'User' avec le nouveau pseudo
+            $choosenUser->setPseudo($newPseudo); // Appliquer le nouveau pseudo
+
+            // Persist l'utilisateur avec le nouveau pseudo
+            $manager->persist($choosenUser);
+            $manager->flush(); // Sauvegarder l'utilisateur avec le pseudo modifié
+
+            $this->addFlash(
+                'success',
+                'Les informations de votre compte ont bien été modifiées.'
+            );
+
+            return $this->redirectToRoute('user.edit', ['id' => $choosenUser->getId()]);
         }
 
         return $this->render('pages/user/edit.html.twig', [
@@ -60,16 +69,6 @@ class UserController extends AbstractController
         ]);
     }
 
-
-    /**
-     * This controller allow us to edit user's password
-     *
-     * @param User $choosenUser
-     * @param Request $request
-     * @param EntityManagerInterface $manager
-     * @param UserPasswordHasherInterface $hasher
-     * @return Response
-     */
     #[Security("is_granted('ROLE_USER') and user === choosenUser")]
     #[Route('/utilisateur/edition-mot-de-passe/{id}', 'user.edit.password', methods: ['GET', 'POST'])]
     public function editPassword(
@@ -79,8 +78,8 @@ class UserController extends AbstractController
         UserPasswordHasherInterface $hasher
     ): Response {
         $form = $this->createForm(UserPasswordType::class);
-
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             if ($hasher->isPasswordValid($choosenUser, $form->getData()['plainPassword'])) {
                 $choosenUser->setPassword(
