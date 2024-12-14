@@ -73,18 +73,20 @@ class UserCrudController extends AbstractCrudController
             ->linkToCrudAction(Crud::PAGE_DETAIL)
             ->setCssClass('btn btn-link');
 
-        $historyAction = Action::new('usernameHistory', 'Historique des pseudos')
+        $historyAction = Action::new('usernameHistory', 'Historique pseudonymes')
             ->linkToUrl(function (User $entity) {
                 return $this->generateUrl('admin', [
                     'crudAction' => 'index',
                     'crudControllerFqcn' => UsernameHistoryCrudController::class,
-                    'filters[entity.user]' => $entity->getId(),
+                    'filters[0][property]' => 'user',
+                    'filters[0][value]' => $entity->getId(),
                 ]);
             })
-            ->setCssClass('btn btn-info');
+            ->setCssClass('btn btn-link');
 
         return $actions
             ->add(Crud::PAGE_INDEX, $viewAction)
+            ->add(Crud::PAGE_INDEX, $historyAction)
             ->add(Crud::PAGE_DETAIL, $historyAction)
             ->disable(Action::NEW);
     }

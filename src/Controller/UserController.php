@@ -22,39 +22,30 @@ class UserController extends AbstractController
         User $choosenUser,
         Request $request,
         EntityManagerInterface $manager,
-        UserPasswordHasherInterface $hasher
     ): Response {
-        // Récupérer l'ancien pseudo avant que le formulaire ne soit soumis
         $oldPseudo = $choosenUser->getPseudo();
 
-        // Créer et gérer le formulaire
         $form = $this->createForm(UserType::class, $choosenUser);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Récupérer le nouveau pseudo venant du formulaire
             $newPseudo = $form->getData()->getPseudo();
 
-            // Vérification si les pseudos sont différents
             if ($oldPseudo !== $newPseudo) {
-                // Créer l'historique du changement de pseudo
                 $usernameHistory = new UsernameHistory();
                 $usernameHistory->setUser($choosenUser)
                     ->setOldPseudo($oldPseudo)
                     ->setNewPseudo($newPseudo)
                     ->setChangedAt(new \DateTimeImmutable());
 
-                // Sauvegarder l'historique du changement de pseudo
                 $manager->persist($usernameHistory);
-                $manager->flush(); // Assurez-vous que l'historique est bien persistant
+                $manager->flush();
             }
 
-            // Maintenant, on met à jour l'entité 'User' avec le nouveau pseudo
-            $choosenUser->setPseudo($newPseudo); // Appliquer le nouveau pseudo
+            $choosenUser->setPseudo($newPseudo);
 
-            // Persist l'utilisateur avec le nouveau pseudo
             $manager->persist($choosenUser);
-            $manager->flush(); // Sauvegarder l'utilisateur avec le pseudo modifié
+            $manager->flush();
 
             $this->addFlash(
                 'success',

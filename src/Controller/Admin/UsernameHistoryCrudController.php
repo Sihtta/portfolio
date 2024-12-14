@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\UsernameHistory;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -28,10 +30,16 @@ class UsernameHistoryCrudController extends AbstractCrudController
     {
         return [
             TextField::new('user.pseudo', 'Utilisateur'),
-            TextField::new('oldPseudo', 'Ancien pseudo'),
-            TextField::new('newPseudo', 'Nouveau pseudo'),
+            TextField::new('oldPseudo', 'Ancien pseudonyme'),
+            TextField::new('newPseudo', 'Nouveau pseudonyme'),
             DateTimeField::new('changedAt', 'Date de changement')
-                ->setFormat('d/M/Y à H:i'),
+                ->setFormat('d/M/Y'),
         ];
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->disable(Action::NEW);
     }
 }
