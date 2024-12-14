@@ -14,6 +14,8 @@ use App\Entity\Category;
 use App\Entity\Comment;
 use App\Entity\Tool;
 use App\Entity\User;
+use App\Entity\UsernameHistory;
+
 
 class DashboardController extends AbstractDashboardController
 {
@@ -32,18 +34,18 @@ class DashboardController extends AbstractDashboardController
     }
 
     public function configureMenuItems(): iterable
-{
-    yield MenuItem::section('Accueil du dashboard');
-    yield MenuItem::linkToDashboard('Accueil', 'fa fa-home');
+    {
+        yield MenuItem::section('Accueil du dashboard');
+        yield MenuItem::linkToDashboard('Accueil', 'fa fa-home');
 
-    yield MenuItem::section('Gestion des utilisateurs');
-    yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-circle-user', User::class);
+        yield MenuItem::section('Gestion des utilisateurs');
+        yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-circle-user', User::class);
+        yield MenuItem::linkToCrud('Historiques pseudonymes', 'fas fa-history', UsernameHistory::class);
 
-    yield MenuItem::section('Gestion du contenu');
-    yield MenuItem::linkToCrud('Creations', 'fas fa-image', Creation::class);
-    yield MenuItem::linkToCrud('Commentaires', 'fas fa-comment', Comment::class);
-    yield MenuItem::linkToCrud('Categories', 'fas fa-list', Category::class);
-    yield MenuItem::linkToCrud('Outils', 'fas fa-pencil', Tool::class);
-}
-
+        yield MenuItem::section('Gestion du contenu');
+        yield MenuItem::linkToCrud('Creations', 'fas fa-image', Creation::class);
+        yield MenuItem::linkToCrud('Commentaires', 'fas fa-comment', Comment::class);
+        yield MenuItem::linkToCrud('Categories', 'fas fa-list', Category::class);
+        yield MenuItem::linkToCrud('Outils', 'fas fa-pencil', Tool::class);
+    }
 }
