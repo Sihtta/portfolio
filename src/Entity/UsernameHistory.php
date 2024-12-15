@@ -17,7 +17,6 @@ class UsernameHistory
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-
     #[ORM\Column(length: 255)]
     private ?string $oldPseudo = null;
 

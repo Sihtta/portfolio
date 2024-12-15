@@ -4,11 +4,15 @@ namespace App\Controller\Admin;
 
 use App\Entity\Comment;
 use App\Entity\Creation;
+use App\Entity\Tool;
+
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -16,6 +20,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class CreationCrudController extends AbstractCrudController
@@ -132,5 +137,13 @@ class CreationCrudController extends AbstractCrudController
 
         return $actions
             ->add(Crud::PAGE_INDEX, $viewAction);
+    }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add('Tool', 'Outil')  
+            ->add('category', 'Catégorie')
+            ->add('isPublic', 'Publique');  
     }
 }

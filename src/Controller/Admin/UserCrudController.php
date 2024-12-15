@@ -40,7 +40,6 @@ class UserCrudController extends AbstractCrudController
                 ->setChoices([
                     'Utilisateur' => 'ROLE_USER',
                     'Administrateur' => 'ROLE_ADMIN',
-                    'Modérateur' => 'ROLE_MODERATOR',
                 ])
                 ->allowMultipleChoices()
                 ->renderExpanded()
@@ -64,6 +63,7 @@ class UserCrudController extends AbstractCrudController
                     }, $comments->toArray()));
                 });
         }
+
         return $fields;
     }
 
@@ -73,14 +73,10 @@ class UserCrudController extends AbstractCrudController
             ->linkToCrudAction(Crud::PAGE_DETAIL)
             ->setCssClass('btn btn-link');
 
-        $historyAction = Action::new('usernameHistory', 'Historique pseudonymes')
+            $historyAction = Action::new('usernameHistory', 'Historique pseudonymes')
             ->linkToUrl(function (User $entity) {
-                return $this->generateUrl('admin', [
-                    'crudAction' => 'index',
-                    'crudControllerFqcn' => UsernameHistoryCrudController::class,
-                    'filters[0][property]' => 'user',
-                    'filters[0][value]' => $entity->getId(),
-                ]);
+                $url = '?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUsernameHistoryCrudController&filters%5Buser%5D%5Bcomparison%5D=%3D&filters%5Buser%5D%5Bvalue%5D='.$entity->getId().'&filters%5Buser%5D%5Bvalue2%5D=';
+                return $url;
             })
             ->setCssClass('btn btn-link');
 

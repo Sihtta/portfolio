@@ -11,7 +11,8 @@ use App\Entity\User;
 use App\Entity\Comment;
 use App\Entity\Category;
 use App\Entity\Creation;
-
+use App\Entity\UsernameHistory;
+use DateTimeImmutable;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -36,7 +37,7 @@ class AppFixtures extends Fixture
 
         $admin = new User();
         $admin->setFullName('Administrateur du Portfolio')
-            ->setPseudo(null)
+            ->setPseudo('Graphiste')
             ->setEmail('admin@portfolio.fr')
             ->setRoles(['ROLE_USER', 'ROLE_ADMIN'])
             ->setPassword('$2y$13$FWrdGeqhVmVEvLkCVSEiB.BB8KnHCOp6OXMk8.Np2vOGjYLMYP/vq');
@@ -47,7 +48,7 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 10; $i++) {
             $user =  new User();
             $user->setFullName($this->faker->name());
-            $user->setPseudo(mt_rand(0, 1) === 1 ? $this->faker->firstName() : null);
+            $user->setPseudo($this->faker->firstName());
             $user->setEmail($this->faker->email());
             $user->setRoles(["ROLE_USER"]);
             $user->setPlainPassword("password");
@@ -84,7 +85,16 @@ class AppFixtures extends Fixture
             $creation = new Creation();
             $creation->setName($this->faker->word());
             $creation->setDescription(mt_rand(0, 1) === 1 ? $this->faker->sentence() : null);
-            $creation->setImage(['https://img.freepik.com/premium-photo/cute-baby-penguin-being-held-by-someone-very-fluffy-adorable-photorealistic-animal-portrait-pet-wildlife-photography-generative-ai_1286331-36218.jpg?w=360']);
+        
+            // Récupérer toutes les images dans le dossier public
+            $images = glob('public/images/*.{jpg,jpeg,png,webp}', GLOB_BRACE);
+            $images = array_map(function($image) {
+                return str_replace('public/images/', '', $image);
+            }, $images);
+            
+        
+            $creation->setImage([$images[$i]]);
+        
             $creation->setCreatedAt($this->faker->DateTime());
             $creation->setIsPublic(mt_rand(0, 1) == 1 ? true : false);
 
@@ -120,6 +130,19 @@ class AppFixtures extends Fixture
 
 
             $manager->persist($comment);
+        }
+
+        // Username History
+        for ($i=0; $i < 20; $i++) { 
+            $usernameHistory = new UsernameHistory();
+            $user = $users[mt_rand(0, count($users) - 1)];
+            $usernameHistory->setUser($user);
+            $usernameHistory->setOldPseudo($usernameHistory->getUser()->getPseudo());
+            $usernameHistory->setNewPseudo($this->faker->firstName());
+            $usernameHistory->getUser()->setPseudo($usernameHistory->getNewPseudo());
+            $usernameHistory->setChangedAt(new DateTimeImmutable());
+
+            $manager->persist($usernameHistory);
         }
 
         $manager->flush();
