@@ -11,6 +11,23 @@
 			transform: scale(1.02);
 			cursor: pointer;
 		}
+
+		.share-icon {
+			cursor: pointer;
+			color: #007bff;
+			font-size: 1.5rem;
+			margin-left: 10px;
+		}
+
+		.copied-message {
+			color: green;
+			font-size: 0.9rem;
+			display: none;
+		}
+
+		.copied-message.active {
+			display: inline-block;
+		}
 	</style>
 {% endblock %}
 
@@ -18,13 +35,44 @@
 	<div class="row row-cols-1 row-cols-md-3 g-4 mx-4" data-masonry='{"percentPosition": true }'>
 		{% for creation in creations %}
 			<div class="col">
-				<a href="{{ path('creation_show', {'id': creation.id}) }}" class="card h-100 hover-card" style="border-radius: 30px; text-decoration: none; color: black;">
-					<img src="/images/{{ creation.image[0] }}" class="card-img-top" style="border-radius: 30px 30px 0 0;" alt="{{ creation.name }}">
-					<div class="card-body">
-						<h5 class="card-title">{{ creation.name }}</h5>
+				<div class="card h-100 hover-card" style="border-radius: 30px;">
+					<a href="{{ path('creation_show', {'id': creation.id}) }}" style="text-decoration: none; color: black;">
+						<img src="/images/{{ creation.image[0] }}" class="card-img-top" style="border-radius: 30px 30px 0 0;" alt="{{ creation.name }}">
+						<div class="card-body">
+							<h5 class="card-title">{{ creation.name }}</h5>
+						</div>
+					</a>
+					<div class="card-footer text-end">
+						<span class="share-icon" data-share-url="{{ path('creation_show', {'id': creation.id}) }}" title="Partager">
+							<i class="fas fa-share"></i>
+						</span>
+						<span class="copied-message">Lien copié !</span>
 					</div>
-				</a>
+				</div>
 			</div>
 		{% endfor %}
 	</div>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+const shareIcons = document.querySelectorAll('.share-icon');
+
+shareIcons.forEach(icon => {
+icon.addEventListener('click', function (event) {
+event.stopPropagation();
+
+const relativeUrl = this.getAttribute('data-share-url');
+const fullUrl = `${
+window.location.origin
+}${relativeUrl}`;
+
+navigator.clipboard.writeText(fullUrl).then(() => {
+const message = this.nextElementSibling;
+message.classList.add('active');
+setTimeout(() => message.classList.remove('active'), 2000);
+}).catch(err => console.error('Erreur lors de la copie du lien :', err));
+});
+});
+});
+	</script>
 {% endblock %}
