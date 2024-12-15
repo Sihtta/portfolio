@@ -1,51 +1,55 @@
 {% extends "base.html.twig" %}
 
-{% block title %}{{ creation.name }} - Détails{% endblock %}
+{% block title %}
+	{{ creation.name }}
+	- Détails
+{% endblock %}
 
 {% block body %}
-    <style>
-    .creation-image {
-        max-width: 100%; 
-        height: auto; 
-        border-radius: 10px; /
-        display: block; 
-        margin: 0 auto; 
-    }
+	<style>
+		.creation-image {
+			max-width: 100%;
+			height: auto;
+			border-radius: 10px;
+			/ display: block;
+			margin: 0 auto;
+		}
 
-    .creation-image-container {
-        max-width: 500px; 
-        margin: 20px auto; 
-        text-align: center; 
-    }
+		.creation-image-container {
+			max-width: 500px;
+			margin: 20px auto;
+			text-align: center;
+		}
+	</style>
 
-</style>
+	<div class="container mt-4">
+		<h1>{{ creation.name }}</h1>
 
-    <div class="container mt-4">
-        <h1>{{ creation.name }}</h1>
+		{% if creation.image is not empty %}
+			<div class="creation-image-container">
+				<img src="/images/{{ creation.image[0] }}" alt="{{ creation.name }}" class="creation-image">
+			</div>
 
-        {% if creation.image is not empty %}
-            <div class="creation-image-container">
-                <img src="/images/{{ creation.image[0] }}" alt="{{ creation.name }}" class="creation-image">
-            </div>
+		{% else %}
+			<p>No image available</p>
+		{% endif %}
 
-        {% else %}
-            <p>No image available</p>
-        {% endif %}
+		<p>
+			<strong>Description :</strong>
+			{{ creation.description }}</p>
 
-        <p><strong>Description :</strong> {{ creation.description }}</p>
+		<h3>Outils utilisés :</h3>
+		<ul>
+			{% for tool in creation.Tool %}
+				<li>{{ tool.name }}</li>
+			{% endfor %}
+		</ul>
 
-        <h3>Outils utilisés :</h3>
-        <ul>
-            {% for tool in creation.Tool %}
-                <li>{{ tool.name }}</li>
-            {% endfor %}
-        </ul>
-
-        <h3>Catégories :</h3>
-        <ul>
-            {% for category in creation.category %}
-                <li>{{ category.name }}</li>
-            {% endfor %}
-        </ul>
-    </div>
+		<h3>Catégories :</h3>
+		<ul>
+			{% for category in creation.category %}
+				<li>{{ category.name }}</li>
+			{% endfor %}
+		</ul>
+	</div>
 {% endblock %}
