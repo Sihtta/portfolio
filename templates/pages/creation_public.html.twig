@@ -15,25 +15,4 @@
 		{% include "partials/_cards.html.twig" %}
 	{% endblock %}
 
-	<script>
-		document.addEventListener('DOMContentLoaded', () => {
-const shareIcons = document.querySelectorAll('.share-icon');
-
-shareIcons.forEach(icon => {
-icon.addEventListener('click', () => {
-const url = icon.getAttribute('data-share-url');
-const copiedMessage = icon.closest('.card-body').querySelector('.copied-message');
-
-navigator.clipboard.writeText(window.location.origin + url).then(() => {
-copiedMessage.classList.add('active');
-setTimeout(() => {
-copiedMessage.classList.remove('active');
-}, 2000);
-}).catch(err => {
-console.error('Échec lors de la copie du lien : ', err);
-});
-});
-});
-});
-	</script>
 {% endblock %}
