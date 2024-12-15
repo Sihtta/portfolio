@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block style %}
+	<style>
+		a {
+			display: inline-block;
+			padding: 10px 20px;
+			background-color: #007bff;
+			color: white;
+			text-decoration: none;
+			border-radius: 5px;
+			transition: background-color 0.3s ease;
+		}
+	</style>
+{% endblock %}
+
+{% block title %}Accès interdit
+{% endblock %}
+
+{% block body %}
+	<div style="text-align: center; margin-top: 50px;">
+		<h1>403 - Accès interdit</h1>
+		<p>Vous n'avez pas l'autorisation d'accéder à cette page.</p>
+
+		<div style="margin-top: 20px;">
+			<a href="{{ path('home.index') }}">
+				Retour à l'accueil
+			</a>
+		</div>
+	</div>
+{% endblock %}
