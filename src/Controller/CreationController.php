@@ -34,7 +34,7 @@ class CreationController extends AbstractController
             10
         );
 
-        return $this->render('pages/creation_public.html.twig', [
+        return $this->render('pages/creation.html.twig', [
             'creations' => $creations
         ]);
     }
