@@ -269,4 +269,20 @@ class Creation
 
         return $this;
     }
+
+    /**
+     * Fonction qui permet de savoir si un utilisateur a "like" une création
+     *
+     * @param User $user
+     * @return boolean
+     */
+    public function isLikedByUser(User $user): bool
+    {
+        foreach ($this->likes as $like) {
+            if ($like->getUser() === $user) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

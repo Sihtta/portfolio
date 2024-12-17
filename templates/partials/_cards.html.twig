@@ -43,10 +43,20 @@
 						</div>
 					</a>
 					<div class="card-footer text-end">
-						<span class="share-icon" data-share-url="{{ path('creation_show', {'id': creation.id}) }}" title="Partager">
-							<i class="fas fa-share"></i>
-						</span>
-						<span class="copied-message">Lien copié !</span>
+						<div class="like share">
+							<a href="#" class="btn btn-link js-like">
+								{% if app.user and creation.isLikedByUser(app.user	) %}
+									<i class="fas fa-thumbs-up"></i>
+								{% else %}
+									<i class="fas fa-thumbs-up"></i>
+								{% endif %}
+								<span class="js-like">{{ creation.likes | length }}</span>
+							</a>
+							<span class="share-icon" data-share-url="{{ path('creation_show', {'id': creation.id}) }}" title="Partager">
+								<i class="fas fa-share"></i>
+							</span>
+							<span class="copied-message">Lien copié !</span>
+						</div>
 					</div>
 				</div>
 			</div>

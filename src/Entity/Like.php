@@ -13,7 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 #[ORM\Table(name: '`like`')]
 #[UniqueEntity(
     fields: ['user', 'creation'],
-    message: 'Cet utilisateur à déjà liké cette recette.',
+    message: 'Cet utilisateur à déjà liké cette création.',
     errorPath: 'user',
 )]
 class Like
