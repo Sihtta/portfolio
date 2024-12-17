@@ -45,10 +45,10 @@
 					<div class="card-footer text-end">
 						<div class="like share">
 							<a href="#" class="btn btn-link js-like">
-								{% if app.user and creation.isLikedByUser(app.user	) %}
+								{% if app.user and creation.isLikedByUser(app.user) %}
 									<i class="fas fa-thumbs-up"></i>
 								{% else %}
-									<i class="fas fa-thumbs-up"></i>
+									<i class="far fa-thumbs-up"></i>
 								{% endif %}
 								<span class="js-like">{{ creation.likes | length }}</span>
 							</a>
