@@ -22,9 +22,11 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        if (count($this->getUser()->getRoles()) == 1) { // Si le nb de roles = 1 alors User
-            return $this->redirectToRoute('home.accessdenied');
-        } else return $this->render('admin/dashboard.html.twig');
+        if ($this->getUser()) {
+            if (count($this->getUser()->getRoles()) == 1) { // Si le nb de roles = 1 alors User
+                return $this->redirectToRoute('home.accessdenied');
+            } else return $this->render('admin/dashboard.html.twig');
+        } else return $this->redirectToRoute('security.login');
     }
 
     public function configureDashboard(): Dashboard
