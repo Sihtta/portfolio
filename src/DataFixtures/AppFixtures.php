@@ -11,6 +11,7 @@ use App\Entity\User;
 use App\Entity\Comment;
 use App\Entity\Category;
 use App\Entity\Creation;
+use App\Entity\Contact;
 use App\Entity\UsernameHistory;
 use DateTimeImmutable;
 use Doctrine\Persistence\ObjectManager;
@@ -85,16 +86,16 @@ class AppFixtures extends Fixture
             $creation = new Creation();
             $creation->setName($this->faker->word());
             $creation->setDescription(mt_rand(0, 1) === 1 ? $this->faker->sentence() : null);
-        
+
             // Récupérer toutes les images dans le dossier public
             $images = glob('public/images/*.{jpg,jpeg,png,webp}', GLOB_BRACE);
-            $images = array_map(function($image) {
+            $images = array_map(function ($image) {
                 return str_replace('public/images/', '', $image);
             }, $images);
-            
-        
+
+
             $creation->setImage([$images[$i]]);
-        
+
             $creation->setCreatedAt($this->faker->DateTime());
             $creation->setIsPublic(mt_rand(0, 1) == 1 ? true : false);
 
@@ -133,7 +134,7 @@ class AppFixtures extends Fixture
         }
 
         // Username History
-        for ($i=0; $i < 20; $i++) { 
+        for ($i = 0; $i < 20; $i++) {
             $usernameHistory = new UsernameHistory();
             $user = $users[mt_rand(0, count($users) - 1)];
             $usernameHistory->setUser($user);
@@ -143,6 +144,17 @@ class AppFixtures extends Fixture
             $usernameHistory->setChangedAt(new DateTimeImmutable());
 
             $manager->persist($usernameHistory);
+        }
+
+        //Contact
+        for ($i = 0; $i < 5; $i++) {
+            $contact = new Contact();
+            $contact->setFullName($this->faker->name())
+                ->setEmail($this->faker->email())
+                ->setSubject('Demande n°' . ($i + 1))
+                ->setMessage($this->faker->text());
+
+            $manager->persist($contact);
         }
 
         $manager->flush();
