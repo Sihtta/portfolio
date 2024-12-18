@@ -1,5 +1,3 @@
-<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
-
 {% block style_cards %}
 	<style>
 		.hover-card {
@@ -28,6 +26,16 @@
 		.copied-message.active {
 			display: inline-block;
 		}
+
+		.modal-dialog {
+			position: fixed;
+			top: 50% !important;
+			left: 50% !important;
+			transform: translate(-50%, -50%) !important;
+			margin: 0;
+			max-width: 90%; /* Optionnel : Ajuste la largeur maximale */
+		}
+
 	</style>
 {% endblock %}
 
@@ -35,13 +43,11 @@
 	<div class="row row-cols-1 row-cols-md-3 g-4 mx-4" data-masonry='{"percentPosition": true }'>
 		{% for creation in creations %}
 			<div class="col">
-				<div class="card h-100 hover-card" style="border-radius: 30px;">
-					<a href="{{ path('creation_show', {'id': creation.id}) }}" style="text-decoration: none; color: black;">
-						<img src="/images/{{ creation.image[0] }}" class="card-img-top" style="border-radius: 30px 30px 0 0;" alt="{{ creation.name }}">
-						<div class="card-body">
-							<h5 class="card-title">{{ creation.name }}</h5>
-						</div>
-					</a>
+				<div class="card h-100 hover-card" style="border-radius: 30px;" data-bs-toggle="modal" data-bs-target="#modalCreation{{ creation.id }}">
+					<img src="/images/{{ creation.image[0] }}" class="card-img-top" style="border-radius: 30px 30px 0 0;" alt="{{ creation.name }}">
+					<div class="card-body">
+						<h5 class="card-title">{{ creation.name }}</h5>
+					</div>
 					<div class="card-footer text-end">
 						<div class="like share">
 							<a href="{{ path('creation.like', { 'id': creation.id }) }}" class="btn btn-link js-like">
@@ -60,17 +66,41 @@
 					</div>
 				</div>
 			</div>
+
+			<!-- Modal pour chaque création -->
+			<div class="modal fade" id="modalCreation{{ creation.id }}" tabindex="-1" aria-labelledby="modalLabel{{ creation.id }}" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="modalLabel{{ creation.id }}">{{ creation.name }}</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body text-center">
+							<img src="/images/{{ creation.image[0] }}" class="img-fluid rounded mb-3" alt="{{ creation.name }}">
+							<p>{{ creation.description }}</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		{% endfor %}
 	</div>
 {% endblock %}
 
 {% block javascripts %}
+	<!-- Masonry -->
+	<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+
+	<!-- Bootstrap Bundle -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Like Script -->
 	<script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
 	<script>
-
 		function onClickBtnLike(event) {
 			event.preventDefault();
-
 			const url = this.href;
 			const spanCount = this.querySelector('span.js-likes');
 			const icone = this.querySelector('i');
@@ -90,38 +120,32 @@
 					window.alert("Une erreur s'est produite");
 				}
 			});
-
 		}
 
-	
-		document.querySelectorAll('a.js-like').forEach(function(link){
+		document.querySelectorAll('a.js-like').forEach(function(link) {
 			link.addEventListener('click', onClickBtnLike);
-		})
-
+		});
 	</script>
-{% endblock %}
 
-{% block share %}
+	<!-- Share Script -->
 	<script>
 		document.addEventListener('DOMContentLoaded', function () {
-const shareIcons = document.querySelectorAll('.share-icon');
+			const shareIcons = document.querySelectorAll('.share-icon');
 
-shareIcons.forEach(icon => {
-icon.addEventListener('click', function (event) {
-event.stopPropagation();
+			shareIcons.forEach(icon => {
+				icon.addEventListener('click', function (event) {
+					event.stopPropagation();
 
-const relativeUrl = this.getAttribute('data-share-url');
-const fullUrl = `${
-window.location.origin
-}${relativeUrl}`;
+					const relativeUrl = this.getAttribute('data-share-url');
+					const fullUrl = `${window.location.origin}${relativeUrl}`;
 
-navigator.clipboard.writeText(fullUrl).then(() => {
-const message = this.nextElementSibling;
-message.classList.add('active');
-setTimeout(() => message.classList.remove('active'), 2000);
-}).catch(err => console.error('Erreur lors de la copie du lien :', err));
-});
-});
-});
+					navigator.clipboard.writeText(fullUrl).then(() => {
+						const message = this.nextElementSibling;
+						message.classList.add('active');
+						setTimeout(() => message.classList.remove('active'), 2000);
+					}).catch(err => console.error('Erreur lors de la copie du lien :', err));
+				});
+			});
+		});
 	</script>
 {% endblock %}
