@@ -14,13 +14,16 @@ return [
         '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
+        '/accessdenied' => [[['_route' => 'home.accessdenied', '_controller' => 'App\\Controller\\AccessDeniedController::index'], null, ['GET' => 0], null, false, false, null]],
         '/admin' => [[['_route' => 'admin', '_controller' => 'App\\Controller\\Admin\\DashboardController::index'], null, null, null, false, false, null]],
+        '/contact' => [[['_route' => 'contact.index', '_controller' => 'App\\Controller\\ContactController::index'], null, null, null, false, false, null]],
         '/creations' => [[['_route' => 'creation.index', '_controller' => 'App\\Controller\\CreationController::index'], null, ['GET' => 0], null, false, false, null]],
         '/creations/publique' => [[['_route' => 'creation_.index.public', '_controller' => 'App\\Controller\\CreationController::indexPublic'], null, ['GET' => 0], null, false, false, null]],
         '/' => [[['_route' => 'home.index', '_controller' => 'App\\Controller\\HomeController::index'], null, ['GET' => 0], null, false, false, null]],
         '/connexion' => [[['_route' => 'security.login', '_controller' => 'App\\Controller\\SecurityController::login'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/deconnexion' => [[['_route' => 'security.logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
         '/inscription' => [[['_route' => 'security.registration', '_controller' => 'App\\Controller\\SecurityController::registration'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/redirect-after-login' => [[['_route' => 'security.redirect_after_login', '_controller' => 'App\\Controller\\SecurityController::redirectAfterLogin'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -39,10 +42,13 @@ return [
                         .'|(*:159)'
                     .')'
                 .')'
-                .'|/creation/([^/]++)(*:187)'
+                .'|/creation(?'
+                    .'|s/([^/]++)/like(*:196)'
+                    .'|/([^/]++)(*:213)'
+                .')'
                 .'|/utilisateur/edition(?'
-                    .'|/([^/]++)(*:227)'
-                    .'|\\-mot\\-de\\-passe/([^/]++)(*:260)'
+                    .'|/([^/]++)(*:254)'
+                    .'|\\-mot\\-de\\-passe/([^/]++)(*:287)'
                 .')'
             .')/?$}sDu',
     ],
@@ -54,9 +60,10 @@ return [
         136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        187 => [[['_route' => 'creation_show', '_controller' => 'App\\Controller\\CreationDetailController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        227 => [[['_route' => 'user.edit', '_controller' => 'App\\Controller\\UserController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
-        260 => [
+        196 => [[['_route' => 'creation.like', '_controller' => 'App\\Controller\\CreationController::like'], ['id'], ['GET' => 0], null, false, false, null]],
+        213 => [[['_route' => 'creation_show', '_controller' => 'App\\Controller\\CreationDetailController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        254 => [[['_route' => 'user.edit', '_controller' => 'App\\Controller\\UserController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        287 => [
             [['_route' => 'user.edit.password', '_controller' => 'App\\Controller\\UserController::editPassword'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

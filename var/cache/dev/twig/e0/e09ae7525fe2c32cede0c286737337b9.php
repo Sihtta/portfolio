@@ -32,7 +32,6 @@ class __TwigTemplate_266a21b791cf79e6bf5888f0cd410552 extends Template
         $this->blocks = [
             'title' => [$this, 'block_title'],
             'body' => [$this, 'block_body'],
-            'carroussel' => [$this, 'block_carroussel'],
         ];
     }
 
@@ -99,45 +98,128 @@ class __TwigTemplate_266a21b791cf79e6bf5888f0cd410552 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 7
-        yield "\t<div class=\"container mt-4\">
-\t\t<div class=\"jumbotron\">
-\t\t\t<h1 class=\"display-4\">Bienvenue sur Portefolio !</h1>
-\t\t\t<p class=\"lead\">Le site référence sur les portefolios</p>
-\t\t\t
-\t\t\t";
-        // line 12
-        yield from $this->unwrap()->yieldBlock('carroussel', $context, $blocks);
-        // line 15
-        yield "\t\t</div>
-\t</div>
-";
-        
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+        yield "
+\t<style>
+        .main-section {
+            display: flex;
+            height: 85.2vh;
+            background-color: #1a1a1a; 
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
 
-        
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+        .left-side {
+            flex: 1;
+            background: url('/images/2024-12-13-72f878a2-a5e2-4891-b30e-e599efedfda1.avif') no-repeat center center;
+            background-size: cover;
+        }
 
-        yield from [];
+        .right-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 50px;
+        }
+
+        .right-side h1 {
+            font-size: 4rem;
+            color: white;
+            margin: 0;
+        }
+
+        .right-side p {
+            font-size: 1.2rem;
+            margin: 20px 0 40px;
+            line-height: 1.6;
+        }
+
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 20px;
+            border: 2px solid #fff;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #fff;
+            color: #1a1a1a;
+        }
+
+
+\t\t.fade-overlay {
+\t\t\tposition: fixed;
+\t\t\ttop: 0;
+\t\t\tleft: 0;
+\t\t\twidth: 100%;
+\t\t\theight: 100%;
+\t\t\tbackground-color: #1A1A1A;
+\t\t\tz-index: 9999;
+\t\t\tanimation: fadeOut 2.5s ease-in-out forwards;
+\t\t}
+
+\t\t@keyframes fadeOut {
+\t\t\tfrom {
+\t\t\t\topacity: 1;
+\t\t\t}
+\t\t\tto {
+\t\t\t\topacity: 0;
+\t\t\t\tvisibility: hidden;
+\t\t\t}
+\t\t}
+
+       #typed-text {
+        font-size: 4rem;
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 4px solid #fff;
+        padding-right: 5px;
     }
 
-    // line 12
-    /**
-     * @return iterable<null|scalar|\Stringable>
-     */
-    public function block_carroussel(array $context, array $blocks = []): iterable
-    {
-        $macros = $this->macros;
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "carroussel"));
+\t</style>
+\t<div class=\"fade-overlay\"></div>
+\t<div class=\"main-section\">
+        <div class=\"left-side\">
+        </div>
 
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "carroussel"));
+        <div class=\"right-side\">
+            <h1 id=\"typed-text\"></h1>
+            <p>
+                Découvrez les plus belles créations. Explorez, inspirez-vous et admirez !
+            </p>
+            <div class=\"buttons\">
+                <a href=\"#\" class=\"btn\">Explorer</a>
+            </div>
+        </div>
+    </div>
 
-        // line 13
-        yield "\t\t\t\t";
-        yield from         $this->loadTemplate("partials/_carroussel.html.twig", "pages/home.html.twig", 13)->unwrap()->yield($context);
-        // line 14
-        yield "\t\t\t";
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const text = \"Mon Portfolio\";  
+        const element = document.getElementById('typed-text');  
+        let index = 0;
+
+        function type() {
+            if (index < text.length) {
+                element.textContent += text.charAt(index);  
+                index++;
+                setTimeout(type, 100);  
+            }
+        }
+
+        type(); 
+    });
+</script>
+
+";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -168,7 +250,7 @@ class __TwigTemplate_266a21b791cf79e6bf5888f0cd410552 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  140 => 14,  137 => 13,  124 => 12,  111 => 15,  109 => 12,  102 => 7,  89 => 6,  65 => 3,  42 => 1,);
+        return array (  101 => 7,  88 => 6,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -179,16 +261,127 @@ class __TwigTemplate_266a21b791cf79e6bf5888f0cd410552 extends Template
 {% endblock %}
 
 {% block body %}
-\t<div class=\"container mt-4\">
-\t\t<div class=\"jumbotron\">
-\t\t\t<h1 class=\"display-4\">Bienvenue sur Portefolio !</h1>
-\t\t\t<p class=\"lead\">Le site référence sur les portefolios</p>
-\t\t\t
-\t\t\t{% block carroussel %}
-\t\t\t\t{% include \"partials/_carroussel.html.twig\" %}
-\t\t\t{% endblock %}
-\t\t</div>
-\t</div>
+
+\t<style>
+        .main-section {
+            display: flex;
+            height: 85.2vh;
+            background-color: #1a1a1a; 
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        .left-side {
+            flex: 1;
+            background: url('/images/2024-12-13-72f878a2-a5e2-4891-b30e-e599efedfda1.avif') no-repeat center center;
+            background-size: cover;
+        }
+
+        .right-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 50px;
+        }
+
+        .right-side h1 {
+            font-size: 4rem;
+            color: white;
+            margin: 0;
+        }
+
+        .right-side p {
+            font-size: 1.2rem;
+            margin: 20px 0 40px;
+            line-height: 1.6;
+        }
+
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 20px;
+            border: 2px solid #fff;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #fff;
+            color: #1a1a1a;
+        }
+
+
+\t\t.fade-overlay {
+\t\t\tposition: fixed;
+\t\t\ttop: 0;
+\t\t\tleft: 0;
+\t\t\twidth: 100%;
+\t\t\theight: 100%;
+\t\t\tbackground-color: #1A1A1A;
+\t\t\tz-index: 9999;
+\t\t\tanimation: fadeOut 2.5s ease-in-out forwards;
+\t\t}
+
+\t\t@keyframes fadeOut {
+\t\t\tfrom {
+\t\t\t\topacity: 1;
+\t\t\t}
+\t\t\tto {
+\t\t\t\topacity: 0;
+\t\t\t\tvisibility: hidden;
+\t\t\t}
+\t\t}
+
+       #typed-text {
+        font-size: 4rem;
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 4px solid #fff;
+        padding-right: 5px;
+    }
+
+\t</style>
+\t<div class=\"fade-overlay\"></div>
+\t<div class=\"main-section\">
+        <div class=\"left-side\">
+        </div>
+
+        <div class=\"right-side\">
+            <h1 id=\"typed-text\"></h1>
+            <p>
+                Découvrez les plus belles créations. Explorez, inspirez-vous et admirez !
+            </p>
+            <div class=\"buttons\">
+                <a href=\"#\" class=\"btn\">Explorer</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const text = \"Mon Portfolio\";  
+        const element = document.getElementById('typed-text');  
+        let index = 0;
+
+        function type() {
+            if (index < text.length) {
+                element.textContent += text.charAt(index);  
+                index++;
+                setTimeout(type, 100);  
+            }
+        }
+
+        type(); 
+    });
+</script>
+
 {% endblock %}
 ", "pages/home.html.twig", "C:\\Users\\matth\\Projet\\Principal\\templates\\pages\\home.html.twig");
     }

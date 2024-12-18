@@ -73,8 +73,12 @@ class __TwigTemplate_fa17ff27ee90e60e1342f21ee1945240 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["creation"]) || array_key_exists("creation", $context) ? $context["creation"] : (function () { throw new RuntimeError('Variable "creation" does not exist.', 3, $this->source); })()), "name", [], "any", false, false, false, 3), "html", null, true);
-        yield " - Détails";
+        // line 4
+        yield "\t";
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["creation"]) || array_key_exists("creation", $context) ? $context["creation"] : (function () { throw new RuntimeError('Variable "creation" does not exist.', 4, $this->source); })()), "name", [], "any", false, false, false, 4), "html", null, true);
+        yield "
+\t- Détails
+";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -84,7 +88,7 @@ class __TwigTemplate_fa17ff27ee90e60e1342f21ee1945240 extends Template
         yield from [];
     }
 
-    // line 5
+    // line 8
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -97,94 +101,95 @@ class __TwigTemplate_fa17ff27ee90e60e1342f21ee1945240 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 6
-        yield "    <style>
-    .creation-image {
-        max-width: 100%; 
-        height: auto; 
-        border-radius: 10px; /
-        display: block; 
-        margin: 0 auto; 
-    }
+        // line 9
+        yield "\t<style>
+\t\t.creation-image {
+\t\t\tmax-width: 100%;
+\t\t\theight: auto;
+\t\t\tborder-radius: 10px;
+\t\t\t/ display: block;
+\t\t\tmargin: 0 auto;
+\t\t}
 
-    .creation-image-container {
-        max-width: 500px; 
-        margin: 20px auto; 
-        text-align: center; 
-    }
+\t\t.creation-image-container {
+\t\t\tmax-width: 500px;
+\t\t\tmargin: 20px auto;
+\t\t\ttext-align: center;
+\t\t}
+\t</style>
 
-</style>
-
-    <div class=\"container mt-4\">
-        <h1>";
-        // line 24
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["creation"]) || array_key_exists("creation", $context) ? $context["creation"] : (function () { throw new RuntimeError('Variable "creation" does not exist.', 24, $this->source); })()), "name", [], "any", false, false, false, 24), "html", null, true);
+\t<div class=\"container mt-4\">
+\t\t<h1>";
+        // line 26
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["creation"]) || array_key_exists("creation", $context) ? $context["creation"] : (function () { throw new RuntimeError('Variable "creation" does not exist.', 26, $this->source); })()), "name", [], "any", false, false, false, 26), "html", null, true);
         yield "</h1>
 
-        ";
-        // line 26
-        if ( !Twig\Extension\CoreExtension::testEmpty(CoreExtension::getAttribute($this->env, $this->source, (isset($context["creation"]) || array_key_exists("creation", $context) ? $context["creation"] : (function () { throw new RuntimeError('Variable "creation" does not exist.', 26, $this->source); })()), "image", [], "any", false, false, false, 26))) {
-            // line 27
-            yield "            <div class=\"creation-image-container\">
-                <img src=\"/images/";
-            // line 28
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["creation"]) || array_key_exists("creation", $context) ? $context["creation"] : (function () { throw new RuntimeError('Variable "creation" does not exist.', 28, $this->source); })()), "image", [], "any", false, false, false, 28), 0, [], "array", false, false, false, 28), "html", null, true);
+\t\t";
+        // line 28
+        if ( !Twig\Extension\CoreExtension::testEmpty(CoreExtension::getAttribute($this->env, $this->source, (isset($context["creation"]) || array_key_exists("creation", $context) ? $context["creation"] : (function () { throw new RuntimeError('Variable "creation" does not exist.', 28, $this->source); })()), "image", [], "any", false, false, false, 28))) {
+            // line 29
+            yield "\t\t\t<div class=\"creation-image-container\">
+\t\t\t\t<img src=\"/images/";
+            // line 30
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["creation"]) || array_key_exists("creation", $context) ? $context["creation"] : (function () { throw new RuntimeError('Variable "creation" does not exist.', 30, $this->source); })()), "image", [], "any", false, false, false, 30), 0, [], "array", false, false, false, 30), "html", null, true);
             yield "\" alt=\"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["creation"]) || array_key_exists("creation", $context) ? $context["creation"] : (function () { throw new RuntimeError('Variable "creation" does not exist.', 28, $this->source); })()), "name", [], "any", false, false, false, 28), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["creation"]) || array_key_exists("creation", $context) ? $context["creation"] : (function () { throw new RuntimeError('Variable "creation" does not exist.', 30, $this->source); })()), "name", [], "any", false, false, false, 30), "html", null, true);
             yield "\" class=\"creation-image\">
-            </div>
+\t\t\t</div>
 
-        ";
+\t\t";
         } else {
-            // line 32
-            yield "            <p>No image available</p>
-        ";
+            // line 34
+            yield "\t\t\t<p>No image available</p>
+\t\t";
         }
-        // line 34
+        // line 36
         yield "
-        <p><strong>Description :</strong> ";
-        // line 35
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["creation"]) || array_key_exists("creation", $context) ? $context["creation"] : (function () { throw new RuntimeError('Variable "creation" does not exist.', 35, $this->source); })()), "description", [], "any", false, false, false, 35), "html", null, true);
+\t\t<p>
+\t\t\t<strong>Description :</strong>
+\t\t\t";
+        // line 39
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["creation"]) || array_key_exists("creation", $context) ? $context["creation"] : (function () { throw new RuntimeError('Variable "creation" does not exist.', 39, $this->source); })()), "description", [], "any", false, false, false, 39), "html", null, true);
         yield "</p>
 
-        <h3>Outils utilisés :</h3>
-        <ul>
-            ";
-        // line 39
+\t\t<h3>Outils utilisés :</h3>
+\t\t<ul>
+\t\t\t";
+        // line 43
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["creation"]) || array_key_exists("creation", $context) ? $context["creation"] : (function () { throw new RuntimeError('Variable "creation" does not exist.', 39, $this->source); })()), "Tool", [], "any", false, false, false, 39));
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["creation"]) || array_key_exists("creation", $context) ? $context["creation"] : (function () { throw new RuntimeError('Variable "creation" does not exist.', 43, $this->source); })()), "Tool", [], "any", false, false, false, 43));
         foreach ($context['_seq'] as $context["_key"] => $context["tool"]) {
-            // line 40
-            yield "                <li>";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["tool"], "name", [], "any", false, false, false, 40), "html", null, true);
+            // line 44
+            yield "\t\t\t\t<li>";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["tool"], "name", [], "any", false, false, false, 44), "html", null, true);
             yield "</li>
-            ";
+\t\t\t";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['tool'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 42
-        yield "        </ul>
-
-        <h3>Catégories :</h3>
-        <ul>
-            ";
         // line 46
+        yield "\t\t</ul>
+
+\t\t<h3>Catégories :</h3>
+\t\t<ul>
+\t\t\t";
+        // line 50
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["creation"]) || array_key_exists("creation", $context) ? $context["creation"] : (function () { throw new RuntimeError('Variable "creation" does not exist.', 46, $this->source); })()), "category", [], "any", false, false, false, 46));
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["creation"]) || array_key_exists("creation", $context) ? $context["creation"] : (function () { throw new RuntimeError('Variable "creation" does not exist.', 50, $this->source); })()), "category", [], "any", false, false, false, 50));
         foreach ($context['_seq'] as $context["_key"] => $context["category"]) {
-            // line 47
-            yield "                <li>";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["category"], "name", [], "any", false, false, false, 47), "html", null, true);
+            // line 51
+            yield "\t\t\t\t<li>";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["category"], "name", [], "any", false, false, false, 51), "html", null, true);
             yield "</li>
-            ";
+\t\t\t";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['category'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 49
-        yield "        </ul>
-    </div>
+        // line 53
+        yield "\t\t</ul>
+\t</div>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -216,61 +221,65 @@ class __TwigTemplate_fa17ff27ee90e60e1342f21ee1945240 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  186 => 49,  177 => 47,  173 => 46,  167 => 42,  158 => 40,  154 => 39,  147 => 35,  144 => 34,  140 => 32,  131 => 28,  128 => 27,  126 => 26,  121 => 24,  101 => 6,  88 => 5,  64 => 3,  41 => 1,);
+        return array (  191 => 53,  182 => 51,  178 => 50,  172 => 46,  163 => 44,  159 => 43,  152 => 39,  147 => 36,  143 => 34,  134 => 30,  131 => 29,  129 => 28,  124 => 26,  105 => 9,  92 => 8,  77 => 4,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
     {
         return new Source("{% extends \"base.html.twig\" %}
 
-{% block title %}{{ creation.name }} - Détails{% endblock %}
+{% block title %}
+\t{{ creation.name }}
+\t- Détails
+{% endblock %}
 
 {% block body %}
-    <style>
-    .creation-image {
-        max-width: 100%; 
-        height: auto; 
-        border-radius: 10px; /
-        display: block; 
-        margin: 0 auto; 
-    }
+\t<style>
+\t\t.creation-image {
+\t\t\tmax-width: 100%;
+\t\t\theight: auto;
+\t\t\tborder-radius: 10px;
+\t\t\t/ display: block;
+\t\t\tmargin: 0 auto;
+\t\t}
 
-    .creation-image-container {
-        max-width: 500px; 
-        margin: 20px auto; 
-        text-align: center; 
-    }
+\t\t.creation-image-container {
+\t\t\tmax-width: 500px;
+\t\t\tmargin: 20px auto;
+\t\t\ttext-align: center;
+\t\t}
+\t</style>
 
-</style>
+\t<div class=\"container mt-4\">
+\t\t<h1>{{ creation.name }}</h1>
 
-    <div class=\"container mt-4\">
-        <h1>{{ creation.name }}</h1>
+\t\t{% if creation.image is not empty %}
+\t\t\t<div class=\"creation-image-container\">
+\t\t\t\t<img src=\"/images/{{ creation.image[0] }}\" alt=\"{{ creation.name }}\" class=\"creation-image\">
+\t\t\t</div>
 
-        {% if creation.image is not empty %}
-            <div class=\"creation-image-container\">
-                <img src=\"/images/{{ creation.image[0] }}\" alt=\"{{ creation.name }}\" class=\"creation-image\">
-            </div>
+\t\t{% else %}
+\t\t\t<p>No image available</p>
+\t\t{% endif %}
 
-        {% else %}
-            <p>No image available</p>
-        {% endif %}
+\t\t<p>
+\t\t\t<strong>Description :</strong>
+\t\t\t{{ creation.description }}</p>
 
-        <p><strong>Description :</strong> {{ creation.description }}</p>
+\t\t<h3>Outils utilisés :</h3>
+\t\t<ul>
+\t\t\t{% for tool in creation.Tool %}
+\t\t\t\t<li>{{ tool.name }}</li>
+\t\t\t{% endfor %}
+\t\t</ul>
 
-        <h3>Outils utilisés :</h3>
-        <ul>
-            {% for tool in creation.Tool %}
-                <li>{{ tool.name }}</li>
-            {% endfor %}
-        </ul>
-
-        <h3>Catégories :</h3>
-        <ul>
-            {% for category in creation.category %}
-                <li>{{ category.name }}</li>
-            {% endfor %}
-        </ul>
-    </div>
+\t\t<h3>Catégories :</h3>
+\t\t<ul>
+\t\t\t{% for category in creation.category %}
+\t\t\t\t<li>{{ category.name }}</li>
+\t\t\t{% endfor %}
+\t\t</ul>
+\t</div>
 {% endblock %}
 ", "pages/creationDetail.html.twig", "C:\\Users\\matth\\Projet\\Principal\\templates\\pages\\creationDetail.html.twig");
     }
