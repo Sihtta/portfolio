@@ -7,7 +7,7 @@
 		}
 
 		.hover-card:hover {
-			background-color: #f8f9fa;
+			background-color: #D3D3D3;
 			transform: scale(1.02);
 			cursor: pointer;
 		}
@@ -28,6 +28,42 @@
 		.copied-message.active {
 			display: inline-block;
 		}
+		
+		.card-footer-text-end{
+			display:flex;
+		  	justify-content: space-between; /* Répartit les boutons avec un espace égal */
+  			align-items: center; /* Aligne verticalement les boutons */
+  			padding: 10px;
+  			gap: 10px; /* Optionnel : espace entre les boutons */
+		}
+
+		.like-share{
+			display:flex;
+			padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+		}
+
+		.comment{
+			display: flex;
+  			align-items: center; 
+  			justify-content: flex-start; 
+  			padding-left: 20px; 
+  			height: 3em; 
+  			width: 100%; 
+  			border-radius: 50px; 
+  			background-color: white;
+  			color: black;
+  			font-size: 1.2em;
+  			text-align: left;
+  			cursor: pointer;
+  			box-sizing: border-box;
+		}
+		
 	</style>
 {% endblock %}
 
@@ -42,8 +78,11 @@
 							<h5 class="card-title">{{ creation.name }}</h5>
 						</div>
 					</a>
-					<div class="card-footer text-end">
-						<div class="like share">
+					<div class="card-footer-text-end">
+						<div class="comment">
+							Commentaire
+						</div>
+						<div class="like-share">
 							<a href="#" class="btn btn-link js-like">
 								{% if app.user and creation.isLikedByUser(app.user	) %}
 									<i class="fas fa-thumbs-up"></i>
