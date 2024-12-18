@@ -5,11 +5,13 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Symfony\Component\HttpFoundation\Request;
 
 
 
@@ -56,5 +58,15 @@ class SecurityController extends AbstractController
         return $this->render('pages/security/registration.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    #[Route('/redirect-after-login', name: 'security.redirect_after_login')]
+    public function redirectAfterLogin(Security $security): RedirectResponse
+    {
+        if ($security->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('admin');
+        }
+
+        return $this->redirectToRoute('home.index');
     }
 }
