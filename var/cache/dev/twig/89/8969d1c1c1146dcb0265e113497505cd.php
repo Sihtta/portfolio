@@ -54,10 +54,10 @@ class __TwigTemplate_7aeb2f91bf33e9a3a50e231a6b14a584 extends Template
 ";
         // line 42
         yield from $this->unwrap()->yieldBlock('content_cards', $context, $blocks);
-        // line 94
+        // line 95
         yield "
 ";
-        // line 95
+        // line 96
         yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
@@ -193,12 +193,16 @@ class __TwigTemplate_7aeb2f91bf33e9a3a50e231a6b14a584 extends Template
 \t\t\t\t\t\t\t<a href=\"";
             // line 61
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("creation.comments", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "id", [], "any", false, false, false, 61)]), "html", null, true);
-            yield "\" class=\"btn btn-primary\">
-\t\t\t\t\t\t\t\tVoir et ajouter des commentaires
+            yield "\" class=\"btn btn-link\">
+\t\t\t\t\t\t\t\t<i class=\"fas fa-comments\"></i>
+\t\t\t\t\t\t\t\t<span class=\"js-comments\">";
+            // line 63
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "comments", [], "any", false, false, false, 63)), "html", null, true);
+            yield "</span>
 \t\t\t\t\t\t\t</a>
 \t\t\t\t\t\t\t<span class=\"share-icon\" data-share-url=\"";
-            // line 64
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("creation_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "id", [], "any", false, false, false, 64)]), "html", null, true);
+            // line 65
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("creation_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "id", [], "any", false, false, false, 65)]), "html", null, true);
             yield "\" title=\"Partager\">
 \t\t\t\t\t\t\t\t<i class=\"fas fa-share\"></i>
 \t\t\t\t\t\t\t</span>
@@ -210,32 +214,32 @@ class __TwigTemplate_7aeb2f91bf33e9a3a50e231a6b14a584 extends Template
 
 \t\t\t<!-- Modal pour chaque création -->
 \t\t\t<div class=\"modal fade\" id=\"modalCreation";
-            // line 74
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "id", [], "any", false, false, false, 74), "html", null, true);
+            // line 75
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "id", [], "any", false, false, false, 75), "html", null, true);
             yield "\" tabindex=\"-1\" aria-labelledby=\"modalLabel";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "id", [], "any", false, false, false, 74), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "id", [], "any", false, false, false, 75), "html", null, true);
             yield "\" aria-hidden=\"true\">
 \t\t\t\t<div class=\"modal-dialog modal-dialog-centered\">
 \t\t\t\t\t<div class=\"modal-content\">
 \t\t\t\t\t\t<div class=\"modal-header\">
 \t\t\t\t\t\t\t<h5 class=\"modal-title\" id=\"modalLabel";
-            // line 78
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "id", [], "any", false, false, false, 78), "html", null, true);
+            // line 79
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "id", [], "any", false, false, false, 79), "html", null, true);
             yield "\">";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "name", [], "any", false, false, false, 78), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "name", [], "any", false, false, false, 79), "html", null, true);
             yield "</h5>
 \t\t\t\t\t\t\t<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>
 \t\t\t\t\t\t</div>
 \t\t\t\t\t\t<div class=\"modal-body text-center\">
 \t\t\t\t\t\t\t<img src=\"/images/";
-            // line 82
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "image", [], "any", false, false, false, 82), 0, [], "array", false, false, false, 82), "html", null, true);
+            // line 83
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "image", [], "any", false, false, false, 83), 0, [], "array", false, false, false, 83), "html", null, true);
             yield "\" class=\"img-fluid rounded mb-3\" alt=\"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "name", [], "any", false, false, false, 82), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "name", [], "any", false, false, false, 83), "html", null, true);
             yield "\">
 \t\t\t\t\t\t\t<p>";
-            // line 83
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "description", [], "any", false, false, false, 83), "html", null, true);
+            // line 84
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "description", [], "any", false, false, false, 84), "html", null, true);
             yield "</p>
 \t\t\t\t\t\t</div>
 \t\t\t\t\t\t<div class=\"modal-footer\">
@@ -249,7 +253,7 @@ class __TwigTemplate_7aeb2f91bf33e9a3a50e231a6b14a584 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['creation'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 92
+        // line 93
         yield "\t</div>
 ";
         
@@ -261,7 +265,7 @@ class __TwigTemplate_7aeb2f91bf33e9a3a50e231a6b14a584 extends Template
         yield from [];
     }
 
-    // line 95
+    // line 96
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -274,7 +278,7 @@ class __TwigTemplate_7aeb2f91bf33e9a3a50e231a6b14a584 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 96
+        // line 97
         yield "\t<!-- Masonry -->
 \t<script src=\"https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js\" integrity=\"sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D\" crossorigin=\"anonymous\" async></script>
 
@@ -356,7 +360,7 @@ class __TwigTemplate_7aeb2f91bf33e9a3a50e231a6b14a584 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  278 => 96,  265 => 95,  253 => 92,  238 => 83,  232 => 82,  223 => 78,  214 => 74,  201 => 64,  195 => 61,  189 => 59,  185 => 57,  181 => 55,  179 => 54,  175 => 53,  168 => 49,  161 => 47,  157 => 46,  154 => 45,  150 => 44,  147 => 43,  134 => 42,  85 => 2,  72 => 1,  61 => 95,  58 => 94,  56 => 42,  53 => 41,  51 => 1,);
+        return array (  282 => 97,  269 => 96,  257 => 93,  242 => 84,  236 => 83,  227 => 79,  218 => 75,  205 => 65,  200 => 63,  195 => 61,  189 => 59,  185 => 57,  181 => 55,  179 => 54,  175 => 53,  168 => 49,  161 => 47,  157 => 46,  154 => 45,  150 => 44,  147 => 43,  134 => 42,  85 => 2,  72 => 1,  61 => 96,  58 => 95,  56 => 42,  53 => 41,  51 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -421,8 +425,9 @@ class __TwigTemplate_7aeb2f91bf33e9a3a50e231a6b14a584 extends Template
 \t\t\t\t\t\t\t\t{% endif %}
 \t\t\t\t\t\t\t\t<span class=\"js-likes\">{{ creation.likes | length }}</span>
 \t\t\t\t\t\t\t</a>
-\t\t\t\t\t\t\t<a href=\"{{ path('creation.comments', {'id': creation.id}) }}\" class=\"btn btn-primary\">
-\t\t\t\t\t\t\t\tVoir et ajouter des commentaires
+\t\t\t\t\t\t\t<a href=\"{{ path('creation.comments', {'id': creation.id}) }}\" class=\"btn btn-link\">
+\t\t\t\t\t\t\t\t<i class=\"fas fa-comments\"></i>
+\t\t\t\t\t\t\t\t<span class=\"js-comments\">{{ creation.comments | length }}</span>
 \t\t\t\t\t\t\t</a>
 \t\t\t\t\t\t\t<span class=\"share-icon\" data-share-url=\"{{ path('creation_show', {'id': creation.id}) }}\" title=\"Partager\">
 \t\t\t\t\t\t\t\t<i class=\"fas fa-share\"></i>

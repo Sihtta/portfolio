@@ -7,7 +7,6 @@
         <h1>Commentaires pour {{ creation.name }}</h1>
 
         <div class="mb-4">
-            <h2>Ajouter un commentaire</h2>
             {{ form_start(form) }}
                 {{ form_widget(form, {'attr': {'class': 'form-control'}}) }}
                 <button class="btn btn-primary mt-3">Envoyer</button>
@@ -20,7 +19,7 @@
                 <div class="mb-3 p-3 border rounded">
                     <p><strong>{{ comment.user ? comment.user.getPseudo : 'Anonyme' }}</strong> :</p>
                     <p>{{ comment.contentComment }}</p>
-                    <p class="text-muted">Posté le {{ comment.createdAt|date('d/m/Y à H:i') }}</p>
+                    <p class="text-muted">Posté le {{ comment.createdAt|date('d/m/Y') }}</p>
                 </div>
             {% else %}
                 <p>Aucun commentaire pour cette création.</p>

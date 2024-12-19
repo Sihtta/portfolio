@@ -58,8 +58,9 @@
 								{% endif %}
 								<span class="js-likes">{{ creation.likes | length }}</span>
 							</a>
-							<a href="{{ path('creation.comments', {'id': creation.id}) }}" class="btn btn-primary">
-								Voir et ajouter des commentaires
+							<a href="{{ path('creation.comments', {'id': creation.id}) }}" class="btn btn-link">
+								<i class="fas fa-comments"></i>
+								<span class="js-comments">{{ creation.comments | length }}</span>
 							</a>
 							<span class="share-icon" data-share-url="{{ path('creation_show', {'id': creation.id}) }}" title="Partager">
 								<i class="fas fa-share"></i>

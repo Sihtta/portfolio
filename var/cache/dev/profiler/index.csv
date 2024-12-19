@@ -54,3 +54,11 @@ cb6624,127.0.0.1,GET,http://127.0.0.1:8000/creations/6/comments,1734643026,,500
 d67de4,127.0.0.1,GET,http://127.0.0.1:8000/utilisateur/edition/2,1734643319,,200
 433597,127.0.0.1,POST,http://127.0.0.1:8000/creations/6/comments,1734643345,,302
 234a74,127.0.0.1,GET,http://127.0.0.1:8000/creations/6/comments,1734643346,,200
+ce3370,127.0.0.1,GET,http://127.0.0.1:8000/creations/publique,1734643745,,200
+491345,127.0.0.1,GET,http://127.0.0.1:8000/creations/publique,1734643758,,200
+65eb0e,127.0.0.1,GET,http://127.0.0.1:8000/creations/publique,1734643831,,200
+059e44,127.0.0.1,GET,http://127.0.0.1:8000/creations/6/comments,1734643838,,200
+f1c973,127.0.0.1,GET,http://127.0.0.1:8000/creations/6/comments,1734643868,,200
+6cbbe5,127.0.0.1,POST,http://127.0.0.1:8000/creations/6/comments,1734643935,,302
+a9db26,127.0.0.1,GET,http://127.0.0.1:8000/creations/6/comments,1734643937,,200
+b32065,127.0.0.1,GET,http://127.0.0.1:8000/creations/6/comments,1734643956,,200

@@ -105,61 +105,60 @@ class __TwigTemplate_d3eb4dbf895585ddebff01d0adc64ec9 extends Template
         yield "</h1>
 
         <div class=\"mb-4\">
-            <h2>Ajouter un commentaire</h2>
             ";
-        // line 11
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 11, $this->source); })()), 'form_start');
+        // line 10
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 10, $this->source); })()), 'form_start');
         yield "
                 ";
-        // line 12
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 12, $this->source); })()), 'widget', ["attr" => ["class" => "form-control"]]);
+        // line 11
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 11, $this->source); })()), 'widget', ["attr" => ["class" => "form-control"]]);
         yield "
                 <button class=\"btn btn-primary mt-3\">Envoyer</button>
             ";
-        // line 14
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 14, $this->source); })()), 'form_end');
+        // line 13
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 13, $this->source); })()), 'form_end');
         yield "
         </div>
 
         <div>
             <h2>Liste des commentaires</h2>
             ";
-        // line 19
+        // line 18
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["comments"]) || array_key_exists("comments", $context) ? $context["comments"] : (function () { throw new RuntimeError('Variable "comments" does not exist.', 19, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["comments"]) || array_key_exists("comments", $context) ? $context["comments"] : (function () { throw new RuntimeError('Variable "comments" does not exist.', 18, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["comment"]) {
-            // line 20
+            // line 19
             yield "                <div class=\"mb-3 p-3 border rounded\">
                     <p><strong>";
-            // line 21
-            ((CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "user", [], "any", false, false, false, 21)) ? (yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "user", [], "any", false, false, false, 21), "getPseudo", [], "any", false, false, false, 21), "html", null, true)) : (yield "Anonyme"));
+            // line 20
+            ((CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "user", [], "any", false, false, false, 20)) ? (yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "user", [], "any", false, false, false, 20), "getPseudo", [], "any", false, false, false, 20), "html", null, true)) : (yield "Anonyme"));
             yield "</strong> :</p>
                     <p>";
-            // line 22
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "contentComment", [], "any", false, false, false, 22), "html", null, true);
+            // line 21
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "contentComment", [], "any", false, false, false, 21), "html", null, true);
             yield "</p>
                     <p class=\"text-muted\">Posté le ";
-            // line 23
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "createdAt", [], "any", false, false, false, 23), "d/m/Y à H:i"), "html", null, true);
+            // line 22
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "createdAt", [], "any", false, false, false, 22), "d/m/Y"), "html", null, true);
             yield "</p>
                 </div>
             ";
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 26
+            // line 25
             yield "                <p>Aucun commentaire pour cette création.</p>
             ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['comment'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 28
+        // line 27
         yield "        </div>
 
         <a href=\"";
-        // line 30
+        // line 29
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("creation.index");
         yield "\" class=\"btn btn-secondary mt-3\">Retour à la liste des créations</a>
     </div>
@@ -194,7 +193,7 @@ class __TwigTemplate_d3eb4dbf895585ddebff01d0adc64ec9 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  163 => 30,  159 => 28,  152 => 26,  144 => 23,  140 => 22,  136 => 21,  133 => 20,  128 => 19,  120 => 14,  115 => 12,  111 => 11,  104 => 7,  101 => 6,  88 => 5,  64 => 3,  41 => 1,);
+        return array (  162 => 29,  158 => 27,  151 => 25,  143 => 22,  139 => 21,  135 => 20,  132 => 19,  127 => 18,  119 => 13,  114 => 11,  110 => 10,  104 => 7,  101 => 6,  88 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -208,7 +207,6 @@ class __TwigTemplate_d3eb4dbf895585ddebff01d0adc64ec9 extends Template
         <h1>Commentaires pour {{ creation.name }}</h1>
 
         <div class=\"mb-4\">
-            <h2>Ajouter un commentaire</h2>
             {{ form_start(form) }}
                 {{ form_widget(form, {'attr': {'class': 'form-control'}}) }}
                 <button class=\"btn btn-primary mt-3\">Envoyer</button>
@@ -221,7 +219,7 @@ class __TwigTemplate_d3eb4dbf895585ddebff01d0adc64ec9 extends Template
                 <div class=\"mb-3 p-3 border rounded\">
                     <p><strong>{{ comment.user ? comment.user.getPseudo : 'Anonyme' }}</strong> :</p>
                     <p>{{ comment.contentComment }}</p>
-                    <p class=\"text-muted\">Posté le {{ comment.createdAt|date('d/m/Y à H:i') }}</p>
+                    <p class=\"text-muted\">Posté le {{ comment.createdAt|date('d/m/Y') }}</p>
                 </div>
             {% else %}
                 <p>Aucun commentaire pour cette création.</p>
