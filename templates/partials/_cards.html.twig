@@ -5,7 +5,7 @@
 		}
 
 		.hover-card:hover {
-			background-color: #f8f9fa;
+			background-color: #D3D3D3;
 			transform: scale(1.02);
 			cursor: pointer;
 		}
@@ -36,6 +36,31 @@
 			max-width: 90%; /* Optionnel : Ajuste la largeur maximale */
 		}
 
+.card-footer {
+    display: flex;
+    justify-content: space-between; /* Répartit les éléments sur toute la largeur */
+    align-items: center; /* Aligne verticalement */
+    padding: 10px;
+    gap: 10px;
+}
+
+
+.comment {
+    display: flex;
+    align-items: center; 
+    justify-content: flex-start;
+    padding-left: 20px; 
+    height: 3em; 
+    width: 100%; 
+    border-radius: 50px; 
+    background-color: white;
+    color: black;
+    font-size: 1.2em;
+    text-align: left;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
 	</style>
 {% endblock %}
 
@@ -49,6 +74,7 @@
 						<h5 class="card-title">{{ creation.name }}</h5>
 					</div>
 					<div class="card-footer text-end">
+						<div class="comment">Commentaire</div>
 						<div class="like share">
 							<a href="{{ path('creation.like', { 'id': creation.id }) }}" class="btn btn-link js-like">
 								{% if app.user and creation.isLikedByUser(app.user) %}
