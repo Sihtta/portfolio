@@ -68,11 +68,15 @@ class ContactCrudController extends AbstractCrudController
             ->setIcon(null);
 
         return $actions
-            ->disable(Action::NEW, Action::DELETE)
+            ->disable(Action::NEW, Action::EDIT)
+            ->update(Crud::PAGE_INDEX, Action::DELETE, function (Action $action) {
+                return $action;
+            })
             ->add(Crud::PAGE_INDEX, $archiveAction)
             ->add(Crud::PAGE_DETAIL, $archiveAction)
             ->add(Crud::PAGE_INDEX, Action::DETAIL);
     }
+
 
     public function archiveMessage(AdminContext $context): RedirectResponse
     {
