@@ -15,6 +15,7 @@ use App\Entity\Comment;
 use App\Entity\Tool;
 use App\Entity\User;
 use App\Entity\UsernameHistory;
+use App\Entity\Contact;
 
 
 class DashboardController extends AbstractDashboardController
@@ -23,7 +24,7 @@ class DashboardController extends AbstractDashboardController
     public function index(): Response
     {
         if ($this->getUser()) {
-            if (count($this->getUser()->getRoles()) == 1) { // Si le nb de roles = 1 alors User
+            if (count($this->getUser()->getRoles()) == 1) {
                 return $this->redirectToRoute('home.accessdenied');
             } else return $this->render('admin/dashboard.html.twig');
         } else return $this->redirectToRoute('security.login');
@@ -44,6 +45,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Gestion des utilisateurs');
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-circle-user', User::class);
         yield MenuItem::linkToCrud('Historiques pseudonymes', 'fas fa-history', UsernameHistory::class);
+        yield MenuItem::linkToCrud('Messages', 'fa fa-envelope', Contact::class);
+
 
         yield MenuItem::section('Gestion du contenu');
         yield MenuItem::linkToCrud('Creations', 'fas fa-image', Creation::class);
