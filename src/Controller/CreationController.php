@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Like;
 use App\Entity\Creation;
+use App\Entity\Comment;
 use App\Repository\LikeRepository;
 use App\Repository\CreationRepository;
+use App\Form\CommentType;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,6 +44,35 @@ class CreationController extends AbstractController
             'creations' => $creations
         ]);
     }
+
+    #[Route("/creations/{id}/comments", name: "creation.comments", methods: ["GET", "POST"])]
+    public function comments(
+        Request $request,
+        Creation $creation,
+        EntityManagerInterface $manager
+    ): Response {
+        $comment = new Comment();
+        $comment->setCreation($creation);
+        $comment->setUser($this->getUser());
+
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($comment);
+            $manager->flush();
+
+            $this->addFlash('success', 'Votre commentaire a été ajouté.');
+            return $this->redirectToRoute('creation.comments', ['id' => $creation->getId()]);
+        }
+
+        return $this->render('comments/index.html.twig', [
+            'creation' => $creation,
+            'comments' => $creation->getComments(),
+            'form' => $form->createView(),
+        ]);
+    }
+
 
     /**
      * Permet de like/unliker une création
