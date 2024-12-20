@@ -71,7 +71,6 @@
 				</div>
 			</div>
 
-			<!-- Modal pour chaque création -->
 			<div class="modal fade" id="modalCreation{{ creation.id }}" tabindex="-1" aria-labelledby="modalLabel{{ creation.id }}" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered">
 					<div class="modal-content">
@@ -94,13 +93,10 @@
 {% endblock %}
 
 {% block javascripts %}
-	<!-- Masonry -->
 	<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 
-	<!-- Bootstrap Bundle -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Like Script -->
 	<script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
 	<script>
 		function onClickBtnLike(event) {
@@ -131,7 +127,6 @@
 		});
 	</script>
 
-	<!-- Share Script -->
 	<script>
 		document.addEventListener('DOMContentLoaded', function () {
 			const shareIcons = document.querySelectorAll('.share-icon');
