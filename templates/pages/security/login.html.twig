@@ -25,10 +25,16 @@
 			</div>
 		{% endif %}
 
-		<form action="{{ path('security.login') }}" method="post" class="mt-4">
+		{% for message in app.flashes('danger') %}
+			<div class="alert alert-danger mt-4">
+				{{ message }}
+			</div>
+		{% endfor %}
+
+		<form id="loginForm" action="{{ path('security.login') }}" method="post" class="mt-4">
 			<div class="mb-3">
 				<label for="username" class="form-label">Adresse email</label>
-				<input type="email" class="form-control" id="username" name="_username" placeholder="exemple@portfolio.fr" required>
+				<input type="email" class="form-control" id="username" name="_username" placeholder="exemple@portfolio.fr" required value="{{ last_username }}">
 				<small id="emailHelp" class="form-text text-muted">
 					Nous ne partagerons jamais votre e-mail.
 				</small>
@@ -38,7 +44,31 @@
 				<input type="password" class="form-control" id="password" name="_password" placeholder="********" autocomplete="off" required>
 			</div>
 
-			<button type="submit" class="btn btn-primary mt-4">Se connecter</button>
+			<input type="hidden" id="js-enabled" name="js_enabled" value="0">
+			<script>
+				document.getElementById('js-enabled').value = '1';
+			</script>
+
+			<button type="submit" class="btn btn-primary mt-4" id="submitBtn">Se connecter</button>
 		</form>
 	</div>
+
+	<script src="https://www.google.com/recaptcha/api.js?render={{ recaptcha_site_key }}"></script>
+	<script>
+		document.getElementById('loginForm').addEventListener('submit', function (event) {
+event.preventDefault();
+
+grecaptcha.ready(function () {
+grecaptcha.execute('{{ recaptcha_site_key }}', {action: 'login'}).then(function (token) {
+var recaptchaInput = document.createElement('input');
+recaptchaInput.type = 'hidden';
+recaptchaInput.name = 'g-recaptcha-response';
+recaptchaInput.value = token;
+document.getElementById('loginForm').appendChild(recaptchaInput);
+
+document.getElementById('loginForm').submit();
+});
+});
+});
+	</script>
 {% endblock %}
