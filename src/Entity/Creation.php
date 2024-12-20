@@ -201,6 +201,11 @@ class Creation
         return $this->likes;
     }
 
+    public function getLikesCount(): int
+    {
+        return $this->likes->count();
+    }
+
     public function addLike(Like $like): static
     {
         if (!$this->likes->contains($like)) {
@@ -229,6 +234,15 @@ class Creation
     public function getComments(): Collection
     {
         return $this->comments;
+    }
+
+    /**
+     * Nb de commentaires pour la création
+     * @return int
+     */
+    public function getCommentsCount(): int
+    {
+        return $this->comments->count();
     }
 
     public function addComment(Comment $comment): static

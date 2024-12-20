@@ -2,20 +2,21 @@
 
 namespace App\Controller\Admin;
 
-use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
-use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-
-use App\Entity\Creation;
-use App\Entity\Category;
-use App\Entity\Comment;
 use App\Entity\Tool;
 use App\Entity\User;
-use App\Entity\UsernameHistory;
+use App\Entity\Comment;
 use App\Entity\Contact;
+use App\Entity\Category;
+use App\Entity\Creation;
+
+use App\Entity\UsernameHistory;
+use App\Controller\Admin\StatCrudController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 
 class DashboardController extends AbstractDashboardController
@@ -49,9 +50,15 @@ class DashboardController extends AbstractDashboardController
 
 
         yield MenuItem::section('Gestion du contenu');
-        yield MenuItem::linkToCrud('Creations', 'fas fa-image', Creation::class);
+        yield MenuItem::linkToCrud('Creations', 'fas fa-image', Creation::class)
+           ->setController(CreationCrudController::class);
         yield MenuItem::linkToCrud('Commentaires', 'fas fa-comment', Comment::class);
         yield MenuItem::linkToCrud('Categories', 'fas fa-list', Category::class);
         yield MenuItem::linkToCrud('Outils', 'fas fa-pencil', Tool::class);
+
+        yield MenuItem::section('Statistiques');
+        yield MenuItem::linkToCrud('Statistiques des créations', 'fa fa-chart-bar', Creation::class)
+            ->setController(StatCrudController::class);
+
     }
 }
