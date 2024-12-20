@@ -43,6 +43,7 @@
 		.floating-label input {
 			font-size: 16px;
 			padding: 20px 0px;
+			margin-left: 44px;
 			height: 56px;
 			border: none;
 			border-bottom: solid 1px rgba(0, 0, 0, .1);
@@ -69,6 +70,7 @@
 			opacity: 0;
 			transition: all .3s ease;
 			padding-left: 44px;
+			margin-top: -10px;
 		}
 		.floating-label input:not(:placeholder-shown) + label {
 			transform: translateY(-10px);
@@ -100,7 +102,7 @@
 			width: 100%;
 			padding: 15px;
 			border: none;
-			background-color: $primary;
+			background-color: #1A1A1A;
 			color: #fff;
 			font-size: 14px;
 			font-weight: 500;
@@ -135,28 +137,53 @@
 					type="email" 
 					id="username" 
 					name="_username" 
-					placeholder="exemple@portfolio.fr" 
+					placeholder="Adresse email" 
 					required>
 				<label for="username">Adresse email</label>
-				<div class="icon">
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-						<path d="M17.5 977c-1.3 0-2.4 1.1-2.4 2.4v45.9c0 1.3 1.1 2.4 2.4 2.4h64.9c1.3 0 2.4-1.1 2.4-2.4v-45.9c0-1.3-1.1-2.4-2.4-2.4h-64.9zm2.4 4.8h60.2v1.2l-30.1 22-30.1-22v-1.2zm0 7l28.7 21c0.8 0.6 2 0.6 2.8 0l28.7-21v34.1h-60.2v-34.1z" />
-					</svg>
-				</div>
+<div class="icon">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg enable-background="new 0 0 100 100" version="1.1" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+<style type="text/css">
+	.st0{fill:none;}
+</style>
+<g transform="translate(0 -952.36)">
+	<path d="m17.5 977c-1.3 0-2.4 1.1-2.4 2.4v45.9c0 1.3 1.1 2.4 2.4 2.4h64.9c1.3 0 2.4-1.1 2.4-2.4v-45.9c0-1.3-1.1-2.4-2.4-2.4h-64.9zm2.4 4.8h60.2v1.2l-30.1 22-30.1-22v-1.2zm0 7l28.7 21c0.8 0.6 2 0.6 2.8 0l28.7-21v34.1h-60.2v-34.1z"/>
+</g>
+<rect class="st0" width="100" height="100"/>
+</svg>
+
+        </div>
 			</div>
 			<div class="floating-label">
 				<input 
 					type="password" 
 					id="password" 
 					name="_password" 
-					placeholder="********" 
+					placeholder="Mot de passe" 
 					required>
 				<label for="password">Mot de passe</label>
 				<div class="icon">
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-						<path d="M50 1C24.9 1 5 20.9 5 46s19.9 45 45 45 45-19.9 45-45S75.1 1 50 1zm0 10c5.8 0 10.5 4.7 10.5 10.5S55.8 32 50 32s-10.5-4.7-10.5-10.5S44.2 11 50 11z" />
-					</svg>
-				</div>
+
+                        <?xml version="1.0" encoding="UTF-8"?>
+                        <svg enable-background="new 0 0 24 24" version="1.1" viewBox="0 0 24 24" xml:space="preserve"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <style type="text/css">
+                                .st0 {
+                                    fill: none;
+                                }
+
+                                .st1 {
+                                    fill: #010101;
+                                }
+                            </style>
+                            <rect class="st0" width="24" height="24" />
+                            <path class="st1" d="M19,21H5V9h14V21z M6,20h12V10H6V20z" />
+                            <path class="st1"
+                                d="M16.5,10h-1V7c0-1.9-1.6-3.5-3.5-3.5S8.5,5.1,8.5,7v3h-1V7c0-2.5,2-4.5,4.5-4.5s4.5,2,4.5,4.5V10z" />
+                            <path class="st1"
+                                d="m12 16.5c-0.8 0-1.5-0.7-1.5-1.5s0.7-1.5 1.5-1.5 1.5 0.7 1.5 1.5-0.7 1.5-1.5 1.5zm0-2c-0.3 0-0.5 0.2-0.5 0.5s0.2 0.5 0.5 0.5 0.5-0.2 0.5-0.5-0.2-0.5-0.5-0.5z" />
+                        </svg>
+                    </div>
 			</div>
 
 			<button type="submit">Se connecter</button>
