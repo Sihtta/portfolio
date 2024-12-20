@@ -66,7 +66,6 @@
 						<h5 class="card-title">{{ creation.name }}</h5>
 					</div>
 					<div class="card-footer text-end">
-						<div class="comment">Commentaire</div>
 						<div class="like share">
 							<a href="{{ path('creation.like', { 'id': creation.id }) }}" class="btn btn-link js-like">
 								{% if app.user and creation.isLikedByUser(app.user) %}
