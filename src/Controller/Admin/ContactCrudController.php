@@ -61,10 +61,13 @@ class ContactCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        $toggleArchiveAction = Action::new('toggleArchive', 'Archiver')
+        $toggleArchiveAction = Action::new('toggleArchive', 'Changer état')
             ->linkToCrudAction('toggleArchiveMessage')
             ->setCssClass('btn btn-link')
-            ->setIcon(null);
+            ->setIcon(null)
+            ->displayIf(function ($entity) {
+                return $entity instanceof Contact;
+            });
 
         return $actions
             ->disable(Action::NEW, Action::EDIT)
@@ -108,6 +111,11 @@ class ContactCrudController extends AbstractCrudController
         FieldCollection $fields,
         FilterCollection $filters
     ): QueryBuilder {
-        return parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters);
+        $queryBuilder = parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters);
+
+        $queryBuilder->addOrderBy('entity.archived', 'ASC');
+        $queryBuilder->addOrderBy('entity.createdAt', 'DESC');
+
+        return $queryBuilder;
     }
 }
