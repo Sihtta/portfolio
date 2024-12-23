@@ -14,19 +14,32 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
 
 
 class CreationController extends AbstractController
 {
-    #[Route("/creations", "creation.index", methods: ["GET"])]
+    #[Route("/creations", name: "creation.index", methods: ["GET"])]
     public function index(CreationRepository $creationRepository): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('access_denied');
+        }
+
         $creations = $creationRepository->findAll();
 
         return $this->render('pages/creation.html.twig', [
             'creations' => $creations,
         ]);
     }
+
+    #[Route("/access-denied", name: "access_denied")]
+    public function accessDenied(): Response
+    {
+        return $this->render('pages/accessDenied.html.twig');
+    }
+
 
     #[Route("/creations/publique", name: "creation_.index.public", methods: ["GET"])]
     public function indexPublic(
@@ -82,7 +95,8 @@ class CreationController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\Response
      */
     #[Route("/creations/{id}/like", name: "creation.like", methods: ["GET"])]
-    public function like(Creation $creation, EntityManagerInterface $manager, LikeRepository $likeRepository): Response {
+    public function like(Creation $creation, EntityManagerInterface $manager, LikeRepository $likeRepository): Response
+    {
         $user = $this->getUser();
 
         if (!$user) return  $this->json([
@@ -115,7 +129,7 @@ class CreationController extends AbstractController
 
 
         return $this->json([
-            'code' => 200, 
+            'code' => 200,
             'message' => 'Like added',
             'likes' => $likeRepository->count(['creation' => $creation])
         ], 200);
