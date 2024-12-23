@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Portfolio - Modification de l'utilisateur
+{% block title %}Portfolio - Modification du Profil
 {% endblock %}
 
 {% block body %}
 	<div class="container">
-		<h1 class="mt-4">Formulaire de modification des informations de l'utilisateur</h1>
+		<h1 class="mt-4">Formulaire de modification du Profil</h1>
 
 		{% for message in app.flashes('success') %}
 			<div class="alert alert-success mt-4">
@@ -19,5 +19,13 @@
 		{% endfor %}
 
 		{{ form(form) }}
+
+			<div class="mt-4">
+				<p class="mb-2">Besoin de changer votre mot de passe ? Cliquez sur le bouton ci-dessous.</p>
+				<a href="{{ path('user.edit.password', {'id': app.user.id}) }}" class="btn btn-secondary">
+					Modifier mon mot de passe
+				</a>
+			</div>
+
 		</div>
 	{% endblock %}

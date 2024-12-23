@@ -51,7 +51,7 @@ class UserType extends AbstractType
                 'attr' => [
                     'class' => 'form-control'
                 ],
-                'label' => 'Mot de passe',
+                'label' => 'Mot de passe pour confirmer',
                 'label_attr' => [
                     'class' => 'form-label  mt-4'
                 ]

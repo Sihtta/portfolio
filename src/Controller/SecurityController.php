@@ -60,9 +60,6 @@ class SecurityController extends AbstractController
         ]);
     }
 
-
-
-
     #[Route('/deconnexion', name: 'security.logout')]
     public function logout() {}
 
@@ -76,8 +73,6 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
-
-
 
             $this->addFlash(
                 'success',

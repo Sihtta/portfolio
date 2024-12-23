@@ -68,7 +68,7 @@ class ContactType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                 ],
-                'label' => 'Description',
+                'label' => 'Message',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
                 ],
