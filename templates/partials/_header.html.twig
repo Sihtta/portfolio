@@ -44,6 +44,11 @@
 					<li class="nav-item">
 						<a class="nav-link nav-link-custom {{ app.request.attributes.get('_route') == 'user.edit' ? 'nav-link-active' : '' }}" href="{{ path('user.edit', {'id': app.user.id}) }}">Mon Profil</a>
 					</li>
+					{% if app.user and 'ROLE_ADMIN' in app.user.roles %}
+						<li class="nav-item">
+							<a class="nav-link nav-link-custom {{ app.request.attributes.get('_route') == 'admin' ? 'nav-link-active' : '' }}" href="{{ path('admin') }}">Dashboard</a>
+						</li>
+					{% endif %}
 					<li class="nav-item">
 						<a class="nav-link nav-link-custom" href="{{ path('security.logout') }}">Déconnexion</a>
 					</li>
