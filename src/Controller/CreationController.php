@@ -104,7 +104,7 @@ class CreationController extends AbstractController
             'message' => 'Access denied'
         ], 403);
 
-        if ($creation->isLikedByUser($user)) { // Si liké alors on supprime le "J'aime"
+        if ($creation->isLikedByUser($user)) {
             $like = $likeRepository->findOneBy([
                 'creation' => $creation,
                 'user' => $user
