@@ -31,7 +31,6 @@ class UsernameHistoryCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('user.pseudo', 'Pseudonyme actuel'),
             TextField::new('oldPseudo', 'Ancien pseudonyme'),
             TextField::new('newPseudo', 'Nouveau pseudonyme'),
             DateTimeField::new('changedAt', 'Date de changement')
@@ -49,8 +48,7 @@ class UsernameHistoryCrudController extends AbstractCrudController
     public function configureFilters(Filters $filters): Filters
     {
         return $filters
-            ->add(EntityFilter::new('user', 'Pseudonyme actuel'))
-            ->add('newPseudo', 'nom')
+            ->add(EntityFilter::new('user', 'Nouveau pseudonyme'))
             ->add('oldPseudo', 'nom');
     }
 }

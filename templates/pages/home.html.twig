@@ -6,58 +6,58 @@
 {% block body %}
 
 	<style>
-        .main-section {
-            display: flex;
-            height: 85.2vh;
-            background-color: #1a1a1a; 
-            color: #fff;
-            font-family: Arial, sans-serif;
-        }
+		.main-section {
+			display: flex;
+			height: 85.2vh;
+			background-color: #1a1a1a;
+			color: #fff;
+			font-family: Arial, sans-serif;
+		}
 
-        .left-side {
-            flex: 1;
-            background: url('/images/2024-12-13-72f878a2-a5e2-4891-b30e-e599efedfda1.avif') no-repeat center center;
-            background-size: cover;
-        }
+		.left-side {
+			flex: 1;
+			background: url('/images/2024-12-13-72f878a2-a5e2-4891-b30e-e599efedfda1.avif') no-repeat center center;
+			background-size: cover;
+		}
 
-        .right-side {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 50px;
-        }
+		.right-side {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			padding: 0 50px;
+		}
 
-        .right-side h1 {
-            font-size: 4rem;
-            color: white;
-            margin: 0;
-        }
+		.right-side h1 {
+			font-size: 4rem;
+			color: white;
+			margin: 0;
+		}
 
-        .right-side p {
-            font-size: 1.2rem;
-            margin: 20px 0 40px;
-            line-height: 1.6;
-        }
+		.right-side p {
+			font-size: 1.2rem;
+			margin: 20px 0 40px;
+			line-height: 1.6;
+		}
 
 
-        .buttons {
-            display: flex;
-            gap: 20px;
-        }
+		.buttons {
+			display: flex;
+			gap: 20px;
+		}
 
-        .btn {
-            text-decoration: none;
-            color: #fff;
-            padding: 10px 20px;
-            border: 2px solid #fff;
-            transition: all 0.3s ease;
-        }
+		.btn {
+			text-decoration: none;
+			color: #fff;
+			padding: 10px 20px;
+			border: 2px solid #fff;
+			transition: all 0.3s ease;
+		}
 
-        .btn:hover {
-            background-color: #fff;
-            color: #1a1a1a;
-        }
+		.btn:hover {
+			background-color: #fff;
+			color: #1a1a1a;
+		}
 
 
 		.fade-overlay {
@@ -81,48 +81,51 @@
 			}
 		}
 
-       #typed-text {
-        font-size: 4rem;
-        color: #fff;
-        white-space: nowrap;
-        overflow: hidden;
-        border-right: 4px solid #fff;
-        padding-right: 5px;
-    }
-
+		#typed-text {
+			font-size: 4rem;
+			color: #fff;
+			white-space: nowrap;
+			overflow: hidden;
+			border-right: 4px solid #fff;
+			padding-right: 5px;
+		}
 	</style>
 	<div class="fade-overlay"></div>
 	<div class="main-section">
-        <div class="left-side">
-        </div>
+		<div class="left-side"></div>
 
-        <div class="right-side">
-            <h1 id="typed-text"></h1>
-            <p>
-                Découvrez les plus belles créations. Explorez, inspirez-vous et admirez !
-            </p>
-            <div class="buttons">
-                <a href="#" class="btn">Explorer</a>
-            </div>
-        </div>
-    </div>
+		<div class="right-side">
+			<h1 id="typed-text"></h1>
+			<p>
+				Découvrez les plus belles créations. Explorez, inspirez-vous et admirez !
+			</p>
+			<div class="buttons">
+				{% if app.user and 'ROLE_ADMIN' in app.user.roles %}
+					<a href="{{ path('creation.index') }}" class="btn">Explorer</a>
+				{% else %}
+					<a href="{{ path('creation_.index.public') }}" class="btn">Explorer</a>
+				{% endif %}
+			</div>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const text = "Mon Portfolio";  
-        const element = document.getElementById('typed-text');  
-        let index = 0;
+		</div>
+	</div>
 
-        function type() {
-            if (index < text.length) {
-                element.textContent += text.charAt(index);  
-                index++;
-                setTimeout(type, 100);  
-            }
-        }
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+const text = "Mon Portfolio";
+const element = document.getElementById('typed-text');
+let index = 0;
 
-        type(); 
-    });
-</script>
+function type() {
+if (index < script text.length) {
+element.textContent += text.charAt(index);
+index++;
+setTimeout(type, 100);
+}
+}
+
+type();
+});
+	</script>
 
 {% endblock %}

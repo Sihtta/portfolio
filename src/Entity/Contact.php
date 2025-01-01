@@ -37,6 +37,9 @@ class Contact
     #[Assert\NotNull()]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\Column(type: 'boolean', options: ['default' => false])]
+    private bool $archived = false;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -104,6 +107,17 @@ class Contact
     {
         $this->createdAt = $createdAt;
 
+        return $this;
+    }
+
+    public function isArchived(): bool
+    {
+        return $this->archived;
+    }
+
+    public function setArchived(bool $archived): self
+    {
+        $this->archived = $archived;
         return $this;
     }
 }

@@ -12,6 +12,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
+
 use Symfony\Component\Validator\Constraints as Assert;
 
 class RegistrationType extends AbstractType
@@ -86,6 +89,10 @@ class RegistrationType extends AbstractType
                     ]
                 ],
                 'invalid_message' => 'Les mots de passe ne correspondent pas.'
+            ])
+            ->add('captcha', Recaptcha3Type::class, [
+                'constraints' => new Recaptcha3(),
+                'action_name' => 'register',
             ])
             ->add('Submit', SubmitType::class, [
                 'attr' => [

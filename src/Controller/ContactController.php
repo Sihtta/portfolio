@@ -21,7 +21,6 @@ class ContactController extends AbstractController
         $contact = new Contact();
 
         if ($this->getUser()) {
-            //Erreurs "normales", la fonctionnalité marche tout de même
             $contact->setFullName($this->getUser()->getFullName())
                 ->setEmail($this->getUser()->getEmail());
         }
