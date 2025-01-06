@@ -4,16 +4,28 @@
 {% endblock %}
 
 {% block body %}
-	<style>
-		
-	</style>
-	<div class="jumbotron jumbotron-fluid mt-4">
-		<div class="container">
-			<h1 class="display-4">Créations de l'artiste</h1>
-			<p class="lead">Découvrez ici les dernières créations</p>
-		</div>
+	<style>/* Ajoutez vos styles personnalisés ici */</style>
+<div class="jumbotron jumbotron-fluid mt-4">
+	<div class="container">
+		<h1 class="display-4">Créations de l'artiste</h1>
+		<p class="lead">Découvrez ici les dernières créations</p>
 	</div>
-	{% block cards %}
-		{% include "partials/_cards.html.twig" %}
-	{% endblock %}
-{% endblock %}
+</div>
+{% block cards %}
+	{% include "partials/_cards.html.twig" %}
+{% endblock %}{% endblock %}{% block javascripts %}
+{{ parent() }}
+{% if modal_id is defined and modal_id %}
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+const modalId = "{{ modal_id }}";
+if (modalId) {
+const modalElement = document.getElementById(`creationModal-${modalId}`);
+if (modalElement) {
+const modal = new bootstrap.Modal(modalElement);
+modal.show();
+}
+}
+});
+	</script>
+{% endif %}{% endblock %}
