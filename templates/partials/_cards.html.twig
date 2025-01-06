@@ -55,12 +55,12 @@
 		}
 
 		.row {
-			position: relative;
+			position: relative; /* Nécessaire pour la disposition */
 		}
 
 		.col {
-			position: absolute;
-			transition: all 0.3s ease;
+			position: absolute; /* Permet la gestion manuelle */
+			transition: all 0.3s ease; /* Animation fluide */
 		}
 	</style>
 {% endblock %}
@@ -70,7 +70,7 @@
 		{% for creation in creations %}
 			<div class="col">
 				<div class="card h-100 hover-card" style="border-radius: 30px;">
-					<img src="/images/{{ creation.image[0] }}" class="card-img-top" style="border-radius: 30px 30px 0 0;" alt="{{ creation.name }}" onclick="openModalWithCreation({{ creation.id }})">
+					<img src="/images/{{ creation.image[0] }}" class="card-img-top" style="border-radius: 30px 30px 0 0;" alt="{{ creation.name }}" data-bs-toggle="modal" data-bs-target="#creationModal-{{ creation.id }}">
 					<div class="card-body">
 						<h5 class="card-title">{{ creation.name }}</h5>
 					</div>
@@ -161,7 +161,7 @@ col.style.position = 'absolute';
 col.style.left = `${x}px`;
 col.style.top = `${y}px`;
 
-colHeights[colIndex] += col.offsetHeight + 16;
+colHeights[colIndex] += col.offsetHeight + 16; // Inclure la marge
 });
 
 grid.style.position = 'relative';
@@ -219,33 +219,6 @@ setTimeout(() => message.classList.remove('active'), 2000);
 }).catch(err => console.error('Erreur lors de la copie du lien :', err));
 });
 });
-
-// Ouvrir le modal si l'URL correspond à une création spécifique
-const urlPath = window.location.pathname;
-const match = urlPath.match(/^\/creation\/(\d+)$/);
-if (match) {
-const creationId = match[1];
-openModalWithCreation(creationId);
-}
 });
-
-function openModalWithCreation(creationId) {
-const modal = new bootstrap.Modal(document.getElementById (`creationModal-${creationId}`));
-modal.show();
-
-const newUrl = `/creation/${creationId}`;
-window.history.pushState({
-creationId
-}, '', newUrl);
-}
-
-window.onpopstate = function (event) {
-if (event.state && event.state.creationId) {
-openModalWithCreation(event.state.creationId);
-} else {
-const openModals = document.querySelectorAll('.modal.show');
-openModals.forEach(modal => new bootstrap.Modal(modal).hide());
-}
-};
 	</script>
 {% endblock %}
