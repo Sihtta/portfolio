@@ -21,7 +21,15 @@ class CreationController extends AbstractController
     public function index(CreationRepository $creationRepository, Request $request): Response
     {
         $modalId = $request->query->get('modal_id');
-        $creations = $creationRepository->findAll();
+        $user = $this->getUser();
+
+        if ($user && $this->isGranted('ROLE_ADMIN')) {
+            // L'administrateur voit toutes les créations
+            $creations = $creationRepository->findAll();
+        } else {
+            // Les utilisateurs normaux ne voient que les créations publiques
+            $creations = $creationRepository->findBy(['isPublic' => true]);
+        }
 
         if ($modalId) {
             $creation = $creationRepository->find($modalId);
@@ -35,6 +43,7 @@ class CreationController extends AbstractController
             'modal_id' => $modalId,
         ]);
     }
+
 
     #[Route("/access-denied", name: "access_denied")]
     public function accessDenied(): Response
