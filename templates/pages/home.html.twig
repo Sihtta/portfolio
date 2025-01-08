@@ -112,20 +112,21 @@
 
 	<script>
 		document.addEventListener('DOMContentLoaded', function () {
-const text = "Mon Portfolio";
-const element = document.getElementById('typed-text');
-let index = 0;
+		const text = "Mon Portfolio";
+		const element = document.getElementById('typed-text');
+		let index = 0;
 
-function type() {
-if (index < script text.length) {
-element.textContent += text.charAt(index);
-index++;
-setTimeout(type, 100);
-}
-}
+		function AfficheTitre() {
+				if (index < text.length) {
+				element.textContent += text.charAt(index);
+				index++;
+				setTimeout(AfficheTitre, 100);
+				}
+			}
 
-type();
-});
+			AfficheTitre();
+		});
+
 	</script>
 
 {% endblock %}
