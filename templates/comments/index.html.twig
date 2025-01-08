@@ -19,7 +19,18 @@
                 <div class="mb-3 p-3 border rounded">
                     <p><strong>{{ comment.user ? comment.user.getPseudo : 'Anonyme' }}</strong> :</p>
                     <p>{{ comment.contentComment }}</p>
-                    <p class="text-muted">Posté le {{ comment.createdAt|date('d/m/Y') }}</p>
+                    <p class="text-muted">Posté le {{ comment.createdAt|date('d/m/Y H:i') }}</p>
+
+                    {% if comment.user == app.user %}
+                        <form 
+                            action="{{ path('comment_delete', { id: comment.id }) }}" 
+                            method="post" 
+                            onsubmit="return confirm('Voulez-vous vraiment supprimer ce commentaire ?');" 
+                            class="mt-2">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
+                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                        </form>
+                    {% endif %}
                 </div>
             {% else %}
                 <p>Aucun commentaire pour cette création.</p>

@@ -55,12 +55,12 @@
 		}
 
 		.row {
-			position: relative; /* Nécessaire pour la disposition */
+			position: relative;
 		}
 
 		.col {
-			position: absolute; /* Permet la gestion manuelle */
-			transition: all 0.3s ease; /* Animation fluide */
+			position: absolute;
+			transition: all 0.3s ease;
 		}
 	</style>
 {% endblock %}
@@ -84,7 +84,7 @@
 								{% endif %}
 								<span class="js-likes">{{ creation.likes | length }}</span>
 							</a>
-							<a href="{{ path('creation.comments', {'id': creation.id}) }}" class="btn btn-link">
+							<a href="{{ path('creation.comments', {'id': creation.id}) }}" class="btn btn-link js-comment">
 								<i class="fas fa-comments"></i>
 								<span class="js-comments">{{ creation.comments | length }}</span>
 							</a>
@@ -140,85 +140,98 @@
 
 	<script>
 		document.addEventListener('DOMContentLoaded', function () {
-const grid = document.querySelector('.row');
-const cols = grid.querySelectorAll('.col');
+			const grid = document.querySelector('.row');
+			const cols = grid.querySelectorAll('.col');
 
-function arrangeGrid() {
-const gridWidth = grid.offsetWidth;
-const colWidth = cols[0].offsetWidth;
-const colsCount = Math.floor(gridWidth / colWidth);
+			function arrangeGrid() {
+				const gridWidth = grid.offsetWidth;
+				const colWidth = cols[0].offsetWidth;
+				const colsCount = Math.floor(gridWidth / colWidth);
 
-const colHeights = new Array(colsCount).fill(0);
+				const colHeights = new Array(colsCount).fill(0);
 
-cols.forEach(col => {
-const minColHeight = Math.min(... colHeights);
-const colIndex = colHeights.indexOf(minColHeight);
+				cols.forEach(col => {
+					const minColHeight = Math.min(... colHeights);
+					const colIndex = colHeights.indexOf(minColHeight);
 
-const x = colIndex * colWidth;
-const y = minColHeight;
+					const x = colIndex * colWidth;
+					const y = minColHeight;
 
-col.style.position = 'absolute';
-col.style.left = `${x}px`;
-col.style.top = `${y}px`;
+					col.style.position = 'absolute';
+					col.style.left = `${x}px`;
+					col.style.top = `${y}px`;
 
-colHeights[colIndex] += col.offsetHeight + 16; // Inclure la marge
-});
+					colHeights[colIndex] += col.offsetHeight + 16; // Inclure la marge
+				});
 
-grid.style.position = 'relative';
-grid.style.height = `${
-Math.max(... colHeights)
-}px`;
-}
+				grid.style.position = 'relative';
+				grid.style.height = `${
+					Math.max(... colHeights)
+				}px`;
+			}
 
-arrangeGrid();
-window.addEventListener('resize', arrangeGrid);
-});
+			arrangeGrid();
+			window.addEventListener('resize', arrangeGrid);
+		});
 
-function onClickBtnLike(event) {
-event.preventDefault();
-const url = this.href;
-const spanCount = this.querySelector('span.js-likes');
-const icone = this.querySelector('i');
+		function onClickBtnLike(event) {
+			event.preventDefault();
+			const url = this.href;
+			const spanCount = this.querySelector('span.js-likes');
+			const icone = this.querySelector('i');
 
-axios.get(url).then(function (response) {
-spanCount.textContent = response.data.likes;
+			axios.get(url).then(function (response) {
+				spanCount.textContent = response.data.likes;
 
-if (icone.classList.contains('fas')) {
-icone.classList.replace('fas', 'far');
-} else {
-icone.classList.replace('far', 'fas');
-}
-}).catch(function (error) {
-if (error.response.status === 403) {
-window.alert('Vous ne pouvez pas liker une création si vous n\'êtes pas connecté !');
-} else {
-window.alert("Une erreur s'est produite");
-}
-});
-}
+				if (icone.classList.contains('fas')) {
+					icone.classList.replace('fas', 'far');
+				} else {
+					icone.classList.replace('far', 'fas');
+				}
+			}).catch(function (error) {
+				if (error.response.status === 403) {
+					window.alert('Vous ne pouvez pas liker une création si vous n\'êtes pas connecté !');
+				} else {
+					window.alert("Une erreur s'est produite");
+				}
+			});
+		}
 
-document.querySelectorAll('a.js-like').forEach(function (link) {
-link.addEventListener('click', onClickBtnLike);
-});
+		function onClickBtnComment(event) {
+			event.preventDefault();
+			if (!{{ app.user ? 'true' : 'false' }}) {
+				window.alert('Vous devez être connecté pour commenter une création !');
+			} else {
+				window.location.href = this.href;
+			}
+		}
 
-document.addEventListener('DOMContentLoaded', function () {
-const shareIcons = document.querySelectorAll('.share-icon');
-shareIcons.forEach(icon => {
-icon.addEventListener('click', function (event) {
-event.stopPropagation();
+		document.querySelectorAll('a.js-like').forEach(function (link) {
+			link.addEventListener('click', onClickBtnLike);
+		});
 
-const relativeUrl = this.getAttribute('data-share-url');
-const fullUrl = `${
-window.location.origin
-}${relativeUrl}`;
+		document.querySelectorAll('a.js-comment').forEach(function (link) {
+			link.addEventListener('click', onClickBtnComment);
+		});
 
-navigator.clipboard.writeText(fullUrl).then(() => {
-const message = this.nextElementSibling;
-message.classList.add('active');
-setTimeout(() => message.classList.remove('active'), 2000);
-}).catch(err => console.error('Erreur lors de la copie du lien :', err));
-});
-});
-});
+		document.addEventListener('DOMContentLoaded', function () {
+			const shareIcons = document.querySelectorAll('.share-icon');
+			shareIcons.forEach(icon => {
+				icon.addEventListener('click', function (event) {
+					event.stopPropagation();
+
+					const relativeUrl = this.getAttribute('data-share-url');
+					const fullUrl = `${
+						window.location.origin
+					}${relativeUrl}`;
+
+					navigator.clipboard.writeText(fullUrl).then(() => {
+						const message = this.nextElementSibling;
+						message.classList.add('active');
+						setTimeout(() => message.classList.remove('active'), 2000);
+					}).catch(err => console.error('Erreur lors de la copie du lien :', err));
+				});
+			});
+		});
 	</script>
 {% endblock %}
