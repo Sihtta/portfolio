@@ -93,7 +93,7 @@ class Creation
         return $this;
     }
 
-    #[ORM\PreUpdate] // Méthode appelée avant chaque mise à jour
+    #[ORM\PreUpdate]
     public function updateTimestamp(): void
     {
         $this->updatedAt = new \DateTimeImmutable();

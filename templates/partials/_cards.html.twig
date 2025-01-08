@@ -84,7 +84,7 @@
 								{% endif %}
 								<span class="js-likes">{{ creation.likes | length }}</span>
 							</a>
-							<a href="{{ path('creation.comments', {'id': creation.id}) }}" class="btn btn-link js-comment">
+							<a href="#" class="btn btn-link js-comment" data-bs-toggle="modal" data-bs-target="#creationModal-{{ creation.id }}">
 								<i class="fas fa-comments"></i>
 								<span class="js-comments">{{ creation.comments | length }}</span>
 							</a>
@@ -126,6 +126,31 @@
 									<li>{{ category.name }}</li>
 								{% endfor %}
 							</ul>
+
+							<h3>Commentaires :</h3>
+							<div>
+								{% if app.user %}
+								l'erreure est dans ce bout de code
+                                {{ form_start(form, {'action': path('comment_add', {'creationId': creation.id}), 'method': 'POST'}) }}
+                                    {{ form_widget(form, {'attr': {'class': 'form-control'}}) }}
+                                    <button class="btn btn-primary mt-3">Envoyer</button>
+                                {{ form_end(form) }}
+								//
+								{% else %}
+									<p class="text-muted">Connectez-vous pour commenter.</p>
+								{% endif %}
+							</div>
+							<div>
+								{% for comment in creation.comments %}
+									<div class="mb-3 p-3 border rounded">
+										<p><strong>{{ comment.user ? comment.user.getPseudo : 'Anonyme' }}</strong> :</p>
+										<p>{{ comment.contentComment }}</p>
+										<p class="text-muted">Posté le {{ comment.createdAt|date('d/m/Y H:i') }}</p>
+									</div>
+								{% else %}
+									<p>Aucun commentaire pour cette création.</p>
+								{% endfor %}
+							</div>
 						</div>
 					</div>
 				</div>
@@ -195,15 +220,6 @@
 					window.alert("Une erreur s'est produite");
 				}
 			});
-		}
-
-		function onClickBtnComment(event) {
-			event.preventDefault();
-			if (!{{ app.user ? 'true' : 'false' }}) {
-				window.alert('Vous devez être connecté pour commenter une création !');
-			} else {
-				window.location.href = this.href;
-			}
 		}
 
 		document.querySelectorAll('a.js-like').forEach(function (link) {

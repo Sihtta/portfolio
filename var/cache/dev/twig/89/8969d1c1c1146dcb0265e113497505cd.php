@@ -55,10 +55,10 @@ class __TwigTemplate_7aeb2f91bf33e9a3a50e231a6b14a584 extends Template
 ";
         // line 68
         yield from $this->unwrap()->yieldBlock('content_cards', $context, $blocks);
-        // line 136
+        // line 161
         yield "
 ";
-        // line 137
+        // line 162
         yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
@@ -229,10 +229,10 @@ class __TwigTemplate_7aeb2f91bf33e9a3a50e231a6b14a584 extends Template
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "likes", [], "any", false, false, false, 85)), "html", null, true);
             yield "</span>
 \t\t\t\t\t\t\t</a>
-\t\t\t\t\t\t\t<a href=\"";
+\t\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-link js-comment\" data-bs-toggle=\"modal\" data-bs-target=\"#creationModal-";
             // line 87
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("creation.comments", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "id", [], "any", false, false, false, 87)]), "html", null, true);
-            yield "\" class=\"btn btn-link js-comment\">
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "id", [], "any", false, false, false, 87), "html", null, true);
+            yield "\">
 \t\t\t\t\t\t\t\t<i class=\"fas fa-comments\"></i>
 \t\t\t\t\t\t\t\t<span class=\"js-comments\">";
             // line 89
@@ -314,6 +314,71 @@ class __TwigTemplate_7aeb2f91bf33e9a3a50e231a6b14a584 extends Template
             $context = array_intersect_key($context, $_parent) + $_parent;
             // line 128
             yield "\t\t\t\t\t\t\t</ul>
+
+\t\t\t\t\t\t\t<h3>Commentaires :</h3>
+\t\t\t\t\t\t\t<div>
+\t\t\t\t\t\t\t\t";
+            // line 132
+            if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 132, $this->source); })()), "user", [], "any", false, false, false, 132)) {
+                // line 133
+                yield "\t\t\t\t\t\t\t\tl'erreure est dans ce bout de code
+                                ";
+                // line 134
+                yield                 $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 134, $this->source); })()), 'form_start', ["action" => $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("comment_add", ["creationId" => CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "id", [], "any", false, false, false, 134)]), "method" => "POST"]);
+                yield "
+                                    ";
+                // line 135
+                yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 135, $this->source); })()), 'widget', ["attr" => ["class" => "form-control"]]);
+                yield "
+                                    <button class=\"btn btn-primary mt-3\">Envoyer</button>
+                                ";
+                // line 137
+                yield                 $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 137, $this->source); })()), 'form_end');
+                yield "
+\t\t\t\t\t\t\t\t//
+\t\t\t\t\t\t\t\t";
+            } else {
+                // line 140
+                yield "\t\t\t\t\t\t\t\t\t<p class=\"text-muted\">Connectez-vous pour commenter.</p>
+\t\t\t\t\t\t\t\t";
+            }
+            // line 142
+            yield "\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t<div>
+\t\t\t\t\t\t\t\t";
+            // line 144
+            $context['_parent'] = $context;
+            $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, $context["creation"], "comments", [], "any", false, false, false, 144));
+            $context['_iterated'] = false;
+            foreach ($context['_seq'] as $context["_key"] => $context["comment"]) {
+                // line 145
+                yield "\t\t\t\t\t\t\t\t\t<div class=\"mb-3 p-3 border rounded\">
+\t\t\t\t\t\t\t\t\t\t<p><strong>";
+                // line 146
+                ((CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "user", [], "any", false, false, false, 146)) ? (yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "user", [], "any", false, false, false, 146), "getPseudo", [], "any", false, false, false, 146), "html", null, true)) : (yield "Anonyme"));
+                yield "</strong> :</p>
+\t\t\t\t\t\t\t\t\t\t<p>";
+                // line 147
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "contentComment", [], "any", false, false, false, 147), "html", null, true);
+                yield "</p>
+\t\t\t\t\t\t\t\t\t\t<p class=\"text-muted\">Posté le ";
+                // line 148
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "createdAt", [], "any", false, false, false, 148), "d/m/Y H:i"), "html", null, true);
+                yield "</p>
+\t\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t";
+                $context['_iterated'] = true;
+            }
+            if (!$context['_iterated']) {
+                // line 151
+                yield "\t\t\t\t\t\t\t\t\t<p>Aucun commentaire pour cette création.</p>
+\t\t\t\t\t\t\t\t";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_key'], $context['comment'], $context['_parent'], $context['_iterated']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 153
+            yield "\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t</div>
 \t\t\t\t\t</div>
 \t\t\t\t</div>
@@ -331,7 +396,7 @@ class __TwigTemplate_7aeb2f91bf33e9a3a50e231a6b14a584 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['creation'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 134
+        // line 159
         yield "\t</div>
 ";
         
@@ -370,7 +435,7 @@ class __TwigTemplate_7aeb2f91bf33e9a3a50e231a6b14a584 extends Template
         yield from [];
     }
 
-    // line 137
+    // line 162
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -383,7 +448,7 @@ class __TwigTemplate_7aeb2f91bf33e9a3a50e231a6b14a584 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 138
+        // line 163
         yield "\t<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"></script>
 \t<script src=\"https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js\"></script>
 
@@ -446,18 +511,6 @@ class __TwigTemplate_7aeb2f91bf33e9a3a50e231a6b14a584 extends Template
 \t\t\t});
 \t\t}
 
-\t\tfunction onClickBtnComment(event) {
-\t\t\tevent.preventDefault();
-\t\t\tif (!";
-        // line 202
-        yield ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 202, $this->source); })()), "user", [], "any", false, false, false, 202)) ? ("true") : ("false"));
-        yield ") {
-\t\t\t\twindow.alert('Vous devez être connecté pour commenter une création !');
-\t\t\t} else {
-\t\t\t\twindow.location.href = this.href;
-\t\t\t}
-\t\t}
-
 \t\tdocument.querySelectorAll('a.js-like').forEach(function (link) {
 \t\t\tlink.addEventListener('click', onClickBtnLike);
 \t\t});
@@ -509,7 +562,7 @@ class __TwigTemplate_7aeb2f91bf33e9a3a50e231a6b14a584 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  453 => 202,  387 => 138,  374 => 137,  363 => 110,  360 => 109,  347 => 108,  335 => 134,  316 => 128,  307 => 126,  303 => 125,  297 => 121,  288 => 119,  284 => 118,  277 => 114,  272 => 111,  270 => 108,  263 => 104,  256 => 100,  244 => 91,  239 => 89,  234 => 87,  228 => 85,  224 => 83,  220 => 81,  218 => 80,  214 => 79,  207 => 75,  198 => 73,  194 => 71,  177 => 70,  174 => 69,  161 => 68,  86 => 2,  73 => 1,  62 => 137,  59 => 136,  57 => 68,  54 => 67,  52 => 1,);
+        return array (  452 => 163,  439 => 162,  428 => 110,  425 => 109,  412 => 108,  400 => 159,  381 => 153,  374 => 151,  366 => 148,  362 => 147,  358 => 146,  355 => 145,  350 => 144,  346 => 142,  342 => 140,  336 => 137,  331 => 135,  327 => 134,  324 => 133,  322 => 132,  316 => 128,  307 => 126,  303 => 125,  297 => 121,  288 => 119,  284 => 118,  277 => 114,  272 => 111,  270 => 108,  263 => 104,  256 => 100,  244 => 91,  239 => 89,  234 => 87,  228 => 85,  224 => 83,  220 => 81,  218 => 80,  214 => 79,  207 => 75,  198 => 73,  194 => 71,  177 => 70,  174 => 69,  161 => 68,  86 => 2,  73 => 1,  62 => 162,  59 => 161,  57 => 68,  54 => 67,  52 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -600,7 +653,7 @@ class __TwigTemplate_7aeb2f91bf33e9a3a50e231a6b14a584 extends Template
 \t\t\t\t\t\t\t\t{% endif %}
 \t\t\t\t\t\t\t\t<span class=\"js-likes\">{{ creation.likes | length }}</span>
 \t\t\t\t\t\t\t</a>
-\t\t\t\t\t\t\t<a href=\"{{ path('creation.comments', {'id': creation.id}) }}\" class=\"btn btn-link js-comment\">
+\t\t\t\t\t\t\t<a href=\"#\" class=\"btn btn-link js-comment\" data-bs-toggle=\"modal\" data-bs-target=\"#creationModal-{{ creation.id }}\">
 \t\t\t\t\t\t\t\t<i class=\"fas fa-comments\"></i>
 \t\t\t\t\t\t\t\t<span class=\"js-comments\">{{ creation.comments | length }}</span>
 \t\t\t\t\t\t\t</a>
@@ -642,6 +695,31 @@ class __TwigTemplate_7aeb2f91bf33e9a3a50e231a6b14a584 extends Template
 \t\t\t\t\t\t\t\t\t<li>{{ category.name }}</li>
 \t\t\t\t\t\t\t\t{% endfor %}
 \t\t\t\t\t\t\t</ul>
+
+\t\t\t\t\t\t\t<h3>Commentaires :</h3>
+\t\t\t\t\t\t\t<div>
+\t\t\t\t\t\t\t\t{% if app.user %}
+\t\t\t\t\t\t\t\tl'erreure est dans ce bout de code
+                                {{ form_start(form, {'action': path('comment_add', {'creationId': creation.id}), 'method': 'POST'}) }}
+                                    {{ form_widget(form, {'attr': {'class': 'form-control'}}) }}
+                                    <button class=\"btn btn-primary mt-3\">Envoyer</button>
+                                {{ form_end(form) }}
+\t\t\t\t\t\t\t\t//
+\t\t\t\t\t\t\t\t{% else %}
+\t\t\t\t\t\t\t\t\t<p class=\"text-muted\">Connectez-vous pour commenter.</p>
+\t\t\t\t\t\t\t\t{% endif %}
+\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t<div>
+\t\t\t\t\t\t\t\t{% for comment in creation.comments %}
+\t\t\t\t\t\t\t\t\t<div class=\"mb-3 p-3 border rounded\">
+\t\t\t\t\t\t\t\t\t\t<p><strong>{{ comment.user ? comment.user.getPseudo : 'Anonyme' }}</strong> :</p>
+\t\t\t\t\t\t\t\t\t\t<p>{{ comment.contentComment }}</p>
+\t\t\t\t\t\t\t\t\t\t<p class=\"text-muted\">Posté le {{ comment.createdAt|date('d/m/Y H:i') }}</p>
+\t\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t{% else %}
+\t\t\t\t\t\t\t\t\t<p>Aucun commentaire pour cette création.</p>
+\t\t\t\t\t\t\t\t{% endfor %}
+\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t</div>
 \t\t\t\t\t</div>
 \t\t\t\t</div>
@@ -711,15 +789,6 @@ class __TwigTemplate_7aeb2f91bf33e9a3a50e231a6b14a584 extends Template
 \t\t\t\t\twindow.alert(\"Une erreur s'est produite\");
 \t\t\t\t}
 \t\t\t});
-\t\t}
-
-\t\tfunction onClickBtnComment(event) {
-\t\t\tevent.preventDefault();
-\t\t\tif (!{{ app.user ? 'true' : 'false' }}) {
-\t\t\t\twindow.alert('Vous devez être connecté pour commenter une création !');
-\t\t\t} else {
-\t\t\t\twindow.location.href = this.href;
-\t\t\t}
 \t\t}
 
 \t\tdocument.querySelectorAll('a.js-like').forEach(function (link) {

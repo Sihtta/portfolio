@@ -19,30 +19,29 @@ class CreationController extends AbstractController
 {
     #[Route("/creations", name: "creation.index", methods: ["GET"])]
     public function index(CreationRepository $creationRepository, Request $request): Response
-    {
-        $modalId = $request->query->get('modal_id');
-        $user = $this->getUser();
+{
+    $modalId = $request->query->get('modal_id');
+    $user = $this->getUser();
 
-        if ($user && $this->isGranted('ROLE_ADMIN')) {
-            // L'administrateur voit toutes les créations
-            $creations = $creationRepository->findAll();
-        } else {
-            // Les utilisateurs normaux ne voient que les créations publiques
-            $creations = $creationRepository->findBy(['isPublic' => true]);
-        }
-
-        if ($modalId) {
-            $creation = $creationRepository->find($modalId);
-            if (!$creation || (!$creation->getIsPublic() && !$this->isGranted('ROLE_ADMIN'))) {
-                return $this->redirectToRoute('access_denied');
-            }
-        }
-
-        return $this->render('pages/creation.html.twig', [
-            'creations' => $creations,
-            'modal_id' => $modalId,
-        ]);
+    if ($user && $this->isGranted('ROLE_ADMIN')) {
+        $creations = $creationRepository->findAll();
+    } else {
+        $creations = $creationRepository->findBy(['isPublic' => true]);
     }
+
+    // Créer un formulaire pour chaque création
+    $commentForms = [];
+    foreach ($creations as $creation) {
+        $comment = new Comment();
+        $commentForms[$creation->getId()] = $this->createForm(CommentType::class, $comment)->createView();
+    }
+
+    return $this->render('partials/_cards.html.twig', [
+        'creations' => $creations,
+        'modal_id' => $modalId,
+    ]);
+}
+
 
 
     #[Route("/access-denied", name: "access_denied")]
@@ -68,7 +67,7 @@ class CreationController extends AbstractController
         ]);
     }
 
-    #[Route("/creations/{id}/comments", name: "creation.comments", methods: ["GET", "POST"])]
+    #[Route("/creations/{id}", name: "creation.comments", methods: ["GET", "POST"])]
     public function comments(
         Request $request,
         Creation $creation,
@@ -89,7 +88,7 @@ class CreationController extends AbstractController
             return $this->redirectToRoute('creation.comments', ['id' => $creation->getId()]);
         }
 
-        return $this->render('comments/index.html.twig', [
+        return $this->render('partials/_cards.html.twig', [
             'creation' => $creation,
             'comments' => $creation->getComments(),
             'form' => $form->createView(),

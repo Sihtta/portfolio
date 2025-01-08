@@ -52,16 +52,16 @@ return [
                         .'|s/([^/]++)(*:241)'
                     .')'
                     .'|reation(?'
-                        .'|s/([^/]++)/(?'
-                            .'|comments(*:282)'
-                            .'|like(*:294)'
+                        .'|s/([^/]++)(?'
+                            .'|(*:273)'
+                            .'|/like(*:286)'
                         .')'
-                        .'|/([^/]++)(*:312)'
+                        .'|/([^/]++)(*:304)'
                     .')'
                 .')'
                 .'|/utilisateur/edition(?'
-                    .'|/([^/]++)(*:354)'
-                    .'|\\-mot\\-de\\-passe/([^/]++)(*:387)'
+                    .'|/([^/]++)(*:346)'
+                    .'|\\-mot\\-de\\-passe/([^/]++)(*:379)'
                 .')'
             .')/?$}sDu',
     ],
@@ -76,11 +76,11 @@ return [
         199 => [[['_route' => 'comment_add', '_controller' => 'App\\Controller\\CommentController::addComment'], ['creationId'], ['POST' => 0], null, false, true, null]],
         222 => [[['_route' => 'comment_delete', '_controller' => 'App\\Controller\\CommentController::deleteComment'], ['id'], ['POST' => 0], null, false, true, null]],
         241 => [[['_route' => 'comments_list', '_controller' => 'App\\Controller\\CommentController::listComments'], ['creationId'], ['GET' => 0], null, false, true, null]],
-        282 => [[['_route' => 'creation.comments', '_controller' => 'App\\Controller\\CreationController::comments'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        294 => [[['_route' => 'creation.like', '_controller' => 'App\\Controller\\CreationController::like'], ['id'], ['GET' => 0], null, false, false, null]],
-        312 => [[['_route' => 'creation_show', '_controller' => 'App\\Controller\\CreationDetailController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        354 => [[['_route' => 'user.edit', '_controller' => 'App\\Controller\\UserController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
-        387 => [
+        273 => [[['_route' => 'creation.comments', '_controller' => 'App\\Controller\\CreationController::comments'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        286 => [[['_route' => 'creation.like', '_controller' => 'App\\Controller\\CreationController::like'], ['id'], ['GET' => 0], null, false, false, null]],
+        304 => [[['_route' => 'creation_show', '_controller' => 'App\\Controller\\CreationDetailController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        346 => [[['_route' => 'user.edit', '_controller' => 'App\\Controller\\UserController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        379 => [
             [['_route' => 'user.edit.password', '_controller' => 'App\\Controller\\UserController::editPassword'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

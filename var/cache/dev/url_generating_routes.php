@@ -24,7 +24,7 @@ return [
     'contact.index' => [[], ['_controller' => 'App\\Controller\\ContactController::index'], [], [['text', '/contact']], [], [], []],
     'creation.index' => [[], ['_controller' => 'App\\Controller\\CreationController::index'], [], [['text', '/creations']], [], [], []],
     'creation_.index.public' => [[], ['_controller' => 'App\\Controller\\CreationController::indexPublic'], [], [['text', '/creations/publique']], [], [], []],
-    'creation.comments' => [['id'], ['_controller' => 'App\\Controller\\CreationController::comments'], [], [['text', '/comments'], ['variable', '/', '[^/]++', 'id', true], ['text', '/creations']], [], [], []],
+    'creation.comments' => [['id'], ['_controller' => 'App\\Controller\\CreationController::comments'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/creations']], [], [], []],
     'creation.like' => [['id'], ['_controller' => 'App\\Controller\\CreationController::like'], [], [['text', '/like'], ['variable', '/', '[^/]++', 'id', true], ['text', '/creations']], [], [], []],
     'creation_show' => [['id'], ['_controller' => 'App\\Controller\\CreationDetailController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/creation']], [], [], []],
     'home.index' => [[], ['_controller' => 'App\\Controller\\HomeController::index'], [], [['text', '/']], [], [], []],
