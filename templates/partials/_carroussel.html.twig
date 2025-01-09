@@ -6,38 +6,49 @@
     }
 
     .carousel-item {
-        height: 100%; 
+        height: 100%;
     }
 
     .carousel-image-container img {
         object-fit: cover;
         width: 100%;
-        height: 100%; 
+        height: 100%;
+    }
+
+    .carousel-thumbnails img {
+        width: 100px;
+        height: auto;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .carousel-thumbnails img:hover {
+        transform: scale(1.1);
     }
 </style>
 
-
-{% if creation.image is not empty %}
-<div id="carouselCreation-{{ creation.id }}" class="carousel slide" data-bs-ride="carousel">
-	<div class="carousel-inner">
-		{% for image in creation.image %}
-			<div class="carousel-item {% if loop.first %}active{% endif %}">
-				<div class="carousel-image-container">
-					<img src="/images/{{ image }}" class="d-block w-100" alt="Image de la création">
-				</div>
-			</div>
-		{% endfor %}
-	</div>
-
-	<button class="carousel-control-prev" type="button" data-bs-target="#carouselCreation-{{ creation.id }}" data-bs-slide="prev">
-		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		<span class="visually-hidden">Previous</span>
-	</button>
-	<button class="carousel-control-next" type="button" data-bs-target="#carouselCreation-{{ creation.id }}" data-bs-slide="next">
-		<span class="carousel-control-next-icon" aria-hidden="true"></span>
-		<span class="visually-hidden">Next</span>
-	</button>
+<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        {% for image in creation.image %}
+            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                <div class="carousel-image-container">
+                    <img src="/images/{{ image }}" class="d-block w-100" alt="...">
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
 </div>
-{% else %}
-	<p>No image available</p>
-{% endif %}
+
+<div class="carousel-thumbnails d-flex mt-3">
+    {% for image in creation.image %}
+        <img src="/images/{{ image }}" class="img-thumbnail mx-2" style="width: 100px; cursor: pointer;" data-bs-target="#carouselExample" data-bs-slide-to="{{ loop.index0 }}" alt="...">
+    {% endfor %}
+</div>
