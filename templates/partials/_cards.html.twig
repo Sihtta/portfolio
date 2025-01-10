@@ -1,98 +1,69 @@
 {% block style_cards %}
-    <style>
-        .hover-card {
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
+	<style>
+		.hover-card {
+			transition: background-color 0.3s ease, transform 0.2s ease;
+		}
 
-        .hover-card:hover {
-            background-color: #f1f1f1;
-            transform: scale(1.02);
-            cursor: pointer;
-        }
+		.hover-card:hover {
+			background-color: #f8f9fa;
+			transform: scale(1.02);
+			cursor: pointer;
+		}
 
-        .share-icon {
-            cursor: pointer;
-            color: #007bff;
-            font-size: 1.5rem;
-            margin-left: 10px;
-        }
+		.share-icon {
+			cursor: pointer;
+			color: #007bff;
+			font-size: 1.5rem;
+			margin-left: 10px;
+		}
 
-        .copied-message {
-            color: green;
-            font-size: 0.9rem;
-            display: none;
-        }
+		.copied-message {
+			color: green;
+			font-size: 0.9rem;
+			display: none;
+		}
 
-        .copied-message.active {
-            display: inline-block;
-        }
+		.copied-message.active {
+			display: inline-block;
+		}
 
-        .modal-dialog {
-            max-width: 80%;
-            width: auto;
-            margin: 30px auto;
-        }
+		.modal-dialog {
+			max-width: 70%;
+			width: auto;
+			max-height: 105vh;
+		}
 
-        .modal-content {
-            border-radius: 20px;
-            overflow: hidden;
-            background-color: #ffffff;
-            color: #333;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
+		.modal-body {
+			max-height: 85vh;
+			overflow-y: auto;
+		}
 
-        .modal-header {
-            border-bottom: 1px solid #ddd;
-            padding: 1.5rem;
-        }
+		.comment {
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			padding-left: 20px;
+			height: 3em;
+			width: 100%;
+			border-radius: 50px;
+			background-color: white;
+			color: black;
+			font-size: 1.2em;
+			text-align: left;
+			cursor: pointer;
+			box-sizing: border-box;
+		}
 
-        .modal-header .btn-close {
-            filter: invert(0.5);
-        }
+		.row {
+			position: relative;
+		}
 
-        .modal-body {
-            padding: 2rem;
-            max-height: 75vh;
-            overflow-y: auto;
-        }
-
-        .modal-footer {
-            border-top: 1px solid #ddd;
-            padding: 1rem 1.5rem;
-            text-align: right;
-        }
-
-        .comment {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 15px 20px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-            color: #333;
-            font-size: 1em;
-            text-align: left;
-            cursor: pointer;
-            box-sizing: border-box;
-        }
-
-        .comment strong {
-            margin-right: 10px;
-            color: #007bff;
-        }
-
-        .row {
-            position: relative;
-        }
-
-        .col {
-            position: absolute;
-            transition: all 0.3s ease;
-        }
-    </style>
+		.col {
+			position: absolute;
+			transition: all 0.3s ease;
+		}
+	</style>
 {% endblock %}
-
 
 {% block content_cards %}
 	<div class="row row-cols-1 row-cols-md-3 g-4 mx-4">
@@ -139,7 +110,6 @@
 							{% endblock %}
 
 							<p>
-								<br>
 								<strong>Description :</strong>
 								{{ creation.description }}</p>
 
@@ -160,12 +130,14 @@
 							<h3>Commentaires :</h3>
 							<div>
 								{% if app.user %}
-								l'erreure est dans ce bout de code
-                                {{ form_start(form, {'action': path('comment_add', {'creationId': creation.id}), 'method': 'POST'}) }}
-                                    {{ form_widget(form, {'attr': {'class': 'form-control'}}) }}
-                                    <button class="btn btn-primary mt-3">Envoyer</button>
-                                {{ form_end(form) }}
-								//
+									{% if form is defined %}
+										{{ form_start(form) }}
+										{{ form_widget(form, {'attr': {'class': 'form-control'}}) }}
+										<button class="btn btn-primary mt-3">Envoyer</button>
+										{{ form_end(form) }}
+									{% else %}
+										<p class="text-warning">Le formulaire de commentaire n'est pas disponible.</p>
+									{% endif %}
 								{% else %}
 									<p class="text-muted">Connectez-vous pour commenter.</p>
 								{% endif %}
@@ -173,9 +145,18 @@
 							<div>
 								{% for comment in creation.comments %}
 									<div class="mb-3 p-3 border rounded">
-										<p><strong>{{ comment.user ? comment.user.getPseudo : 'Anonyme' }}</strong> :</p>
+										<p>
+											<strong>{{ comment.user ? comment.user.getPseudo : 'Anonyme' }}</strong>
+											:</p>
 										<p>{{ comment.contentComment }}</p>
-										<p class="text-muted">Posté le {{ comment.createdAt|date('d/m/Y H:i') }}</p>
+										<p class="text-muted">Posté le
+											{{ comment.createdAt|date('d/m/Y H:i') }}</p>
+										{% if comment.user == app.user %}
+											<form action="{{ path('comment_delete', { id: comment.id }) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce commentaire ?');" class="mt-2">
+												<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
+												<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+											</form>
+										{% endif %}
 									</div>
 								{% else %}
 									<p>Aucun commentaire pour cette création.</p>
@@ -195,89 +176,89 @@
 
 	<script>
 		document.addEventListener('DOMContentLoaded', function () {
-			const grid = document.querySelector('.row');
-			const cols = grid.querySelectorAll('.col');
+const grid = document.querySelector('.row');
+const cols = grid.querySelectorAll('.col');
 
-			function arrangeGrid() {
-				const gridWidth = grid.offsetWidth;
-				const colWidth = cols[0].offsetWidth;
-				const colsCount = Math.floor(gridWidth / colWidth);
+function arrangeGrid() {
+const gridWidth = grid.offsetWidth;
+const colWidth = cols[0].offsetWidth;
+const colsCount = Math.floor(gridWidth / colWidth);
 
-				const colHeights = new Array(colsCount).fill(0);
+const colHeights = new Array(colsCount).fill(0);
 
-				cols.forEach(col => {
-					const minColHeight = Math.min(... colHeights);
-					const colIndex = colHeights.indexOf(minColHeight);
+cols.forEach(col => {
+const minColHeight = Math.min(... colHeights);
+const colIndex = colHeights.indexOf(minColHeight);
 
-					const x = colIndex * colWidth;
-					const y = minColHeight;
+const x = colIndex * colWidth;
+const y = minColHeight;
 
-					col.style.position = 'absolute';
-					col.style.left = `${x}px`;
-					col.style.top = `${y}px`;
+col.style.position = 'absolute';
+col.style.left = `${x}px`;
+col.style.top = `${y}px`;
 
-					colHeights[colIndex] += col.offsetHeight + 16; // Inclure la marge
-				});
+colHeights[colIndex] += col.offsetHeight + 16; // Inclure la marge
+});
 
-				grid.style.position = 'relative';
-				grid.style.height = `${
-					Math.max(... colHeights)
-				}px`;
-			}
+grid.style.position = 'relative';
+grid.style.height = `${
+Math.max(... colHeights)
+}px`;
+}
 
-			arrangeGrid();
-			window.addEventListener('resize', arrangeGrid);
-		});
+arrangeGrid();
+window.addEventListener('resize', arrangeGrid);
+});
 
-		function onClickBtnLike(event) {
-			event.preventDefault();
-			const url = this.href;
-			const spanCount = this.querySelector('span.js-likes');
-			const icone = this.querySelector('i');
+function onClickBtnLike(event) {
+event.preventDefault();
+const url = this.href;
+const spanCount = this.querySelector('span.js-likes');
+const icone = this.querySelector('i');
 
-			axios.get(url).then(function (response) {
-				spanCount.textContent = response.data.likes;
+axios.get(url).then(function (response) {
+spanCount.textContent = response.data.likes;
 
-				if (icone.classList.contains('fas')) {
-					icone.classList.replace('fas', 'far');
-				} else {
-					icone.classList.replace('far', 'fas');
-				}
-			}).catch(function (error) {
-				if (error.response.status === 403) {
-					window.alert('Vous ne pouvez pas liker une création si vous n\'êtes pas connecté !');
-				} else {
-					window.alert("Une erreur s'est produite");
-				}
-			});
-		}
+if (icone.classList.contains('fas')) {
+icone.classList.replace('fas', 'far');
+} else {
+icone.classList.replace('far', 'fas');
+}
+}).catch(function (error) {
+if (error.response.status === 403) {
+window.alert('Vous ne pouvez pas liker une création si vous n\'êtes pas connecté !');
+} else {
+window.alert("Une erreur s'est produite");
+}
+});
+}
 
-		document.querySelectorAll('a.js-like').forEach(function (link) {
-			link.addEventListener('click', onClickBtnLike);
-		});
+document.querySelectorAll('a.js-like').forEach(function (link) {
+link.addEventListener('click', onClickBtnLike);
+});
 
-		document.querySelectorAll('a.js-comment').forEach(function (link) {
-			link.addEventListener('click', onClickBtnComment);
-		});
+document.querySelectorAll('a.js-comment').forEach(function (link) {
+link.addEventListener('click', onClickBtnComment);
+});
 
-		document.addEventListener('DOMContentLoaded', function () {
-			const shareIcons = document.querySelectorAll('.share-icon');
-			shareIcons.forEach(icon => {
-				icon.addEventListener('click', function (event) {
-					event.stopPropagation();
+document.addEventListener('DOMContentLoaded', function () {
+const shareIcons = document.querySelectorAll('.share-icon');
+shareIcons.forEach(icon => {
+icon.addEventListener('click', function (event) {
+event.stopPropagation();
 
-					const relativeUrl = this.getAttribute('data-share-url');
-					const fullUrl = `${
-						window.location.origin
-					}${relativeUrl}`;
+const relativeUrl = this.getAttribute('data-share-url');
+const fullUrl = `${
+window.location.origin
+}${relativeUrl}`;
 
-					navigator.clipboard.writeText(fullUrl).then(() => {
-						const message = this.nextElementSibling;
-						message.classList.add('active');
-						setTimeout(() => message.classList.remove('active'), 2000);
-					}).catch(err => console.error('Erreur lors de la copie du lien :', err));
-				});
-			});
-		});
+navigator.clipboard.writeText(fullUrl).then(() => {
+const message = this.nextElementSibling;
+message.classList.add('active');
+setTimeout(() => message.classList.remove('active'), 2000);
+}).catch(err => console.error('Erreur lors de la copie du lien :', err));
+});
+});
+});
 	</script>
 {% endblock %}
