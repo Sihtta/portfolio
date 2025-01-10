@@ -4,7 +4,144 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container mt-4">
+	<style>
+		* {
+			font-family: -apple-system, BlinkMacSystemFont, "San Francisco", Helvetica, Arial, sans-serif;
+			font-weight: 300;
+			margin: 0;
+		}
+
+		body {
+			background: #f3f2f2;
+		}
+
+		.container {
+			width: 500px;
+			margin: 50px auto;
+			padding: 40px 30px;
+			background: #fefefe;
+			border-radius: 10px;
+			box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.3);
+		}
+
+		h1 {
+			margin-bottom: 20px;
+			font-size: 24px;
+			font-weight: 600;
+			color: #000;
+			opacity: 0.85;
+		}
+
+		.floating-label {
+			position: relative;
+			margin-bottom: 30px;
+			width: 100%;
+		}
+
+		.floating-label input,
+		.floating-label textarea {
+			font-size: 16px;
+			padding: 20px 0;
+			margin-left: 44px;
+			height: 56px;
+			border: none;
+			border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+			background: #fff;
+			width: calc(100% - 44px);
+			box-sizing: border-box;
+			color: #000;
+			font-weight: 400;
+			transition: all 0.3s linear;
+			-webkit-appearance: none;
+		}
+
+		.floating-label textarea {
+			min-height: 150px; /* Ajoute une hauteur minimum pour textarea */
+			padding-top: 18px; /* Réduit l'espace entre le texte et le label */
+		}
+
+		.floating-label input:focus,
+		.floating-label textarea:focus {
+			border-bottom: solid 1px #b69de6;
+			outline: 0;
+			box-shadow: 0 2px 6px -8px rgba(182, 157, 230, 0.45);
+		}
+
+		.floating-label input:not(:placeholder-shown) + label,
+		.floating-label textarea:not(:placeholder-shown) + label {
+			transform: translateY(-20px); /* Déplace le label vers le haut */
+			opacity: 1;
+			color: #000;
+		}
+
+		.floating-label label {
+			position: absolute;
+			top: 10px; /* Place le label juste au-dessus de l'input */
+			left: 0;
+			opacity: 0;
+			transition: all 0.3s ease;
+			padding-left: 44px;
+			font-size: 16px; /* Taille de police ajustée */
+			color: #888;
+			cursor: text;
+			z-index: 1; /* Assure que le label reste au-dessus de l'input */
+		}
+
+		.floating-label textarea:focus + label,
+		.floating-label textarea:not(:placeholder-shown) + label {
+			transform: translateY(-20px); /* Déplace le label vers le haut au focus */
+			opacity: 1;
+		}
+
+		.floating-label input:valid:not(:placeholder-shown) + label + .icon svg,
+		.floating-label textarea:valid:not(:placeholder-shown) + label + .icon svg {
+			opacity: 1;
+		}
+
+		.floating-label .icon {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 56px;
+			width: 44px;
+			display: flex;
+		}
+
+		.floating-label .icon svg {
+			height: 30px;
+			width: 30px;
+			margin: auto;
+			opacity: 0.15;
+			transition: all 0.3s ease;
+		}
+
+		.floating-label input:valid:not(:placeholder-shown) + label + .icon svg,
+		.floating-label textarea:valid:not(:placeholder-shown) + label + .icon svg {
+			opacity: 1;
+		}
+
+		button {
+			margin-top: 20px;
+			width: 100%;
+			padding: 15px;
+			border: none;
+			background-color: #D3D3D3;
+			color: #fff;
+			font-size: 14px;
+			font-weight: 500;
+			border-radius: 8px;
+			cursor: pointer;
+			transition: all 0.3s ease;
+		}
+
+		button:hover {
+			transform: translateY(-3px);
+			box-shadow: 0 2px 6px -1px rgba(182, 157, 230, 0.65);
+			background-color: #1A1A1A;
+		}
+	</style>
+
+	<div class="container">
 		<h1>Formulaire de contact</h1>
 
 		{% for message in app.flashes('success') %}
@@ -13,6 +150,57 @@
 			</div>
 		{% endfor %}
 
-		{{ form(form) }}
+		{{ form_start(form, { 'attr': { 'id': 'contactForm' } }) }}
+
+		<div class="floating-label">
+			{{ form_widget(form.fullName, { 'attr': { 'placeholder': 'Nom / Prénom' } }) }}
+			<label for="contact_fullName">Nom / Prénom</label>
+			<div class="icon">
+				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+					<path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.9 0-7 3.1-7 7h14c0-3.9-3.1-7-7-7z"/>
+				</svg>
+			</div>
+			{{ form_errors(form.fullName) }}
 		</div>
-	{% endblock %}
+
+		<div class="floating-label">
+			{{ form_widget(form.email, { 'attr': { 'placeholder': 'Adresse email' } }) }}
+			<label for="contact_email">Adresse email</label>
+			<div class="icon">
+				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 100 100">
+					<g transform="translate(0 -952.36)">
+						<path d="m17.5 977c-1.3 0-2.4 1.1-2.4 2.4v45.9c0 1.3 1.1 2.4 2.4 2.4h64.9c1.3 0 2.4-1.1 2.4-2.4v-45.9c0-1.3-1.1-2.4-2.4-2.4h-64.9zm2.4 4.8h60.2v1.2l-30.1 22-30.1-22v-1.2zm0 7l28.7 21c0.8 0.6 2 0.6 2.8 0l28.7-21v34.1h-60.2v-34.1z"/>
+					</g>
+				</svg>
+			</div>
+			{{ form_errors(form.email) }}
+		</div>
+
+		<div class="floating-label">
+			{{ form_widget(form.subject, { 'attr': { 'placeholder': 'Sujet' } }) }}
+			<label for="contact_subject">Sujet</label>
+			<div class="icon">
+				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+					<path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.9 0-7 3.1-7 7h14c0-3.9-3.1-7-7-7z"/>
+				</svg>
+			</div>
+			{{ form_errors(form.subject) }}
+		</div>
+
+		<div class="floating-label">
+			{{ form_widget(form.message, { 'attr': { 'placeholder': 'Message' } }) }}
+			<label for="contact_message">Message</label>
+			<div class="icon">
+				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+					<path d="M19,21H5V9h14V21z M6,20h12V10H6V20z"/>
+					<path d="M16.5,10h-1V7c0-1.9-1.6-3.5-3.5-3.5S8.5,5.1,8.5,7v3h-1V7c0-2.5,2-4.5,4.5-4.5s4.5,2,4.5,4.5V10z"/>
+				</svg>
+			</div>
+			{{ form_errors(form.message) }}
+		</div>
+
+		{{ form_widget(form._token) }}
+
+		{{ form_end(form) }}
+	</div>
+{% endblock %}
