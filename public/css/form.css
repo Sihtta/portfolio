@@ -1,0 +1,142 @@
+* {
+    font-family: -apple-system, BlinkMacSystemFont, "San Francisco", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    margin: 0;
+}
+
+body {
+    background: #f3f2f2;
+}
+
+.container:not(.jumbotron .container) { 
+    width: 100%;
+    max-width: 600px !important;
+    margin: 50px auto;
+    padding: 40px 30px;
+    background: #fefefe;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+h1:not(.jumbotron h1) { 
+    margin-bottom: -20px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #000;
+    opacity: 0.85;
+}
+
+.floating-label {
+    position: relative;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.floating-label input,
+.floating-label textarea {
+    font-size: 16px;
+    padding: 20px 0;
+    margin-left: 44px;
+    height: 56px;
+    border: none;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    width: calc(100% - 44px);
+    box-sizing: border-box;
+    color: #000;
+    font-weight: 400;
+    transition: all 0.3s linear;
+    -webkit-appearance: none;
+}
+
+.floating-label textarea {
+    height: 150px;
+}
+
+.floating-label input:focus,
+.floating-label textarea:focus {
+    border-bottom: solid 1px #000;
+    outline: 0;
+    box-shadow: 0 2px 6px -8px rgba(0, 0, 0, 0.1);
+}
+
+.floating-label input:not(:placeholder-shown),
+.floating-label textarea:not(:placeholder-shown) {
+    padding: 28px 0 12px;
+}
+
+.floating-label label {
+    position: absolute;
+    top: 10px; 
+    left: 0;
+    opacity: 0;
+    transition: all 0.3s ease;
+    padding-left: 44px;
+    font-size: 16px; 
+    color: #888;
+    cursor: text;
+    z-index: 1; 
+}
+
+.floating-label input:not(:placeholder-shown) + label,
+		.floating-label textarea:not(:placeholder-shown) + label {
+			transform: translateY(-20px);
+			opacity: 1;
+			color: #000;
+		}
+       
+.floating-label .icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 56px;
+    width: 44px;
+    display: flex;
+}
+
+.floating-label .icon svg {
+    height: 30px;
+    width: 30px;
+    margin: auto;
+    opacity: 0.15;
+    transition: all 0.3s ease;
+}
+
+.floating-label input:valid:not(:placeholder-shown) + label + .icon svg,
+.floating-label textarea:valid:not(:placeholder-shown) + label + .icon svg {
+    opacity: 1;
+}
+
+.floating-label input:valid:not(:placeholder-shown) + label + .icon svg path,
+.floating-label textarea:valid:not(:placeholder-shown) + label + .icon svg path {
+    fill: #000;
+}
+
+.floating-label input:not(:placeholder-shown) + label,
+.floating-label textarea:not(:placeholder-shown) + label {
+    color: #000;
+    transform: translateY(-10px);
+    opacity: 1;
+}
+
+button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    background-color: #D3D3D3;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 2px 6px -1px rgba(182, 157, 230, 0.65);
+    background-color: #1A1A1A;
+}

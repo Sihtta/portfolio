@@ -5,27 +5,59 @@
 
 {% block body %}
 	<div class="container">
-		<h1 class="mt-4">Formulaire de modification du Profil</h1>
+		<h1 class="mt-4">Modifier mon profil</h1>
 
 		{% for message in app.flashes('success') %}
 			<div class="alert alert-success mt-4">
 				{{ message }}
 			</div>
 		{% endfor %}
-		{% for message in app.flashes('warning') %}
-			<div class="alert alert-warning mt-4">
-				{{ message }}
+
+		{{ form_start(form, { 'attr': { 'id': 'editProfileForm' } }) }}
+
+		<div class="floating-label">
+			{{ form_widget(form.fullName, { 'attr': { 'placeholder': 'Nom / Prénom' } }) }}
+			<label for="user_fullName">Nom / Prénom</label>
+			<div class="icon">
+				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+					<path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.9 0-7 3.1-7 7h14c0-3.9-3.1-7-7-7z"/>
+				</svg>
 			</div>
-		{% endfor %}
-
-		{{ form(form) }}
-
-			<div class="mt-4">
-				<p class="mb-2">Besoin de changer votre mot de passe ? Cliquez sur le bouton ci-dessous.</p>
-				<a href="{{ path('user.edit.password', {'id': app.user.id}) }}" class="btn btn-secondary">
-					Modifier mon mot de passe
-				</a>
-			</div>
-
+			{{ form_errors(form.fullName) }}
 		</div>
-	{% endblock %}
+
+		<div class="floating-label">
+			{{ form_widget(form.pseudo, { 'attr': { 'placeholder': 'Pseudo (Facultatif)' } }) }}
+			<label for="user_pseudo">Pseudo (Facultatif)</label>
+			<div class="icon">
+				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+					<path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.9 0-7 3.1-7 7h14c0-3.9-3.1-7-7-7z"/>
+				</svg>
+			</div>
+			{{ form_errors(form.pseudo) }}
+		</div>
+
+		<div class="floating-label">
+			{{ form_widget(form.plainPassword, { 'attr': { 'placeholder': 'Mot de passe pour confirmer' } }) }}
+			<label for="user_plainPassword">Mot de passe pour confirmer</label>
+			<div class="icon">
+				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+					<path d="M19,21H5V9h14V21z M6,20h12V10H6V20z"/>
+					<path d="M16.5,10h-1V7c0-1.9-1.6-3.5-3.5-3.5S8.5,5.1,8.5,7v3h-1V7c0-2.5,2-4.5,4.5-4.5s4.5,2,4.5,4.5V10z"/>
+					<path d="m12 16.5c-0.8 0-1.5-0.7-1.5-1.5s0.7-1.5 1.5-1.5 1.5 0.7 1.5 1.5-0.7 1.5-1.5 1.5zm0-2c-0.3 0-0.5 0.2-0.5 0.5s0.2 0.5 0.5 0.5 0.5-0.2 0.5-0.5-0.2-0.5-0.5-0.5z"/>
+				</svg>
+			</div>
+			{{ form_errors(form.plainPassword) }}
+		</div>
+
+
+		{{ form_end(form) }}
+
+		<div class="mt-4">
+			<p class="mb-2">Besoin de changer votre mot de passe ? Cliquez sur le bouton ci-dessous.</p>
+			<a href="{{ path('user.edit.password', {'id': app.user.id}) }}" class="btn btn-secondary">
+				Modifier mon mot de passe
+			</a>
+		</div>
+	</div>
+{% endblock %}

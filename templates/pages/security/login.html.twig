@@ -10,38 +10,43 @@
 {% endblock %}
 
 {% block body %}
+
+
 	<div class="container">
-		<h1 class="mt-4">Formulaire de connexion</h1>
+		<h1>Formulaire de<br>connexion</h1>
 
 		{% for message in app.flashes('success') %}
-			<div class="alert alert-success mt-4">
-				{{ message }}
-			</div>
+			<div class="alert alert-success mt-4">{{ message }}</div>
 		{% endfor %}
-
 		{% if error %}
 			<div class="alert alert-danger mt-4">
 				{{ error.messageKey|trans(error.messageData, 'security') }}
 			</div>
 		{% endif %}
 
-		{% for message in app.flashes('danger') %}
-			<div class="alert alert-danger mt-4">
-				{{ message }}
+		<form id="loginForm" action="{{ path('security.login') }}" method="post">
+			<div class="floating-label">
+				<input type="email" id="username" name="_username" placeholder="Adresse email" required value="{{ last_username }}">
+				<label for="username">Adresse email</label>
+				<div class="icon">
+					<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 100 100">
+						<g transform="translate(0 -952.36)">
+							<path d="m17.5 977c-1.3 0-2.4 1.1-2.4 2.4v45.9c0 1.3 1.1 2.4 2.4 2.4h64.9c1.3 0 2.4-1.1 2.4-2.4v-45.9c0-1.3-1.1-2.4-2.4-2.4h-64.9zm2.4 4.8h60.2v1.2l-30.1 22-30.1-22v-1.2zm0 7l28.7 21c0.8 0.6 2 0.6 2.8 0l28.7-21v34.1h-60.2v-34.1z"/>
+						</g>
+					</svg>
+				</div>
 			</div>
-		{% endfor %}
 
-		<form id="loginForm" action="{{ path('security.login') }}" method="post" class="mt-4">
-			<div class="mb-3">
-				<label for="username" class="form-label">Adresse email</label>
-				<input type="email" class="form-control" id="username" name="_username" placeholder="exemple@portfolio.fr" required value="{{ last_username }}">
-				<small id="emailHelp" class="form-text text-muted">
-					Nous ne partagerons jamais votre e-mail.
-				</small>
-			</div>
-			<div class="mb-3">
-				<label for="password" class="form-label">Mot de passe</label>
-				<input type="password" class="form-control" id="password" name="_password" placeholder="********" autocomplete="off" required>
+			<div class="floating-label">
+				<input type="password" id="password" name="_password" placeholder="Mot de passe" required>
+				<label for="password">Mot de passe</label>
+				<div class="icon">
+					<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+						<path d="M19,21H5V9h14V21z M6,20h12V10H6V20z"/>
+						<path d="M16.5,10h-1V7c0-1.9-1.6-3.5-3.5-3.5S8.5,5.1,8.5,7v3h-1V7c0-2.5,2-4.5,4.5-4.5s4.5,2,4.5,4.5V10z"/>
+						<path d="m12 16.5c-0.8 0-1.5-0.7-1.5-1.5s0.7-1.5 1.5-1.5 1.5 0.7 1.5 1.5-0.7 1.5-1.5 1.5zm0-2c-0.3 0-0.5 0.2-0.5 0.5s0.2 0.5 0.5 0.5 0.5-0.2 0.5-0.5-0.2-0.5-0.5-0.5z"/>
+					</svg>
+				</div>
 			</div>
 
 			<input type="hidden" id="js-enabled" name="js_enabled" value="0">
@@ -57,7 +62,6 @@
 	<script>
 		document.getElementById('loginForm').addEventListener('submit', function (event) {
 event.preventDefault();
-
 grecaptcha.ready(function () {
 grecaptcha.execute('{{ recaptcha_site_key }}', {action: 'login'}).then(function (token) {
 var recaptchaInput = document.createElement('input');
@@ -65,7 +69,6 @@ recaptchaInput.type = 'hidden';
 recaptchaInput.name = 'g-recaptcha-response';
 recaptchaInput.value = token;
 document.getElementById('loginForm').appendChild(recaptchaInput);
-
 document.getElementById('loginForm').submit();
 });
 });
