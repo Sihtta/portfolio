@@ -16,14 +16,14 @@
 		{% endblock %}
 
 		{% block javascripts %}
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const savedTheme = localStorage.getItem('selectedTheme'); // Récupérer le thème enregistré
-            if (savedTheme) {
-                document.getElementById('theme-stylesheet').setAttribute('href', savedTheme);
-            }
-        });
-    </script>
+			<script>
+				document.addEventListener('DOMContentLoaded', function () {
+const savedTheme = localStorage.getItem('selectedTheme');
+if (savedTheme) {
+document.getElementById('theme-stylesheet').setAttribute('href', savedTheme);
+}
+});
+			</script>
 		{% endblock %}
 	</head>
 	<body>
