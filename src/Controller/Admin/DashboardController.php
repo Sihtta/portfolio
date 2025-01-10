@@ -31,6 +31,16 @@ class DashboardController extends AbstractDashboardController
         } else return $this->redirectToRoute('security.login');
     }
 
+    #[Route('/theme', name: 'theme')]
+    public function indexTheme(): Response
+    {
+        if ($this->getUser()) {
+            if (count($this->getUser()->getRoles()) == 1) {
+                return $this->redirectToRoute('home.accessdenied');
+            } else return $this->render('admin/theme.html.twig');
+        } else return $this->redirectToRoute('security.login');
+    }
+
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
@@ -61,5 +71,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Statistiques');
         yield MenuItem::linkToCrud('Statistiques des créations', 'fa fa-chart-bar', Creation::class)
             ->setController(StatCrudController::class);
+
+        yield MenuItem::section('Gestion des Thèmes');
+        yield MenuItem::linkToRoute('Thèmes', 'fas fa-image', 'theme');
     }
 }
