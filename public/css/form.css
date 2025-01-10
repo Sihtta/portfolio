@@ -67,21 +67,24 @@ h1 {
 
 .floating-label label {
     position: absolute;
-    top: calc(50% - 7px);
+    top: 10px; 
     left: 0;
     opacity: 0;
     transition: all 0.3s ease;
     padding-left: 44px;
-    margin-top: -10px;
+    font-size: 16px; 
+    color: #888;
     cursor: text;
+    z-index: 1; 
 }
 
 .floating-label input:not(:placeholder-shown) + label,
-.floating-label textarea:not(:placeholder-shown) + label {
-    transform: translateY(-10px);
-    opacity: 0.7;
-}
-
+		.floating-label textarea:not(:placeholder-shown) + label {
+			transform: translateY(-20px);
+			opacity: 1;
+			color: #000;
+		}
+       
 .floating-label .icon {
     position: absolute;
     top: 0;
