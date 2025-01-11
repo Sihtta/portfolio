@@ -150,9 +150,9 @@
 											:</p>
 										<p>{{ comment.contentComment }}</p>
 										<p class="text-muted">Posté le
-											{{ comment.createdAt|date('d/m/Y H:i') }}</p>
+											{{ comment.createdAt|date('d/m/Y') }}</p>
 										{% if comment.user == app.user %}
-											<form action="{{ path('comment_delete', { id: comment.id }) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce commentaire ?');" class="mt-2">
+											<form action="{{ path('comment_delete', { id: comment.id }) }}" method="post" class="mt-2 delete-comment-form" data-comment-id="{{ comment.id }}">
 												<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
 												<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
 											</form>
@@ -197,7 +197,7 @@ col.style.position = 'absolute';
 col.style.left = `${x}px`;
 col.style.top = `${y}px`;
 
-colHeights[colIndex] += col.offsetHeight + 16; // Inclure la marge
+colHeights[colIndex] += col.offsetHeight + 16;
 });
 
 grid.style.position = 'relative';
@@ -208,6 +208,40 @@ Math.max(... colHeights)
 
 arrangeGrid();
 window.addEventListener('resize', arrangeGrid);
+
+document.querySelectorAll('.delete-comment-form').forEach(form => {
+form.addEventListener('submit', function (event) {
+event.preventDefault();
+
+if (!confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?')) {
+return;
+}
+
+const commentId = form.dataset.commentId;
+const url = form.action;
+
+fetch(url, {
+method: 'POST',
+headers: {
+'X-Requested-With': 'XMLHttpRequest',
+'Content-Type': 'application/x-www-form-urlencoded'
+},
+body: new URLSearchParams(new FormData(form))
+}).then(response => {
+if (response.ok) {
+const commentElement = document.querySelector (`[data-comment-id="${commentId}"]`).closest('.mb-3');
+commentElement.remove();
+
+alert('Le commentaire a été supprimé avec succès !');
+} else {
+console.error('Erreur lors de la suppression du commentaire.');
+alert('Une erreur est survenue lors de la suppression du commentaire.');
+}
+}).catch(error => {
+console.error('Erreur réseau :', error);
+alert('Erreur réseau. Veuillez réessayer.');
+});
+});
 });
 
 function onClickBtnLike(event) {
@@ -237,11 +271,6 @@ document.querySelectorAll('a.js-like').forEach(function (link) {
 link.addEventListener('click', onClickBtnLike);
 });
 
-document.querySelectorAll('a.js-comment').forEach(function (link) {
-link.addEventListener('click', onClickBtnComment);
-});
-
-document.addEventListener('DOMContentLoaded', function () {
 const shareIcons = document.querySelectorAll('.share-icon');
 shareIcons.forEach(icon => {
 icon.addEventListener('click', function (event) {
@@ -259,17 +288,13 @@ setTimeout(() => message.classList.remove('active'), 2000);
 }).catch(err => console.error('Erreur lors de la copie du lien :', err));
 });
 });
+
+document.querySelectorAll('.modal').forEach(modal => {
+modal.addEventListener('hidden.bs.modal', function () {
+document.body.classList.remove('modal-open');
+document.querySelector('.modal-backdrop') ?. remove();
 });
-
-function onClickBtnComment(event) {
-event.preventDefault();
-const modalId = this.getAttribute('data-bs-target').replace('#', '');
-const modalElement = document.getElementById(modalId);
-
-if (modalElement) {
-const modal = new bootstrap.Modal(modalElement);
-modal.show();
-}
-}
+});
+});
 	</script>
 {% endblock %}
