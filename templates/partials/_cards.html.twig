@@ -1,173 +1,197 @@
 {% block style_cards %}
-	<style>
-		.hover-card {
-			transition: background-color 0.3s ease, transform 0.2s ease;
-		}
+<style>
+    .hover-card {
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
 
-		.hover-card:hover {
-			background-color: #f8f9fa;
-			transform: scale(1.02);
-			cursor: pointer;
-		}
+    .hover-card:hover {
+        background-color: #f8f9fa;
+        transform: scale(1.02);
+        cursor: pointer;
+    }
 
-		.share-icon {
-			cursor: pointer;
-			color: #007bff;
-			font-size: 1.5rem;
-			margin-left: 10px;
-		}
+    .share-icon {
+        cursor: pointer;
+        color: #007bff;
+        font-size: 1.5rem;
+        margin-left: 10px;
+    }
 
-		.copied-message {
-			color: green;
-			font-size: 0.9rem;
-			display: none;
-		}
+    .copied-message {
+        color: green;
+        font-size: 0.9rem;
+        display: none;
+    }
 
-		.copied-message.active {
-			display: inline-block;
-		}
+    .copied-message.active {
+        display: inline-block;
+    }
 
-		.modal-dialog {
-			max-width: 70%;
-			width: auto;
-			max-height: 105vh;
-		}
+    .modal-dialog {
+        max-width: 70%;
+        width: auto;
+        max-height: 90vh; /* Adjusted max height */
+        overflow: hidden;
+    }
 
-		.modal-body {
-			max-height: 85vh;
-			overflow-y: auto;
-		}
+    .modal-body {
+        display: flex;
+        height: calc(90vh - 30px); /* Adjusted height to fit within max height */
+    }
 
-		.comment {
-			display: flex;
-			align-items: center;
-			justify-content: flex-start;
-			padding-left: 20px;
-			height: 3em;
-			width: 100%;
-			border-radius: 50px;
-			background-color: white;
-			color: black;
-			font-size: 1.2em;
-			text-align: left;
-			cursor: pointer;
-			box-sizing: border-box;
-		}
+    .modal-body .col-md-6:first-child {
+        position: sticky;
+        top: 0;
+        height: calc(90vh - 30px); /* Adjusted height */
+        overflow: hidden;
+    }
 
-		.row {
-			position: relative;
-		}
+    .modal-body .col-md-6:last-child {
+        overflow-y: auto;
+        height: calc(90vh - 30px); /* Adjusted height */
+    }
 
-		.col {
-			position: absolute;
-			transition: all 0.3s ease;
-		}
-	</style>
+    .comment {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 20px;
+        height: 3em;
+        width: 100%;
+        border-radius: 50px;
+        background-color: white;
+        color: black;
+        font-size: 1.2em;
+        text-align: left;
+        cursor: pointer;
+        box-sizing: border-box;
+    }
+
+    .row {
+        position: relative;
+    }
+
+    .col {
+        position: absolute;
+        transition: all 0.3s ease;
+    }
+
+    .modal-title {
+        padding-top: 20px;
+        font-size: 30px;
+    }
+
+    .btn-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1051;
+    }
+</style>
 {% endblock %}
 
 {% block content_cards %}
-	<div class="row row-cols-1 row-cols-md-3 g-4 mx-4">
-		{% for creation in creations %}
-			<div class="col">
-				<div class="card h-100 hover-card" style="border-radius: 30px;">
-					<img src="/images/{{ creation.image[0] }}" class="card-img-top" style="border-radius: 30px 30px 0 0;" alt="{{ creation.name }}" data-bs-toggle="modal" data-bs-target="#creationModal-{{ creation.id }}">
-					<div class="card-body">
-						<h5 class="card-title">{{ creation.name }}</h5>
-					</div>
-					<div class="card-footer text-end">
-						<div class="like share">
-							<a href="{{ path('creation.like', { 'id': creation.id }) }}" class="btn btn-link js-like">
-								{% if app.user and creation.isLikedByUser(app.user) %}
-									<i class="fas fa-thumbs-up"></i>
-								{% else %}
-									<i class="far fa-thumbs-up"></i>
-								{% endif %}
-								<span class="js-likes">{{ creation.likes | length }}</span>
-							</a>
-							<a href="#" class="btn btn-link js-comment" data-bs-toggle="modal" data-bs-target="#creationModal-{{ creation.id }}">
-								<i class="fas fa-comments"></i>
-								<span class="js-comments">{{ creation.comments | length }}</span>
-							</a>
-							<span class="share-icon" data-share-url="{{ path('creation_show', {'id': creation.id}) }}" title="Partager">
-								<i class="fas fa-share"></i>
-							</span>
-							<span class="copied-message">Lien copié !</span>
-						</div>
-					</div>
-				</div>
-			</div>
+<div class="row row-cols-1 row-cols-md-3 g-4 mx-4">
+    {% for creation in creations %}
+    <div class="col">
+        <div class="card h-100 hover-card" style="border-radius: 30px;">
+            <img src="/images/{{ creation.image[0] }}" class="card-img-top" style="border-radius: 30px 30px 0 0;" alt="{{ creation.name }}" data-bs-toggle="modal" data-bs-target="#creationModal-{{ creation.id }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ creation.name }}</h5>
+            </div>
+            <div class="card-footer text-end">
+                <div class="like share">
+                    <a href="{{ path('creation.like', { 'id': creation.id }) }}" class="btn btn-link js-like">
+                        {% if app.user and creation.isLikedByUser(app.user) %}
+                        <i class="fas fa-thumbs-up"></i>
+                        {% else %}
+                        <i class="far fa-thumbs-up"></i>
+                        {% endif %}
+                        <span class="js-likes">{{ creation.likes | length }}</span>
+                    </a>
+                    <a href="#" class="btn btn-link js-comment" data-bs-toggle="modal" data-bs-target="#creationModal-{{ creation.id }}">
+                        <i class="fas fa-comments"></i>
+                        <span class="js-comments">{{ creation.comments | length }}</span>
+                    </a>
+                    <span class="share-icon" data-share-url="{{ path('creation_show', {'id': creation.id}) }}" title="Partager">
+                        <i class="fas fa-share"></i>
+                    </span>
+                    <span class="copied-message">Lien copié !</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-			<div class="modal fade" id="creationModal-{{ creation.id }}" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">{{ creation.name }}</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-						</div>
-						<div class="modal-body">
-							{% block carroussel %}
-								{% include "partials/_carroussel.html.twig" %}
-							{% endblock %}
+    <div class="modal fade" id="creationModal-{{ creation.id }}" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-lg" style="border-radius: 15px; overflow: hidden;">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style = "right : 40px"></button>
+                    <div class="row">
+                        <div class="col-md-6">
+                            {% block carroussel %}
+                            {% include "partials/_carroussel.html.twig" %}
+                            {% endblock %}
+                        </div>
 
-							<p>
-								<strong>Description :</strong>
-								{{ creation.description }}</p>
+                        <div class="col-md-6">
+                            <div class="content-section">
+                                <h5 class="modal-title">{{ creation.name }}</h5>
+                                <p>{{ creation.description }}</p>
 
-							<h3>Outils utilisés :</h3>
-							<ul>
-								{% for tool in creation.Tool %}
-									<li>{{ tool.name }}</li>
-								{% endfor %}
-							</ul>
+                                <p>
+                                    <strong>Outils utilisés :</strong>
+                                </p>
+                                <ul>
+                                    {% for tool in creation.Tool %}
+                                    <li>{{ tool.name }}</li>
+                                    {% endfor %}
+                                </ul>
 
-							<h3>Catégories :</h3>
-							<ul>
-								{% for category in creation.category %}
-									<li>{{ category.name }}</li>
-								{% endfor %}
-							</ul>
+                                <div>
+                                    <h4> Commentaire </h4>
+                                    {% if app.user %}
+                                    {% if form is defined %}
+                                    {{ form_start(form) }}
+                                    {{ form_widget(form, {'attr': {'class': 'form-control'}}) }}
+                                    <button class="btn btn-primary mt-3">Envoyer</button>
+                                    {{ form_end(form) }}
+                                    {% else %}
+                                    <p class="text-warning">Le formulaire de commentaire n'est pas disponible.</p>
+                                    {% endif %}
+                                    {% else %}
+                                    <p class="text-muted">Connectez-vous pour commenter.</p>
+                                    {% endif %}
+                                </div>
 
-							<h3>Commentaires :</h3>
-							<div>
-								{% if app.user %}
-									{% if form is defined %}
-										{{ form_start(form) }}
-										{{ form_widget(form, {'attr': {'class': 'form-control'}}) }}
-										<button class="btn btn-primary mt-3">Envoyer</button>
-										{{ form_end(form) }}
-									{% else %}
-										<p class="text-warning">Le formulaire de commentaire n'est pas disponible.</p>
-									{% endif %}
-								{% else %}
-									<p class="text-muted">Connectez-vous pour commenter.</p>
-								{% endif %}
-							</div>
-							<div>
-								{% for comment in creation.comments %}
-									<div class="mb-3 p-3 border rounded">
-										<p>
-											<strong>{{ comment.user ? comment.user.getPseudo : 'Anonyme' }}</strong>
-											:</p>
-										<p>{{ comment.contentComment }}</p>
-										<p class="text-muted">Posté le
-											{{ comment.createdAt|date('d/m/Y H:i') }}</p>
-										{% if comment.user == app.user %}
-											<form action="{{ path('comment_delete', { id: comment.id }) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce commentaire ?');" class="mt-2">
-												<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
-												<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-											</form>
-										{% endif %}
-									</div>
-								{% else %}
-									<p>Aucun commentaire pour cette création.</p>
-								{% endfor %}
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		{% endfor %}
-	</div>
+                                <div>
+                                    {% for comment in creation.comments %}
+                                    <div class="mb-3 p-3 border rounded">
+                                        <p>
+                                            <strong>{{ comment.user ? comment.user.getPseudo : 'Anonyme' }}</strong>
+                                            :</p>
+                                        <p>{{ comment.contentComment }}</p>
+                                        <p class="text-muted">Posté le {{ comment.createdAt|date('d/m/Y H:i') }}</p>
+                                        {% if comment.user == app.user %}
+                                        <form action="{{ path('comment_delete', { id: comment.id }) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce commentaire ?');" class="mt-2">
+                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
+                                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                        </form>
+                                        {% endif %}
+                                    </div>
+                                    {% else %}
+                                    <p>Aucun commentaire pour cette création.</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
 
 {% block javascripts %}

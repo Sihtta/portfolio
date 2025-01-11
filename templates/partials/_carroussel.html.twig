@@ -1,8 +1,9 @@
 <style>
     .carousel-image-container {
-        height: 500px; 
-        width: 100%; 
+        height: 500px;
+        width: 100%;
         overflow: hidden;
+        position: relative;
     }
 
     .carousel-item {
@@ -15,16 +16,27 @@
         height: 100%;
     }
 
-    .carousel-thumbnails img {
-        width: 100px;
-        height: auto;
-        cursor: pointer;
-        transition: transform 0.3s ease;
+    .carousel-thumbnails {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        display: flex;
     }
 
-    .carousel-thumbnails img:hover {
+    .carousel-thumbnails img {
+        width: 75px;
+        height: 50px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        border: none; /* Suppression des bordures */
+        padding : none !important;
+        background : none !important;
+    }
+
+    !.carousel-thumbnails img:hover {
         transform: scale(1.1);
     }
+
 </style>
 
 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
@@ -37,18 +49,10 @@
             </div>
         {% endfor %}
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
 
-<div class="carousel-thumbnails d-flex mt-3">
-    {% for image in creation.image %}
-        <img src="/images/{{ image }}" class="img-thumbnail mx-2" style="width: 100px; cursor: pointer;" data-bs-target="#carouselExample" data-bs-slide-to="{{ loop.index0 }}" alt="...">
-    {% endfor %}
+    <div class="carousel-thumbnails">
+        {% for image in creation.image %}
+            <img src="/images/{{ image }}" class="img-thumbnail" data-bs-target="#carouselExample" data-bs-slide-to="{{ loop.index0 }}" alt="...">
+        {% endfor %}
+    </div>
 </div>
