@@ -90,9 +90,14 @@ class CreationController extends AbstractController
             return $this->redirectToRoute('creation.comments', ['id' => $creation->getId()]);
         }
 
+        $comments = $creation->getComments()->toArray();
+        usort($comments, function ($a, $b) {
+            return $b->getCreatedAt() <=> $a->getCreatedAt();
+        });
+
         return $this->render('partials/_cards.html.twig', [
             'creation' => $creation,
-            'comments' => $creation->getComments(),
+            'comments' => $comments,
             'form' => $form->createView(),
         ]);
     }

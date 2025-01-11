@@ -148,49 +148,49 @@
                                     {% endfor %}
                                 </ul>
 
-                                <div>
-                                    <h4> Commentaire </h4>
-                                    {% if app.user %}
-                                    {% if form is defined %}
-                                    {{ form_start(form) }}
-                                    {{ form_widget(form, {'attr': {'class': 'form-control'}}) }}
-                                    <button class="btn btn-primary mt-3">Envoyer</button>
-                                    {{ form_end(form) }}
-                                    {% else %}
-                                    <p class="text-warning">Le formulaire de commentaire n'est pas disponible.</p>
-                                    {% endif %}
-                                    {% else %}
-                                    <p class="text-muted">Connectez-vous pour commenter.</p>
-                                    {% endif %}
-                                </div>
-
-                                <div>
-                                    {% for comment in creation.comments %}
-                                    <div class="mb-3 p-3 border rounded">
-                                        <p>
-                                            <strong>{{ comment.user ? comment.user.getPseudo : 'Anonyme' }}</strong>
-                                            :</p>
-                                        <p>{{ comment.contentComment }}</p>
-                                        <p class="text-muted">Posté le {{ comment.createdAt|date('d/m/Y H:i') }}</p>
-                                        {% if comment.user == app.user %}
-                                        <form action="{{ path('comment_delete', { id: comment.id }) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce commentaire ?');" class="mt-2">
-                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
-                                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-                                        </form>
-                                        {% endif %}
-                                    </div>
-                                    {% else %}
-                                    <p>Aucun commentaire pour cette création.</p>
-                                    {% endfor %}
-                                </div>
-                            </div>
+                                <h3>Commentaires :</h3>
+							<div>
+								{% if app.user %}
+									{% if form is defined %}
+										{{ form_start(form) }}
+										{{ form_widget(form, {'attr': {'class': 'form-control'}}) }}
+										<button class="btn btn-primary mt-3">Envoyer</button>
+										{{ form_end(form) }}
+									{% else %}
+										<p class="text-warning">Le formulaire de commentaire n'est pas disponible.</p>
+									{% endif %}
+								{% else %}
+									<p class="text-muted">Connectez-vous pour commenter.</p>
+								{% endif %}
+							</div>
+							<div>
+								{% for comment in creation.comments|sort((a, b) => b.createdAt <=> a.createdAt) %}
+									<div class="mb-3 p-3 border rounded">
+										<p>
+											<strong>{{ comment.user ? comment.user.getPseudo : 'Anonyme' }}</strong>
+											:</p>
+										<p>{{ comment.contentComment }}</p>
+										<p class="text-muted">Posté le
+											{{ comment.createdAt|date('d/m/Y') }}</p>
+										{% if comment.user == app.user %}
+											<form action="{{ path('comment_delete', { id: comment.id }) }}" method="post" class="mt-2 delete-comment-form" data-comment-id="{{ comment.id }}">
+												<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
+												<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+											</form>
+										{% endif %}
+									</div>
+								{% else %}
+									<p>Aucun commentaire pour cette création.</p>
+								{% endfor %}
+							</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {% endfor %}
+</div>
+{% endfor %}
 </div>
 {% endblock %}
 
