@@ -143,7 +143,7 @@
 								{% endif %}
 							</div>
 							<div>
-								{% for comment in creation.comments %}
+								{% for comment in creation.comments|sort((a, b) => b.createdAt <=> a.createdAt) %}
 									<div class="mb-3 p-3 border rounded">
 										<p>
 											<strong>{{ comment.user ? comment.user.getPseudo : 'Anonyme' }}</strong>
