@@ -28,15 +28,32 @@
         height: 50px;
         cursor: pointer;
         transition: transform 0.3s ease;
-        border: none; /* Suppression des bordures */
-        padding : none !important;
-        background : none !important;
+        border: none;
+        padding: none !important;
+        background: none !important;
     }
 
-    !.carousel-thumbnails img:hover {
+    .carousel-thumbnails img:hover {
         transform: scale(1.1);
     }
 
+    .fullscreen-icon {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.5);
+        border: none;
+        color: white;
+        padding: 5px;
+        font-size: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+    }
 </style>
 
 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
@@ -45,6 +62,7 @@
             <div class="carousel-item {% if loop.first %}active{% endif %}">
                 <div class="carousel-image-container">
                     <img src="/images/{{ image }}" class="d-block w-100" alt="...">
+                    <button class="fullscreen-icon" onclick="toggleFullscreen(this)">⛶</button>
                 </div>
             </div>
         {% endfor %}
@@ -56,3 +74,26 @@
         {% endfor %}
     </div>
 </div>
+
+<script>
+    function toggleFullscreen(button) {
+        const imgContainer = button.parentElement;
+        if (!document.fullscreenElement) {
+            if (imgContainer.requestFullscreen) {
+                imgContainer.requestFullscreen();
+            } else if (imgContainer.webkitRequestFullscreen) { 
+                imgContainer.webkitRequestFullscreen();
+            } else if (imgContainer.msRequestFullscreen) { 
+                imgContainer.msRequestFullscreen();
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+    }
+</script>
