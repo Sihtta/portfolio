@@ -69,26 +69,29 @@
 		.modal-dialog {
 			max-width: 70%;
 			width: auto;
-			max-height: 90vh;
+			height: auto; 
 			overflow: hidden;
 		}
 
 		.modal-body {
 			display: flex;
-			height: calc(90vh - 30px);
+			max-height: 550px;
+			overflow-y: auto; 
 		}
 
+
 		.modal-body .col-md-6:first-child {
-			position: sticky;
-			top: 0;
-			height: calc(90vh - 30px);
+			position: relative;
+			height: auto; 
 			overflow: hidden;
 		}
 
+
 		.modal-body .col-md-6:last-child {
 			overflow-y: auto;
-			height: calc(90vh - 30px);
+			max-height: 500px; 
 		}
+
 
 		.btn-close {
 			position: absolute;
