@@ -22,26 +22,42 @@ class CommentController extends AbstractController
         EntityManagerInterface $entityManager
     ): Response {
         $creation = $entityManager->getRepository(Creation::class)->find($creationId);
-
+    
         if (!$creation) {
             throw $this->createNotFoundException('Création non trouvée.');
         }
-
-        $comment = new Comment();
-        $form = $this->createForm(CommentType::class, $comment);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $comment->setUser($this->getUser());
-            $comment->setCreation($creation);
-
-            $entityManager->persist($comment);
-            $entityManager->flush();
-
-            $this->addFlash('success', 'Commentaire ajouté avec succès !');
+    
+        $user = $this->getUser();
+    
+        if (!$user) {
+            return $this->json(['error' => 'Unauthorized'], Response::HTTP_UNAUTHORIZED);
         }
+    
+        $content = $request->request->get('contentComment');
+    
+        if (empty($content)) {
+            return $this->json(['error' => 'Content cannot be empty'], Response::HTTP_BAD_REQUEST);
+        }
+    
+        $comment = new Comment();
+        $comment->setContentComment($content);
+        $comment->setCreation($creation);
+        $comment->setUser($user);
+    
+        $entityManager->persist($comment);
+        $entityManager->flush();
 
-        return $this->redirectToRoute('creation_show', ['id' => $creationId]);
+        $createdAt = $comment->getCreatedAt()->format('d/m/Y');
+        $response = [
+            'success' => true,
+            'comment' => [
+                'user' => $comment->getUser()->getPseudo(),
+                'content' => $comment->getContentComment(),
+                'createdAt' => $createdAt
+            ]
+        ];
+    
+        return $this->json($response);
     }
 
     #[Route('/comment/delete/{id}', name: 'comment_delete', methods: ['POST'])]

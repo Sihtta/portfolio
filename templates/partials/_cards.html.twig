@@ -215,40 +215,40 @@
 												<li>{{ category.name }}</li>
 											{% endfor %}
 										</ul>
-										<h3>Commentaires :</h3>
-										<div>
-											{% if app.user %}
-												{% if form is defined %}
-													{{ form_start(form) }}
-													{{ form_widget(form, {'attr': {'class': 'form-control'}}) }}
-													<button class="btn btn-primary mt-3">Envoyer</button>
-													{{ form_end(form) }}
-												{% else %}
-													<p class="text-warning">Le formulaire de commentaire n'est pas disponible.</p>
+<h3>Commentaires :</h3>
+									<div>
+										{% if app.user %}
+											<form action="{{ path('comment_add', { creationId: creation.id }) }}" method="post" class="comment-form" id="comment-form-{{ creation.id }}">
+												<textarea 
+													name="contentComment" 
+													class="form-control" 
+													rows="4" 
+													placeholder="Écrivez votre commentaire ici..." 
+													required></textarea>
+												<button type="submit" class="btn btn-primary mt-3">Envoyer</button>
+											</form>
+										{% else %}
+											<p class="text-muted">Connectez-vous pour commenter.</p>
+										{% endif %}
+									</div>
+
+									<div id="comments-list">
+										{% for comment in creation.comments|sort((a, b) => b.createdAt <=> a.createdAt) %}
+											<div class="mb-3 p-3 border rounded" id="comment-{{ comment.id }}">
+												<p><strong>{{ comment.user ? comment.user.getPseudo : 'Anonyme' }}</strong> :</p>
+												<p>{{ comment.contentComment }}</p>
+												<p class="text-muted">Posté le {{ comment.createdAt|date('d/m/Y') }}</p>
+												{% if comment.user == app.user %}
+													<form action="{{ path('comment_delete', { id: comment.id }) }}" method="post" class="mt-2 delete-comment-form" data-comment-id="{{ comment.id }}">
+														<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
+														<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+													</form>
 												{% endif %}
-											{% else %}
-												<p class="text-muted">Connectez-vous pour commenter.</p>
-											{% endif %}
-										</div>
-										<div>
-											{% for comment in creation.comments|sort((a, b) => b.createdAt <=> a.createdAt) %}
-												<div class="mb-3 p-3 border rounded">
-													<p>
-														<strong>{{ comment.user ? comment.user.getPseudo : 'Anonyme' }}</strong>:</p>
-													<p>{{ comment.contentComment }}</p>
-													<p class="text-muted">Posté le
-														{{ comment.createdAt|date('d/m/Y') }}</p>
-													{% if comment.user == app.user %}
-														<form action="{{ path('comment_delete', { id: comment.id }) }}" method="post" class="mt-2 delete-comment-form" data-comment-id="{{ comment.id }}">
-															<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
-															<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-														</form>
-													{% endif %}
-												</div>
-											{% else %}
-												<p>Aucun commentaire pour cette création.</p>
-											{% endfor %}
-										</div>
+											</div>
+										{% else %}
+											<p>Aucun commentaire pour cette création.</p>
+										{% endfor %}
+									</div>
 									</div>
 								</div>
 							</div>
@@ -295,40 +295,71 @@
 
         arrangeGrid();
         window.addEventListener('resize', arrangeGrid);
-    });
 
-    function onClickBtnLike(event) {
-        event.preventDefault();
-        const url = this.href;
-        const spanCount = this.querySelector('span.js-likes');
-        const icon = this.querySelector('i');
+        document.querySelectorAll('.delete-comment-form').forEach(form => {
+		form.addEventListener('submit', function (event) {
+			event.preventDefault();
 
-        axios.get(url).then(function (response) {
-            spanCount.textContent = response.data.likes;
+			if (!confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?')) {
+				return;
+			}
 
-            if (icon.classList.contains('fas')) {
-                icon.classList.replace('fas', 'far');
-            } else {
-                icon.classList.replace('far', 'fas');
-            }
-        }).catch(function (error) {
-            if (error.response.status === 403) {
-                alert('Vous ne pouvez pas liker une création si vous n\'êtes pas connecté !');
-            } else {
-                alert("Une erreur s'est produite");
-            }
+			const commentId = form.dataset.commentId;
+			const url = form.action;
+
+			fetch(url, {
+				method: 'POST',
+				headers: {
+					'X-Requested-With': 'XMLHttpRequest',
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				body: new URLSearchParams(new FormData(form))
+			})
+				.then(response => {
+					if (response.ok) {
+						const commentElement = document.querySelector(`[data-comment-id="${commentId}"]`).closest('.mb-3');
+						commentElement.remove();
+
+						alert('Le commentaire a été supprimé avec succès !');
+					} else {
+						console.error('Erreur lors de la suppression du commentaire.');
+						alert('Une erreur est survenue lors de la suppression du commentaire.');
+					}
+				})
+				.catch(error => {
+					console.error('Erreur réseau :', error);
+					alert('Erreur réseau. Veuillez réessayer.');
+				});
+		});
+	});
+
+        function onClickBtnLike(event) {
+            event.preventDefault();
+            const url = this.href;
+            const spanCount = this.querySelector('span.js-likes');
+            const icone = this.querySelector('i');
+
+            axios.get(url).then(function (response) {
+                spanCount.textContent = response.data.likes;
+
+                if (icone.classList.contains('fas')) {
+                    icone.classList.replace('fas', 'far');
+                } else {
+                    icone.classList.replace('far', 'fas');
+                }
+            }).catch(function (error) {
+                if (error.response.status === 403) {
+                    window.alert('Vous ne pouvez pas liker une création si vous n\'êtes pas connecté !');
+                } else {
+                    window.alert("Une erreur s'est produite");
+                }
+            });
+        }
+
+        document.querySelectorAll('a.js-like').forEach(function (link) {
+            link.addEventListener('click', onClickBtnLike);
         });
-    }
 
-    document.querySelectorAll('a.js-like').forEach(function (link) {
-        link.addEventListener('click', onClickBtnLike);
-    });
-
-    document.querySelectorAll('a.js-comment').forEach(function (link) {
-        link.addEventListener('click', onClickBtnComment);
-    });
-
-    document.addEventListener('DOMContentLoaded', function () {
         const shareIcons = document.querySelectorAll('.share-icon');
         shareIcons.forEach(icon => {
             icon.addEventListener('click', function (event) {
@@ -344,18 +375,54 @@
                 }).catch(err => console.error('Erreur lors de la copie du lien :', err));
             });
         });
+
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('hidden.bs.modal', function () {
+                document.body.classList.remove('modal-open');
+                document.querySelector('.modal-backdrop')?.remove();
+            });
+        });
     });
 
-    function onClickBtnComment(event) {
-        event.preventDefault();
-        const modalId = this.getAttribute('data-bs-target').replace('#', '');
-        const modalElement = document.getElementById(modalId);
+	document.addEventListener('DOMContentLoaded', function() {
+    const commentForms = document.querySelectorAll('.comment-form');
+    
+    commentForms.forEach(form => {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
 
-        if (modalElement) {
-            const modal = new bootstrap.Modal(modalElement);
-            modal.show();
-        }
-    }
+            const formData = new FormData(form);
+            const creationId = form.dataset.creationId;
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Insérer le nouveau commentaire dans le DOM
+                    const newComment = document.createElement('div');
+                    newComment.classList.add('mb-3', 'p-3', 'border', 'rounded');
+                    newComment.innerHTML = `
+                        <p><strong>${data.comment.user}</strong> :</p>
+                        <p>${data.comment.content}</p>
+                        <p class="text-muted">Posté le ${data.comment.createdAt}</p>
+                    `;
+
+                    document.getElementById('comments-list').insertBefore(newComment, document.getElementById('comments-list').firstChild);
+                    form.reset();
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+            });
+        });
+    });
+});
 </script>
 
 {% endblock %}
