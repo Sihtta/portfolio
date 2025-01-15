@@ -83,7 +83,6 @@
 			}
 		}
 
-
 		.modal-body {
 			display: flex;
 			max-height: 550px;
@@ -145,6 +144,25 @@
 		.modal-content {
 			border-radius: 15px;
 			overflow: hidden;
+		}
+
+		@media (max-width: 768px) {
+			.modal-body {
+				display: block;
+			}
+
+			.modal-body .col-md-6 {
+				width: 100%;
+			}
+
+			.modal-body .col-md-6:first-child {
+				margin-bottom: 20px;
+			}
+
+			.modal-body .col-md-6:last-child {
+				overflow-y: auto;
+				max-height: none;
+			}
 		}
 
 	</style>
@@ -428,7 +446,6 @@
                     commentsList.insertBefore(newComment, commentsList.firstChild);
                     form.reset();
 
-                    // Ajout de l'événement au bouton de suppression
                     const deleteForm = newComment.querySelector('.delete-comment-form');
                     if (deleteForm) {
                         setupDeleteComment(deleteForm);
