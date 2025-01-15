@@ -1,60 +1,59 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Portfolio - Accueil
-{% endblock %}
+{% block title %}Portfolio - Accueil{% endblock %}
 
 {% block body %}
-	<style>
-		@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700 &display=swap');
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap');
 
-		h1 {
-			color: black;
-			font-family: 'Poppins', sans-serif;
-			font-size: 4rem;
-			font-weight: 700;
-			letter-spacing: 4px;
-			text-transform: uppercase;
-			text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2);
-			margin-bottom: 30px;
-			line-height: 1.2;
-			animation: slideIn 1s ease-out;
-		}
+        h1 {
+            color: black;
+            font-family: 'Poppins', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            line-height: 1.2;
+            animation: slideIn 1s ease-out;
+        }
 
-		@keyframes slideIn {
-			from {
-				opacity: 0;
-				transform: translateX(-100px);
-			}
-			to {
-				opacity: 1;
-				transform: translateX(0);
-			}
-		}
-	</style>
-	<div class="jumbotron jumbotron-fluid mt-4">
-		<div class="container">
-			<h1 class="display-4">Créations de l'artiste</h1>
-			<p class="lead">Découvrez ici les dernières créations</p>
-		</div>
-	</div>
-	{% block cards %}
-		{% include "partials/_cards.html.twig" %}
-	{% endblock %}
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+    <div class="jumbotron jumbotron-fluid mt-4">
+        <div class="container text-center text-md-left">
+            <h1 class="display-4">Créations de l'artiste</h1>
+            <p class="lead">Découvrez ici les dernières créations</p>
+        </div>
+    </div>
+    {% block cards %}
+        {% include "partials/_cards.html.twig" %}
+    {% endblock %}
 {% endblock %}
 {% block javascripts %}
-	{{ parent() }}
-	{% if modal_id is defined and modal_id %}
-		<script>
-			document.addEventListener('DOMContentLoaded', function () {
-const modalId = "{{ modal_id }}";
-if (modalId) {
-const modalElement = document.getElementById(`creationModal-${modalId}`);
-if (modalElement) {
-const modal = new bootstrap.Modal(modalElement);
-modal.show();
-}
-}
-});
-		</script>
-	{% endif %}
+    {{ parent() }}
+    {% if modal_id is defined and modal_id %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const modalId = "{{ modal_id }}";
+                if (modalId) {
+                    const modalElement = document.getElementById(`creationModal-${modalId}`);
+                    if (modalElement) {
+                        const modal = new bootstrap.Modal(modalElement);
+                        modal.show();
+                    }
+                }
+            });
+        </script>
+    {% endif %}
 {% endblock %}
