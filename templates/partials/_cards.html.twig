@@ -215,7 +215,7 @@
 												<li>{{ category.name }}</li>
 											{% endfor %}
 										</ul>
-<h3>Commentaires :</h3>
+									<h3>Commentaires :</h3>
 									<div>
 										{% if app.user %}
 											<form action="{{ path('comment_add', { creationId: creation.id }) }}" method="post" class="comment-form" id="comment-form-{{ creation.id }}">
@@ -233,22 +233,22 @@
 									</div>
 
 									<div id="comments-list-{{ creation.id }}">
-    {% for comment in creation.comments|sort((a, b) => b.createdAt <=> a.createdAt) %}
-        <div class="mb-3 p-3 border rounded" id="comment-{{ comment.id }}">
-            <p><strong>{{ comment.user ? comment.user.getPseudo : 'Anonyme' }}</strong> :</p>
-            <p>{{ comment.contentComment }}</p>
-            <p class="text-muted">Posté le {{ comment.createdAt|date('d/m/Y') }}</p>
-            {% if comment.user == app.user %}
-                <form action="{{ path('comment_delete', { id: comment.id }) }}" method="post" class="mt-2 delete-comment-form" data-comment-id="{{ comment.id }}">
-                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
-                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-                </form>
-            {% endif %}
-        </div>
-    {% else %}
-        <p>Aucun commentaire pour cette création.</p>
-    {% endfor %}
-</div>
+										{% for comment in creation.comments|sort((a, b) => b.createdAt <=> a.createdAt) %}
+											<div class="mb-3 p-3 border rounded" id="comment-{{ comment.id }}">
+												<p><strong>{{ comment.user ? comment.user.getPseudo : 'Anonyme' }}</strong> :</p>
+												<p>{{ comment.contentComment }}</p>
+												<p class="text-muted">Posté le {{ comment.createdAt|date('d/m/Y') }}</p>
+												{% if comment.user == app.user %}
+													<form action="{{ path('comment_delete', { id: comment.id }) }}" method="post" class="mt-2 delete-comment-form" data-comment-id="{{ comment.id }}">
+														<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
+														<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+													</form>
+												{% endif %}
+											</div>
+										{% else %}
+											<p>Aucun commentaire pour cette création.</p>
+										{% endfor %}
+									</div>
 									</div>
 								</div>
 							</div>
@@ -384,45 +384,105 @@
         });
     });
 
-	document.addEventListener('DOMContentLoaded', function() {
+	document.addEventListener('DOMContentLoaded', function () {
     const commentForms = document.querySelectorAll('.comment-form');
-    
+
     commentForms.forEach(form => {
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
 
-        const formData = new FormData(form);
-        const creationId = form.id.replace('comment-form-', '');
+            const formData = new FormData(form);
+            const creationId = form.id.replace('comment-form-', '');
 
-        fetch(form.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                const commentsList = document.getElementById(`comments-list-${creationId}`);
-                const newComment = document.createElement('div');
-                newComment.classList.add('mb-3', 'p-3', 'border', 'rounded');
-                newComment.innerHTML = `
-                    <p><strong>${data.comment.user}</strong> :</p>
-                    <p>${data.comment.content}</p>
-                    <p class="text-muted">Posté le ${data.comment.createdAt}</p>
-                `;
-                commentsList.insertBefore(newComment, commentsList.firstChild);
-                form.reset();
-            } else {
-                alert('Erreur : ' + data.error);
-            }
-        })
-        .catch(error => {
-            console.error('Erreur:', error);
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const commentsList = document.getElementById(`comments-list-${creationId}`);
+                    const newComment = document.createElement('div');
+                    newComment.classList.add('mb-3', 'p-3', 'border', 'rounded');
+                    newComment.id = `comment-${data.comment.id}`;
+
+                    let deleteButton = '';
+                    if (data.comment.isUser) {
+                        deleteButton = `
+                            <form action="/comment/delete/${data.comment.id}" method="post" class="mt-2 delete-comment-form" data-comment-id="${data.comment.id}">
+                                <input type="hidden" name="_token" value="${data.comment.csrfToken}">
+                                <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                            </form>
+                        `;
+                    }
+
+                    newComment.innerHTML = `
+                        <p><strong>${data.comment.user}</strong> :</p>
+                        <p>${data.comment.content}</p>
+                        <p class="text-muted">Posté le ${data.comment.createdAt}</p>
+                        ${deleteButton}
+                    `;
+                    commentsList.insertBefore(newComment, commentsList.firstChild);
+                    form.reset();
+
+                    // Ajout de l'événement au bouton de suppression
+                    const deleteForm = newComment.querySelector('.delete-comment-form');
+                    if (deleteForm) {
+                        setupDeleteComment(deleteForm);
+                    }
+                } else {
+                    alert('Erreur : ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+            });
         });
     });
-});
+
+    function setupDeleteComment(form) {
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            if (!confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?')) {
+                return;
+            }
+
+            const commentId = form.dataset.commentId;
+            const url = form.action;
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams(new FormData(form))
+            })
+                .then(response => {
+                    if (response.ok) {
+                        const commentElement = document.getElementById(`comment-${commentId}`);
+                        commentElement.remove();
+
+                        alert('Le commentaire a été supprimé avec succès !');
+                    } else {
+                        console.error('Erreur lors de la suppression du commentaire.');
+                        alert('Une erreur est survenue lors de la suppression du commentaire.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erreur réseau :', error);
+                    alert('Erreur réseau. Veuillez réessayer.');
+                });
+        });
+    }
+
+    document.querySelectorAll('.delete-comment-form').forEach(form => {
+        setupDeleteComment(form);
+    });
 });
 </script>
 

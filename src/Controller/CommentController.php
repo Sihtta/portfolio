@@ -51,11 +51,14 @@ class CommentController extends AbstractController
         $response = [
             'success' => true,
             'comment' => [
+                'id' => $comment->getId(),
                 'user' => $comment->getUser()->getPseudo(),
                 'content' => $comment->getContentComment(),
-                'createdAt' => $createdAt
+                'createdAt' => $createdAt,
+                'isUser' => $user === $comment->getUser(),
+                'csrfToken' => $this->container->get('security.csrf.token_manager')->getToken('delete' . $comment->getId())->getValue()
             ]
-        ];
+        ];        
     
         return $this->json($response);
     }
