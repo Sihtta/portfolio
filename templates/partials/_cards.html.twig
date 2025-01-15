@@ -175,6 +175,14 @@
 												<li>{{ tool.name }}</li>
 											{% endfor %}
 										</ul>
+										<p>
+											<strong>Catégories :</strong>
+										</p>
+										<ul>
+											{% for category in creation.category %}
+												<li>{{ category.name }}</li>
+											{% endfor %}
+										</ul>
 										<h3>Commentaires :</h3>
 										<div>
 											{% if app.user %}
