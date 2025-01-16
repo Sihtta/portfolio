@@ -1,102 +1,102 @@
 <style>
-    .carousel-image-container {
-        height: 500px;
-        width: 100%;
-        overflow: hidden;
-        position: relative;
-        border-radius: 15px; /* Ajout de l'arrondi */
-    }
+	.carousel-image-container {
+		height: 500px;
+		width: 100%;
+		overflow: hidden;
+		position: relative;
+		border-radius: 15px;
+	}
 
-    .carousel-item {
-        height: 100%;
-    }
+	.carousel-item {
+		height: 100%;
+	}
 
-    .carousel-image-container img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-        border-radius: 15px; /* Assurez que l'image suit l'arrondi */
-    }
+	.carousel-image-container img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+		border-radius: 15px;
+	}
 
-    .carousel-thumbnails {
-        position: absolute;
-        bottom: 10px;
-        left: 10px;
-        display: flex;
-    }
+	.carousel-thumbnails {
+		position: absolute;
+		bottom: 10px;
+		left: 10px;
+		display: flex;
+	}
 
-    .carousel-thumbnails img {
-        width: 75px;
-        height: 50px;
-        cursor: pointer;
-        transition: transform 0.3s ease;
-        border: none;
-        padding: none !important;
-        background: none !important;
-    }
+	.carousel-thumbnails img {
+		width: 75px;
+		height: 50px;
+		cursor: pointer;
+		transition: transform 0.3s ease;
+		border: none;
+		padding: none !important;
+		background: none !important;
+	}
 
-    .carousel-thumbnails img:hover {
-        transform: scale(1.1);
-    }
+	.carousel-thumbnails img:hover {
+		transform: scale(1.1);
+	}
 
-    .fullscreen-icon {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        cursor: pointer;
-        background-color: rgba(0, 0, 0, 0.5);
-        border: none;
-        color: white;
-        padding: 5px;
-        font-size: 20px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-    }
+	.fullscreen-icon {
+		position: absolute;
+		bottom: 10px;
+		right: 10px;
+		cursor: pointer;
+		background-color: rgba(0, 0, 0, 0.5);
+		border: none;
+		color: white;
+		padding: 5px;
+		font-size: 20px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+	}
 </style>
 
 
 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        {% for image in creation.image %}
-            <div class="carousel-item {% if loop.first %}active{% endif %}">
-                <div class="carousel-image-container">
-                    <img src="/images/{{ image }}" class="d-block w-100" alt="...">
-                    <button class="fullscreen-icon" onclick="toggleFullscreen(this)">⛶</button>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+	<div class="carousel-inner">
+		{% for image in creation.image %}
+			<div class="carousel-item {% if loop.first %}active{% endif %}">
+				<div class="carousel-image-container">
+					<img src="/images/{{ image }}" class="d-block w-100" alt="...">
+					<button class="fullscreen-icon" onclick="toggleFullscreen(this)">⛶</button>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 
-    <div class="carousel-thumbnails">
-        {% for image in creation.image %}
-            <img src="/images/{{ image }}" class="img-thumbnail" data-bs-target="#carouselExample" data-bs-slide-to="{{ loop.index0 }}" alt="...">
-        {% endfor %}
-    </div>
+	<div class="carousel-thumbnails">
+		{% for image in creation.image %}
+			<img src="/images/{{ image }}" class="img-thumbnail" data-bs-target="#carouselExample" data-bs-slide-to="{{ loop.index0 }}" alt="...">
+		{% endfor %}
+	</div>
 </div>
 
 <script>
-    function toggleFullscreen(button) {
-        const imgContainer = button.parentElement;
-        if (!document.fullscreenElement) {
-            if (imgContainer.requestFullscreen) {
-                imgContainer.requestFullscreen();
-            } else if (imgContainer.webkitRequestFullscreen) { 
-                imgContainer.webkitRequestFullscreen();
-            } else if (imgContainer.msRequestFullscreen) { 
-                imgContainer.msRequestFullscreen();
-            }
-        } else {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            } else if (document.webkitExitFullscreen) {
-                document.webkitExitFullscreen();
-            } else if (document.msExitFullscreen) {
-                document.msExitFullscreen();
-            }
-        }
-    }
+	function toggleFullscreen(button) {
+const imgContainer = button.parentElement;
+if (!document.fullscreenElement) {
+if (imgContainer.requestFullscreen) {
+imgContainer.requestFullscreen();
+} else if (imgContainer.webkitRequestFullscreen) {
+imgContainer.webkitRequestFullscreen();
+} else if (imgContainer.msRequestFullscreen) {
+imgContainer.msRequestFullscreen();
+}
+} else {
+if (document.exitFullscreen) {
+document.exitFullscreen();
+} else if (document.webkitExitFullscreen) {
+document.webkitExitFullscreen();
+} else if (document.msExitFullscreen) {
+document.msExitFullscreen();
+}
+}
+}
 </script>
