@@ -8,36 +8,96 @@
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<title>Changer le Thème</title>
 			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+			<style>
+				.theme-image {
+					cursor: pointer;
+					transition: transform 0.3s ease;
+				}
+
+				.theme-image:hover {
+					transform: scale(1.05);
+				}
+
+				.active-theme {
+					border: 5px solid #007bff;
+					box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+				}
+				a,
+				a:hover,
+				a:focus,
+				a:active {
+					text-decoration: none;
+					font-size: 14px;
+				}
+			</style>
 		</head>
 		<body>
-			<div class="container text-center my-5">
-				<h1>Choisissez un Thème</h1>
-				<div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
-					<div class="col">
-						<button class="btn btn-primary change-theme" data-theme="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/lux/bootstrap.min.css">Lux</button>
-					</div>
-					<div class="col">
-						<button class="btn btn-secondary change-theme" data-theme="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/cerulean/bootstrap.min.css">Cerulean</button>
-					</div>
-					<div class="col">
-						<button class="btn btn-dark change-theme" data-theme="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/cyborg/bootstrap.min.css">Cyborg</button>
-					</div>
+			<div class="container my-5">
+				<h1 class="text-center mb-4">Sélectionnez un Thème</h1>
+				<div class="row row-cols-1 row-cols-md-3 g-4">
+					{% set themes = [
+                { name: "Cerulean", url: "cerulean" },
+                { name: "Cosmo", url: "cosmo" },
+                { name: "Cyborg", url: "cyborg" },
+                { name: "Darkly", url: "darkly" },
+                { name: "Flatly", url: "flatly" },
+                { name: "Journal", url: "journal" },
+                { name: "Litera", url: "litera" },
+                { name: "Lumen", url: "lumen" },
+                { name: "Lux", url: "lux" },
+                { name: "Minty", url: "minty" },
+                { name: "Morph", url: "morph" },
+                { name: "Pulse", url: "pulse" },
+                { name: "Quartz", url: "quartz" },
+                { name: "Sandstone", url: "sandstone" },
+                { name: "Simplex", url: "simplex" },
+                { name: "Sketchy", url: "sketchy" },
+                { name: "Slate", url: "slate" },
+                { name: "Solar", url: "solar" },
+                { name: "Spacelab", url: "spacelab" },
+                { name: "Superhero", url: "superhero" },
+                { name: "United", url: "united" },
+                { name: "Vapor", url: "vapor" },
+                { name: "Yeti", url: "yeti" },
+                { name: "Zephyr", url: "zephyr" }
+            ] %}
+					{% for theme in themes %}
+						<div class="col">
+							<img src="https://bootswatch.com/{{ theme.url }}/thumbnail.png" alt="{{ theme.name }} Theme" class="img-fluid theme-image" data-theme="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/{{ theme.url }}/bootstrap.min.css">
+							<p class="text-center mt-2">{{ theme.name }}</p>
+						</div>
+					{% endfor %}
 				</div>
-				<p class="mt-4">
+				<p class="mt-4 text-center">
 					<a href="/" class="btn btn-success">Retour à l'Accueil</a>
 				</p>
 			</div>
 
 			<script>
-				document.querySelectorAll('.change-theme').forEach(button => {
-button.addEventListener('click', function () {
+				window.addEventListener('DOMContentLoaded', () => {
+const selectedThemeUrl = localStorage.getItem('selectedTheme');
+if (selectedThemeUrl) {
+document.querySelectorAll('.theme-image').forEach(image => {
+if (image.getAttribute('data-theme') === selectedThemeUrl) {
+image.classList.add('active-theme');
+}
+});
+}
+});
+
+document.querySelectorAll('.theme-image').forEach(image => {
+image.addEventListener('click', function () {
+document.querySelectorAll('.theme-image').forEach(img => img.classList.remove('active-theme'));
+
+this.classList.add('active-theme');
+
 const themeUrl = this.getAttribute('data-theme');
 localStorage.setItem('selectedTheme', themeUrl);
+
 alert('Thème enregistré ! Revenez à la page principale pour voir le changement.');
 });
 });
 			</script>
 		</body>
 	</html>
-
 {% endblock %}

@@ -37,8 +37,12 @@ class DashboardController extends AbstractDashboardController
         if ($this->getUser()) {
             if (count($this->getUser()->getRoles()) == 1) {
                 return $this->redirectToRoute('home.accessdenied');
-            } else return $this->render('admin/theme.html.twig');
-        } else return $this->redirectToRoute('security.login');
+            } else {
+                return $this->render('admin/theme.html.twig');
+            }
+        } else {
+            return $this->redirectToRoute('security.login');
+        }
     }
 
     public function configureDashboard(): Dashboard
@@ -47,6 +51,7 @@ class DashboardController extends AbstractDashboardController
             ->setTitle('Portfolio - Administration')
             ->renderContentMaximized();
     }
+
 
     public function configureMenuItems(): iterable
     {
