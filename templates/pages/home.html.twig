@@ -155,20 +155,20 @@
 
 	<script>
 		document.addEventListener('DOMContentLoaded', function () {
-const text = "Bienvenue sur mon Portfolio";
-const element = document.getElementById('typed-text');
-let index = 0;
+		const text = "Bienvenue sur mon Portfolio";
+		const element = document.getElementById('typed-text');
+		let index = 0;
 
-function AfficheTitre() {
-if (index < text.length) {
-element.textContent += text.charAt(index);
-index++;
-setTimeout(AfficheTitre, 100);
-}
-}
+		function AfficheTitre() {
+			if (index < text.length) {
+				element.textContent += text.charAt(index);
+				index++;
+			setTimeout(AfficheTitre, 100);
+			}
+		}
 
-AfficheTitre();
-});
+	AfficheTitre();
+	});
 	</script>
 
 {% endblock %}

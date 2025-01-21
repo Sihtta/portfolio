@@ -22,7 +22,7 @@ class CommentRepository extends ServiceEntityRepository
     }
 
     /**
-     * Récupère les commentaires d'une création, triés par date décroissante.
+     * Retrieves comments for a creation, sorted by descending date.
      *
      * @param int $creationId
      * @return Comment[]
